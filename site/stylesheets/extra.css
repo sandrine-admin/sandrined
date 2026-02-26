@@ -11,7 +11,7 @@ body {
   border-bottom: 1px solid #e5e7eb;
 }
 
-/* Contenu dans une simple carte blanche centrée */
+/* Contenu dans une carte blanche centrée */
 .md-content__inner {
   max-width: 900px;
   margin: 2rem auto;
@@ -21,7 +21,7 @@ body {
   box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
 }
 
-/* Liens sobres, sans flash de couleur */
+/* Liens sobres */
 a {
   color: #1f2937;
   text-decoration: underline;
@@ -31,7 +31,7 @@ a:hover {
   color: #111827;
 }
 
-/* Titres bien lisibles */
+/* Titres lisibles */
 h1, h2, h3 {
   color: #111827;
 }
@@ -46,12 +46,4 @@ h1, h2, h3 {
 /* S'assurer qu'il n'y a pas de fond violet résiduel */
 .md-main {
   background: none !important;
-}
-/* Supprimer toutes les formes décoratives restantes */
-svg {
-  display: none !important;
-}
-/* Supprimer toutes les formes décoratives restantes */
-svg {
-  display: none !important;
 }
