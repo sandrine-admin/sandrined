@@ -2,10 +2,9 @@
 <html lang="fr">
   <head>
     <meta charset="utf-8">
-    <title>sandrined – site personnel</title>
+    <title>sandrined – Accueil</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Police simple et propre -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Inter:300,400,500,700&display=swap">
@@ -14,11 +13,10 @@
       :root {
         --primary: #4b5ad5;
         --primary-dark: #313aa3;
-        --bg: #f5f6fa;
+        --accent: #f97373;
+        --bg: linear-gradient(135deg, #f5f6ff, #fdf2ff);
       }
-      * {
-        box-sizing: border-box;
-      }
+      * { box-sizing: border-box; }
       body {
         margin: 0;
         font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -26,52 +24,130 @@
         color: #222;
       }
       header {
-        background: white;
-        border-bottom: 1px solid #e0e3f0;
-        padding: 1rem 2rem;
-        position: sticky;
-        top: 0;
-        z-index: 10;
+        padding: 1.2rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
       }
       header h1 {
         margin: 0;
-        font-size: 1.3rem;
+        font-size: 1.4rem;
         color: var(--primary);
+      }
+      nav a {
+        margin-left: 1rem;
+        text-decoration: none;
+        color: #444;
+        font-weight: 500;
+      }
+      nav a:hover {
+        color: var(--primary-dark);
       }
       main {
         max-width: 960px;
-        margin: 2.5rem auto;
-        padding: 0 1.5rem 3rem;
+        margin: 1rem auto 3rem;
+        padding: 0 1.5rem;
       }
-      .card {
+      .hero {
         background: white;
-        border-radius: 12px;
-        padding: 2rem 2.5rem;
-        box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+        border-radius: 16px;
+        padding: 2.5rem 2.5rem 2rem;
+        box-shadow: 0 18px 45px rgba(15,23,42,0.12);
+        display: grid;
+        grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+        gap: 2rem;
       }
-      h2 {
+      .hero h2 {
         margin-top: 0;
-        font-size: 1.6rem;
+        font-size: 2.1rem;
       }
-      p.lead {
-        margin-top: 0.25rem;
+      .hero p.lead {
+        font-size: 1rem;
         color: #555;
       }
-      section + section {
-        margin-top: 2rem;
-        border-top: 1px solid #f0f1f6;
-        padding-top: 2rem;
+      .tagline {
+        display: inline-block;
+        padding: 0.15rem 0.75rem;
+        border-radius: 999px;
+        background: rgba(75,90,213,0.07);
+        color: var(--primary-dark);
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 0.7rem;
+      }
+      .badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        margin-top: 1rem;
+      }
+      .badge {
+        font-size: 0.8rem;
+        padding: 0.35rem 0.8rem;
+        border-radius: 999px;
+        background: #eef0ff;
+        color: var(--primary-dark);
+      }
+      .badge.accent {
+        background: #ffe4e4;
+        color: #b43333;
+      }
+      .hero-side {
+        align-self: center;
+        text-align: right;
+      }
+      .hero-pill {
+        display: inline-block;
+        padding: 0.6rem 1.2rem;
+        border-radius: 999px;
+        background: #fff7f2;
+        border: 1px dashed rgba(249,115,115,0.5);
+        color: #b43333;
+        font-size: 0.8rem;
+      }
+      .links {
+        margin-top: 1.5rem;
+      }
+      .btn {
+        display: inline-block;
+        padding: 0.6rem 1.3rem;
+        border-radius: 999px;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+      .btn-primary {
+        background: var(--primary);
+        color: white;
+      }
+      .btn-primary:hover {
+        background: var(--primary-dark);
+      }
+      .btn-ghost {
+        border: 1px solid rgba(15,23,42,0.15);
+        color: #444;
+        margin-left: 0.6rem;
+        background: white;
+      }
+      .btn-ghost:hover {
+        border-color: var(--primary);
+        color: var(--primary-dark);
+      }
+      section {
+        margin-top: 2.5rem;
+      }
+      h3 {
+        margin-bottom: 0.2rem;
+      }
+      p.section-desc {
+        margin-top: 0;
+        color: #555;
+        font-size: 0.95rem;
       }
       ul {
         padding-left: 1.2rem;
-      }
-      a {
-        color: var(--primary);
-        text-decoration: none;
-      }
-      a:hover {
-        color: var(--primary-dark);
-        text-decoration: underline;
       }
       footer {
         text-align: center;
@@ -79,39 +155,91 @@
         font-size: 0.85rem;
         padding: 1.5rem 0 2rem;
       }
+      @media (max-width: 800px) {
+        .hero {
+          grid-template-columns: minmax(0, 1fr);
+          text-align: left;
+        }
+        .hero-side {
+          text-align: left;
+        }
+      }
     </style>
   </head>
   <body>
     <header>
       <h1>sandrined</h1>
+      <nav>
+        <a href="index.html">Accueil</a>
+        <a href="#certificats">Certificats</a>
+      </nav>
     </header>
 
     <main>
-      <div class="card">
-        <section>
-          <h2>Bienvenue</h2>
-          <p class="lead">Bienvenue sur mon site personnel.</p>
-        </section>
-
-        <section>
-          <h3>Mes projets</h3>
-          <ul>
-            <li>Projet 1</li>
-            <li>Projet 2</li>
-            <li>Projet 3</li>
-          </ul>
-        </section>
-
-        <section>
-          <h3>En savoir plus</h3>
-          <p>
-            Une page <strong>À propos</strong> arrivera bientôt,
-            ainsi qu’une section plus détaillée sur mes projets et peut‑être un blog.
+      <section class="hero">
+        <div>
+          <div class="tagline">Site personnel</div>
+          <h2>Bienvenue sur mon espace en ligne</h2>
+          <p class="lead">
+            Quelques pages simples pour me présenter, partager mes projets
+            et regrouper mes certificats techniques.
           </p>
-          <!-- Quand tu auras une vraie page "à propos", tu pourras décommenter ce lien : -->
-          <!-- <p><a href="apropos.html">En savoir plus sur moi</a></p> -->
-        </section>
-      </div>
+          <div class="badges">
+            <span class="badge">IT / Réseaux</span>
+            <span class="badge">Cybersécurité</span>
+            <span class="badge accent">En apprentissage continu</span>
+          </div>
+          <div class="links">
+            <a class="btn btn-primary" href="#certificats">Voir mes certificats</a>
+            <a class="btn btn-ghost" href="#projets">Jeter un œil aux projets</a>
+          </div>
+        </div>
+        <div class="hero-side">
+          <div class="hero-pill">
+            Petite documentation personnelle,
+            <br>sans prétention, mais qui grandira avec moi.
+          </div>
+        </div>
+      </section>
+
+      <section id="projets">
+        <h3>Mes projets</h3>
+        <p class="section-desc">
+          Quelques idées en cours ou à venir. Cette liste évoluera avec le temps.
+        </p>
+        <ul>
+          <li>Projet 1 – à définir / en cours.</li>
+          <li>Projet 2 – à définir / en cours.</li>
+          <li>Projet 3 – à définir / en cours.</li>
+        </ul>
+      </section>
+
+      <section id="certificats">
+        <h3>Certificats</h3>
+        <p class="section-desc">
+          Quelques certificats obtenus via Cisco Networking Academy.
+        </p>
+        <ul>
+          <li>
+            <a href="certificats/cisco-intro-cybersecurity.pdf" target="_blank">
+              Introduction to Cybersecurity – Cisco NetAcad
+            </a>
+          </li>
+          <li>
+            <a href="certificats/cisco-it-essentials.pdf" target="_blank">
+              IT Essentials – Cisco NetAcad
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>Et la suite&nbsp;?</h3>
+        <p class="section-desc">
+          Je prévois d’ajouter une page “À propos”, des notes techniques
+          et peut‑être un petit blog autour de la sécurité et du réseau.
+        </p>
+      </section>
     </main>
 
     <footer>
