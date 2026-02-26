@@ -1,0 +1,32 @@
+body {
+  background-color: red !important;
+}
+
+
+/* Fond global neutre */
+body {
+  background-color: #f5f5f5 !important;
+}
+
+/* Conteneur principal sans fond ni formes colorées */
+.md-main {
+  background: none !important;
+}
+
+.md-main::before,
+.md-main::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* En-tête et barre latérale en blanc (plus de fond bleu) */
+.md-header,
+.md-sidebar {
+  background-color: #ffffff !important;
+  box-shadow: none !important;
+}
+
+/* Zone de contenu centrée sur fond blanc */
+.md-content__inner {
+  background-color: #ffffff !important;
+}
