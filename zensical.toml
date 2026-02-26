@@ -36,19 +36,15 @@ language = "fr"
 # COULEURS (clair + sombre automatique)
 # ============================================================================
 
-# [[project.theme.palette]]
-# scheme = "default"
-# primary = "indigo"
-# accent = "cyan"
-# toggle.icon = "lucide/moon"
-# toggle.name = "Mode sombre"
+[[project.theme.palette]]
+scheme = "default"
+primary = "grey"
+accent = "black"
 
-# [[project.theme.palette]]
-# scheme = "slate"
-# primary = "black"
-# accent = "lime"
-# toggle.icon = "lucide/sun"
-# toggle.name = "Mode clair"
+[[project.theme.palette]]
+scheme = "slate"
+primary = "black"
+accent = "white"
 
 
 # ============================================================================
