@@ -4,10 +4,10 @@
 
 [project]
 
-site_name = "Ton Nom"
-site_description = "Portfolio développeur • Projets • Documentation technique"
+site_name = "Documentation"
+site_description = "A new project generated from the default template project."
 site_author = "Ton Nom"
-site_url = "https://tonpseudo.github.io"
+site_url = "https://did-dft.github.io/sandrined/"
 
 copyright = """
 Copyright &copy; 2026 Ton Nom.
