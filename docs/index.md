@@ -9,3 +9,10 @@ Bienvenue. Ceci est mon site personnel.
 - Plus tard : un blog ou des notes techniques.
 
 [En savoir plus sur moi](apropos.md)
+
+## Mes certificats
+
+Voici quelques certificats obtenus via Cisco Networking Academy (NetAcad) :
+
+- [Introduction to Cybersecurity – Cisco NetAcad](certificats/cisco-intro-cybersecurity.pdf)
+- [IT Essentials – Cisco NetAcad](certificats/cisco-it-essentials.pdf)
