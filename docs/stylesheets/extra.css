@@ -1,12 +1,26 @@
+/* Couleur de fond globale un peu plus douce */
 body {
-  background-color: #f3f5ff;
+  background-color: #f7f8ff;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #1f2933;           /* texte plus foncé */
 }
 
+/* Contenu centré, moins large pour les grands écrans */
+.md-content__inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Liens plus lisibles */
 a {
-  color: #2b4c7e;
+  color: #1d4ed8;
 }
 
 a:hover {
-  color: #1a3254;
+  color: #1e3a8a;
+}
+
+/* Titres un peu plus contrastés */
+h1, h2, h3 {
+  color: #111827;
 }
