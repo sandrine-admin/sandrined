@@ -1,0 +1,57 @@
+/* Fond global neutre */
+body {
+  background-color: #f5f5f5;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #111827;
+}
+
+/* Header discret blanc */
+.md-header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* Contenu dans une simple carte blanche centrée */
+.md-content__inner {
+  max-width: 900px;
+  margin: 2rem auto;
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+}
+
+/* Liens sobres, sans flash de couleur */
+a {
+  color: #1f2937;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #111827;
+}
+
+/* Titres bien lisibles */
+h1, h2, h3 {
+  color: #111827;
+}
+
+/* Supprimer la grosse forme mauve en bas de page */
+.md-main::before,
+.md-main::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* S'assurer qu'il n'y a pas de fond violet résiduel */
+.md-main {
+  background: none !important;
+}
+/* Supprimer toutes les formes décoratives restantes */
+svg {
+  display: none !important;
+}
+/* Supprimer toutes les formes décoratives restantes */
+svg {
+  display: none !important;
+}
