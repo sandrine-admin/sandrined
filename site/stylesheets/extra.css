@@ -47,3 +47,20 @@ h1, h2, h3 {
 .md-main {
   background: none !important;
 }
+
+/* Fond global neutre */
+body {
+  background-color: #f5f5f5 !important;
+}
+
+/* Supprimer la grande forme colorée */
+.md-main::before,
+.md-main::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Enlever tout fond sur la zone principale */
+.md-main {
+  background: none !important;
+}
