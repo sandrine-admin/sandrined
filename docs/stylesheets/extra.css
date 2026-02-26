@@ -35,3 +35,15 @@ a:hover {
 h1, h2, h3 {
   color: #111827;
 }
+
+/* Supprimer la grosse forme mauve en bas de page */
+.md-main::before,
+.md-main::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* S'assurer qu'il n'y a pas de fond violet résiduel */
+.md-main {
+  background: none !important;
+}
