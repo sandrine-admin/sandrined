@@ -1,48 +1,16 @@
-/* Couleur de fond globale un peu plus douce */
+/* Fond global très clair */
 body {
-  background-color: #f7f8ff;
+  background-color: #f3f4f6;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  color: #1f2933;           /* texte plus foncé */
-}
-
-/* Contenu centré, moins large pour les grands écrans */
-.md-content__inner {
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-/* Liens plus lisibles */
-a {
-  color: #1d4ed8;
-}
-
-a:hover {
-  color: #1e3a8a;
-}
-
-/* Titres un peu plus contrastés */
-h1, h2, h3 {
-  color: #111827;
-}
-/* Réduire l'impact du gros header violet */
-.md-header {
-  background-color: #ffffff;
-  border-bottom: 1px solid #e5e7eb;
-}
-
-/* Logo plus discret */
-.md-header__button.md-logo svg {
-  width: 28px;
-  height: 28px;
-  color: #4b5563;
-}
-
-/* Titre du site plus doux */
-.md-header__title {
   color: #111827;
 }
 
-/* Bloc de contenu principal dans une carte blanche centrée */
+/* Enlève le gros bloc plein écran */
+.md-main {
+  background: none;
+}
+
+/* Carte blanche centrée pour le contenu */
 .md-content__inner {
   max-width: 900px;
   margin: 2rem auto;
@@ -52,7 +20,22 @@ h1, h2, h3 {
   box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
 }
 
-/* Fond de page très neutre */
-body {
-  background-color: #f3f4f6;
+/* Header plus discret, blanc */
+.md-header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* Liens lisibles */
+a {
+  color: #1d4ed8;
+}
+
+a:hover {
+  color: #1e3a8a;
+}
+
+/* Titres bien contrastés */
+h1, h2, h3 {
+  color: #111827;
 }
