@@ -23,26 +23,81 @@
         background: var(--bg);
         color: #222;
       }
-      header {
-        padding: 1.2rem 2rem;
+
+            .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 20;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        padding: 0.8rem 2rem;
+        background: rgba(255, 248, 242, 0.96);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(15, 23, 42, 0.04);
       }
-      header h1 {
-        margin: 0;
-        font-size: 1.4rem;
-        color: var(--primary);
+
+      .topbar-left {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
       }
-      nav a {
-        margin-left: 1rem;
+
+      .logo {
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        font-size: 1rem;
+      }
+
+      .topnav {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .nav-link {
+        font-size: 0.9rem;
         text-decoration: none;
-        color: #444;
-        font-weight: 500;
+        color: #6b7280;
+        padding: 0.35rem 0.7rem;
+        border-radius: 999px;
+        transition: background-color 0.15s ease, color 0.15s ease;
       }
-      nav a:hover {
-        color: var(--primary-dark);
+
+      .nav-link:hover {
+        background: rgba(15, 23, 42, 0.03);
+        color: #111827;
       }
+
+      .nav-link.active {
+        background: #fde7d5;
+        color: #7c2d12;
+      }
+
+      .topbar-right {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+      }
+
+      .top-icon {
+        width: 26px;
+        height: 26px;
+        border-radius: 999px;
+        border: 1px solid rgba(148, 163, 184, 0.6);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.7rem;
+        color: #6b7280;
+        background: #fffdf8;
+        cursor: default;
+      }
+
+      .top-icon:hover {
+        border-color: #4b5ad5;
+        color: #4b5ad5;
+      }
+
       main {
         max-width: 960px;
         margin: 1rem auto 3rem;
@@ -180,16 +235,25 @@
     </style>
   </head>
   <body>
-    <header>
-      <h1>sandrined</h1>
-      <nav>
-        <a href="index.html">Accueil</a>
-        <a href="#certificats">Certificats</a>
-      </nav>
+    <header class="topbar">
+      <div class="topbar-left">
+        <span class="logo">sandrined.me_</span>
+        <nav class="topnav">
+          <a href="#home" class="nav-link active">/home</a>
+          <a href="#projets" class="nav-link">/projets</a>
+          <a href="#certificats" class="nav-link">/certificats</a>
+        </nav>
+      </div>
+      <div class="topbar-right">
+        <span class="top-icon">G</span>
+        <span class="top-icon">in</span>
+        <span class="top-icon">✉</span>
+      </div>
     </header>
 
+
     <main>
-      <section class="hero">
+      <section class="hero" id="home">
         <div>
           <div class="tagline">Site personnel</div>
           <h2>Bienvenue sur mon espace en ligne</h2>
