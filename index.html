@@ -11,14 +11,11 @@
 
     <style>
       #projets {
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 16px;
-  padding: 1.5rem 1.8rem;
-  box-shadow: 0 12px 30px rgba(15,23,42,0.06);
-        section p.section-desc {
-  margin-top: 1rem;
-
-}
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 16px;
+        padding: 1.5rem 1.8rem;
+        box-shadow: 0 12px 30px rgba(15,23,42,0.06);
+      }
 
       :root {
         --primary: #4b5ad5;
@@ -79,12 +76,11 @@
         color: black;
       }
 
-.nav-link.active {
-  background: rgba(75, 90, 213, 0.12);
-  color: black;
-  font-weight: 600;
-}
-
+      .nav-link.active {
+        background: rgba(75, 90, 213, 0.12);
+        color: black;
+        font-weight: 600;
+      }
 
       .topbar-right {
         display: flex;
@@ -310,6 +306,11 @@
         font-size: 0.95rem;
       }
 
+      /* espace au-dessus des paragraphes de section */
+      section p.section-desc {
+        margin-top: 1rem;
+      }
+
       ul {
         padding-left: 1.2rem;
       }
@@ -337,8 +338,8 @@
       <div class="topbar-left">
         <span class="logo">sandrined</span>
         <nav class="topnav">
-          <a href="index.html" class="nav-link active">Accueil</a>
-           <a href="#about" class="nav-link">À propos</a>
+          <a href="#home" class="nav-link active">Accueil</a>
+          <a href="#about" class="nav-link">À propos</a>
           <a href="#projets" class="nav-link">Projets</a>
           <a href="#competences" class="nav-link">Compétences</a>
           <a href="#certificats" class="nav-link">Certificats</a>
@@ -379,13 +380,11 @@
         </div>
       </section>
 
-
-            <section id="about">
+      <section id="about">
         <h3>À propos</h3>
         <p class="section-desc">
           Quelques mots sur mon parcours et ce que je cherche à faire en IT.
         </p>
-
         <p>
           Je m’appelle Sandrine et je m’intéresse particulièrement aux domaines de l’infrastructure IT,
           du support utilisateur et du helpdesk. Je développe mes compétences de manière autodidacte,
@@ -403,66 +402,65 @@
         <p class="section-desc">
           Quelques projets en cours de construction autour de l’IT, du réseau et de la cybersécurité.
         </p>
-<ul>
-  <li>
-    <strong>Projet 1 – Site personnel &amp; portfolio</strong><br>
-    Création d’un site statique hébergé sur GitHub Pages pour centraliser mon parcours,
-    mes certificats et les outils que j’utilise, tout en pratiquant le HTML, le CSS et Git.
-  </li>
-
-  <li>
-    <strong>Projet 2 – Laboratoire virtuel pour l’IT et le support</strong><br>
-    Mise en place d’un petit lab virtuel avec Proxmox, VMware ou VirtualBox pour pratiquer
-    l’administration système, le réseau et la cybersécurité dans un environnement isolé
-    (machines Linux, services réseau, scénarios de test).
-  </li>
-
-  <li>
-    <strong>Projet 3 – Déploiement de Zulip</strong><br>
-    Déploiement et configuration de la plateforme de messagerie d’équipe Zulip sur une machine
-    virtuelle puis dans un conteneur Docker, avec création des utilisateurs, des canaux
-    et tests de fonctionnement.
-  </li>
-
-  <li>
-    <strong>Projet 4 – Pi-hole sur Raspberry Pi</strong><br>
-    Installation et configuration de Pi-hole sur un Raspberry Pi pour filtrer la navigation
-    sur mon réseau domestique, avec gestion des listes de blocage et vérification du trafic DNS.
-  </li>
-
-  <li>
-    <strong>Projet 5 – Home Assistant</strong><br>
-    Déploiement de Home Assistant sur mon réseau domestique afin de centraliser et automatiser
-    certains équipements (domotique), avec configuration de plusieurs intégrations.
-  </li>
-
-  <li>
-    <strong>Projet 6 – Nextcloud en conteneur Docker</strong><br>
-    Mise en place de Nextcloud en conteneur Docker pour disposer d’un espace de stockage
-    et de partage de fichiers auto‑hébergé, avec gestion des volumes et des mises à jour.
-  </li>
-
-  <li>
-    <strong>Projet 7 – Tableau blanc Excalidraw auto‑hébergé</strong><br>
-    Déploiement d’un tableau blanc collaboratif Excalidraw dans un environnement conteneurisé
-    pour tester la prise de notes et le travail visuel en local.
-  </li>
-</ul>
 
         <ul>
-  <!-- tes projets 1 à 7 ici -->
+          <li>
+            <strong>Projet 1 – Site personnel &amp; portfolio</strong><br>
+            Création d’un site statique hébergé sur GitHub Pages pour centraliser mon parcours,
+            mes certificats et les outils que j’utilise, tout en pratiquant le HTML, le CSS et Git.
+          </li>
 
-  <!--
-  <li>
-    <strong>Projet 8 – Automatisation JML dans Active Directory (TFE)</strong><br>
-    Automatisation d’une partie du cycle JML (Joiner / Mover / Leaver) dans Active Directory à l’aide de PowerShell :
-    création et mise à jour de comptes utilisateurs selon des règles définies (OU, groupes, attributs), avec des scripts
-    permettant de limiter les manipulations manuelles et les erreurs.
-  </li>
-  -->
-</ul>
+          <li>
+            <strong>Projet 2 – Laboratoire virtuel pour l’IT et le support</strong><br>
+            Mise en place d’un petit lab virtuel avec Proxmox, VMware ou VirtualBox pour pratiquer
+            l’administration système, le réseau et la cybersécurité dans un environnement isolé
+            (machines Linux, services réseau, scénarios de test).
+          </li>
 
+          <li>
+            <strong>Projet 3 – Déploiement de Zulip</strong><br>
+            Déploiement et configuration de la plateforme de messagerie d’équipe Zulip sur une machine
+            virtuelle puis dans un conteneur Docker, avec création des utilisateurs, des canaux
+            et tests de fonctionnement.
+          </li>
 
+          <li>
+            <strong>Projet 4 – Pi-hole sur Raspberry Pi</strong><br>
+            Installation et configuration de Pi-hole sur un Raspberry Pi pour filtrer la navigation
+            sur mon réseau domestique, avec gestion des listes de blocage et vérification du trafic DNS.
+          </li>
+
+          <li>
+            <strong>Projet 5 – Home Assistant</strong><br>
+            Déploiement de Home Assistant sur mon réseau domestique afin de centraliser et automatiser
+            certains équipements (domotique), avec configuration de plusieurs intégrations.
+          </li>
+
+          <li>
+            <strong>Projet 6 – Nextcloud en conteneur Docker</strong><br>
+            Mise en place de Nextcloud en conteneur Docker pour disposer d’un espace de stockage
+            et de partage de fichiers auto‑hébergé, avec gestion des volumes et des mises à jour.
+          </li>
+
+          <li>
+            <strong>Projet 7 – Tableau blanc Excalidraw auto‑hébergé</strong><br>
+            Déploiement d’un tableau blanc collaboratif Excalidraw dans un environnement conteneurisé
+            pour tester la prise de notes et le travail visuel en local.
+          </li>
+        </ul>
+
+        <ul>
+          <!-- tes projets 1 à 7 ici -->
+
+          <!--
+          <li>
+            <strong>Projet 8 – Automatisation JML dans Active Directory (TFE)</strong><br>
+            Automatisation d’une partie du cycle JML (Joiner / Mover / Leaver) dans Active Directory à l’aide de PowerShell :
+            création et mise à jour de comptes utilisateurs selon des règles définies (OU, groupes, attributs), avec des scripts
+            permettant de limiter les manipulations manuelles et les erreurs.
+          </li>
+          -->
+        </ul>
       </section>
 
       <section id="competences">
@@ -528,61 +526,55 @@
         </div>
       </section>
 
-<section id="outils">
-  <h3>Outils &amp; environnement</h3>
-  <p class="section-desc">
-    Les outils que j’utilise au quotidien pour apprendre, pratiquer et documenter.
-  </p>
-  <div class="badges">
-    <span class="badge">Visual Studio Code</span>
-    <span class="badge">Git &amp; GitHub</span>
-    <span class="badge">VirtualBox</span>
-    <span class="badge">PowerShell</span>
-    <span class="badge">Cisco Packet Tracer</span>
-    <span class="badge">Amazon Web Services (AWS)</span>
-    <span class="badge">Zulip (VM &amp; Docker)</span>
-    <span class="badge">Home Assistant</span>
-    <span class="badge">Pi-hole (Raspberry Pi)</span>
-    <span class="badge">Nextcloud (Docker)</span>
-    <span class="badge">Excalidraw (tableau blanc)</span>
-    <span class="badge">Portainer</span>
-    <span class="badge accent">Apprentissage autonome</span>
-  </div>
-</section>
+      <section id="outils">
+        <h3>Outils &amp; environnement</h3>
+        <p class="section-desc">
+          Les outils que j’utilise au quotidien pour apprendre, pratiquer et documenter.
+        </p>
+        <div class="badges">
+          <span class="badge">Visual Studio Code</span>
+          <span class="badge">Git &amp; GitHub</span>
+          <span class="badge">VirtualBox</span>
+          <span class="badge">PowerShell</span>
+          <span class="badge">Cisco Packet Tracer</span>
+          <span class="badge">Amazon Web Services (AWS)</span>
+          <span class="badge">Zulip (VM &amp; Docker)</span>
+          <span class="badge">Home Assistant</span>
+          <span class="badge">Pi-hole (Raspberry Pi)</span>
+          <span class="badge">Nextcloud (Docker)</span>
+          <span class="badge">Excalidraw (tableau blanc)</span>
+          <span class="badge">Portainer</span>
+          <span class="badge accent">Apprentissage autonome</span>
+        </div>
+      </section>
 
+      <section id="outils-metier">
+        <h3>Outils métiers utilisés</h3>
+        <p class="section-desc">
+          Quelques outils applicatifs et portails que j’ai utilisés dans un contexte professionnel
+          (stages et emploi), en complément de mes outils IT.
+        </p>
 
-<section id="outils-metier">
-  <h3>Outils métiers utilisés</h3>
-  <p class="section-desc">
-    Quelques outils applicatifs et portails que j’ai utilisés dans un contexte professionnel
-    (stages et emploi), en complément de mes outils IT.
-  </p>
+        <div class="badges">
+          <!-- Outils de gestion / ERP / CRM -->
+          <span class="badge">SAP</span>
+          <span class="badge">Salesforce</span>
+          <span class="badge">Microsoft Dynamics 365 Business Central</span>
+          <span class="badge">DevCentral</span>
+          <span class="badge">Drake</span>
+          <span class="badge">Guacamole</span>
+        </div>
 
-<div class="badges">
-  <!-- Outils de gestion / ERP / CRM -->
-  <span class="badge">SAP</span>
-  <span class="badge">Salesforce</span>
-  <span class="badge">Microsoft Dynamics 365 Business Central</span>
-  <span class="badge">DevCentral</span>
-  <span class="badge">Drake</span>
-  <span class="badge">Guacamole</span>
-</div>
+        <p class="section-desc">
+          J’utilise également la suite bureautique au quotidien :
+        </p>
 
-<p class="section-desc">
-  J’utilise également la suite bureautique au quotidien :
-</p>
-
-<div class="badges">
-  <span class="badge">Word</span>
-  <span class="badge">Excel</span>
-  <span class="badge">PowerPoint</span>
-</div>
-</section>
-
-
-
-
-
+        <div class="badges">
+          <span class="badge">Word</span>
+          <span class="badge">Excel</span>
+          <span class="badge">PowerPoint</span>
+        </div>
+      </section>
 
       <section id="certificats">
         <h3>Certificats</h3>
@@ -633,13 +625,14 @@
         </p>
       </section>
     </main>
-<section id="contact">
-  <h3>Contact</h3>
-  <p class="section-desc">
-    Pour toute question ou échange autour de l’infrastructure IT, du support ou de mes projets,
-    vous pouvez me contacter à : <strong></strong>
-  </p>
-</section>
+
+    <section id="contact">
+      <h3>Contact</h3>
+      <p class="section-desc">
+        Pour toute question ou échange autour de l’infrastructure IT, du support ou de mes projets,
+        vous pouvez me contacter à : <strong></strong>
+      </p>
+    </section>
 
     <footer>
       &copy; 2026 sandrined – hébergé sur GitHub Pages
