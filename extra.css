@@ -334,26 +334,26 @@
     </style>
   </head>
   <body>
-    <header class="topbar">
-      <div class="topbar-left">
-        <span class="logo">sandrined</span>
-        <nav class="topnav">
-          <a href="#home" class="nav-link active">Accueil</a>
-          <a href="#about" class="nav-link">À propos</a>
-          <a href="#projets" class="nav-link">Projets</a>
-          <a href="#competences" class="nav-link">Compétences</a>
-          <a href="#certificats" class="nav-link">Certificats</a>
-          <a href="#outils" class="nav-link">Outils</a>
-          <a href="#contact" class="nav-link">Contact</a>
-        </nav>
-      </div>
-<div class="topbar-right">
-  <a class="top-icon" href="https://github.com/did-dft" target="_blank" rel="noopener">
-    G
-  </a>
-</div>
+<header class="topbar">
+  <div class="topbar-left">
+    <span class="logo">sandrined</span>
+    <nav class="topnav">
+      <a href="#home" class="nav-link active">Accueil</a>
+      <a href="#about" class="nav-link">À propos</a>
+      <a href="#projets" class="nav-link">Projets</a>
+      <a href="#competences" class="nav-link">Compétences</a>
+      <a href="#certificats" class="nav-link">Certificats</a>
+      <a href="#outils" class="nav-link">Outils</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+  </div>
+  <div class="topbar-right">
+    <a class="top-icon" href="https://github.com/did-dft" target="_blank" rel="noopener">
+      G
+    </a>
+  </div>
+</header>
 
-    </header>
 
     <main>
       <section class="hero" id="home">
