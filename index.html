@@ -9,7 +9,8 @@
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Inter:300,400,500,700&display=swap">
 
-    <style>#projets {
+    <style>
+#projets {
   background: #fef3c7; /* beige / jaune clair */
   border-radius: 16px;
   padding: 1.5rem 1.8rem;
@@ -22,9 +23,6 @@
   padding: 1.5rem 1.8rem;
   box-shadow: 0 12px 30px rgba(15,23,42,0.06);
 }
-
-
-
 
       :root {
         --primary: #4b5ad5;
@@ -122,28 +120,27 @@
         padding: 0 1.5rem;
       }
 
-   .hero {
-  background: radial-gradient(circle at top left, #eef2ff, #ffffff);
-  border-radius: 18px;
-  padding: 2.5rem 2.5rem 2rem;
-  box-shadow: 0 22px 55px rgba(15,23,42,0.18);
-  display: grid;
-  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-  gap: 2rem;
-  border: 1px solid rgba(148, 163, 184, 0.3);
-}
+      .hero {
+        background: radial-gradient(circle at top left, #eef2ff, #ffffff);
+        border-radius: 18px;
+        padding: 2.5rem 2.5rem 2rem;
+        box-shadow: 0 22px 55px rgba(15,23,42,0.18);
+        display: grid;
+        grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+        gap: 2rem;
+        border: 1px solid rgba(148, 163, 184, 0.3);
+      }
 
-.hero h2 {
-  margin-top: 0;
-  font-size: 2.3rem;
-  letter-spacing: 0.02em;
-}
+      .hero h2 {
+        margin-top: 0;
+        font-size: 2.3rem;
+        letter-spacing: 0.02em;
+      }
 
-.hero p.lead {
-  font-size: 1.05rem;
-  color: #4b5563;
-}
-
+      .hero p.lead {
+        font-size: 1.05rem;
+        color: #4b5563;
+      }
 
       .tagline {
         display: inline-block;
@@ -195,21 +192,19 @@
         margin-bottom: 0.6rem;
       }
 
-.skill-label {
-  font-size: 0.85rem;
-  margin-bottom: 0.15rem;
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-}
+      .skill-label {
+        font-size: 0.85rem;
+        margin-bottom: 0.15rem;
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+      }
 
-.skill-icon {
-  width: 22px;
-  height: 22px;
-  object-fit: contain;
-}
-
-
+      .skill-icon {
+        width: 22px;
+        height: 22px;
+        object-fit: contain;
+      }
 
       .skill-bar {
         height: 6px;
@@ -352,17 +347,16 @@
         }
       }
     </style>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XY4V45T243"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XY4V45T243');
+    </script>
   </head>
-
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XY4V45T243"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-XY4V45T243');
-</script>
 
   <body>
     <header class="topbar">
@@ -378,15 +372,12 @@
           <a href="#contact" class="nav-link">Contact</a>
         </nav>
       </div>
-<div class="topbar-right">
-<a class="top-icon" href="https://github.com/sandrine-admin" target="_blank" rel="noopener">
-  G
-</a>
-
-</div>
-
+      <div class="topbar-right">
+        <a class="top-icon" href="https://github.com/sandrine-admin" target="_blank" rel="noopener">
+          G
+        </a>
+      </div>
     </header>
-
 
     <main>
       <section class="hero" id="home">
@@ -483,10 +474,6 @@
             pour tester la prise de notes et le travail visuel en local.
           </li>
         </ul>
-
-        <ul>
-          <!-- Projets supplémentaires éventuels -->
-        </ul>
       </section>
 
       <section id="competences">
@@ -499,14 +486,14 @@
           <div>
             <div class="skills-group-title">Systèmes &amp; script</div>
 
-<div class="skill-item">
-  <div class="skill-label">Linux</div>
-  <div class="skill-bar">
-    <div class="skill-bar-fill" style="width: 45%;"></div>
-  </div>
-</div>
+            <div class="skill-item">
+              <div class="skill-label">Linux</div>
+              <div class="skill-bar">
+                <div class="skill-bar-fill" style="width: 45%;"></div>
+              </div>
+            </div>
 
-                        <div class="skill-item">
+            <div class="skill-item">
               <div class="skill-label">Windows</div>
               <div class="skill-bar">
                 <div class="skill-bar-fill" style="width: 45%;"></div>
@@ -546,24 +533,23 @@
             </div>
           </div>
 
-        <div>
-  <div class="skills-group-title">Outils &amp; collaboration</div>
+          <div>
+            <div class="skills-group-title">Outils &amp; collaboration</div>
 
-  <div class="skill-item">
-    <div class="skill-label">Git &amp; GitHub</div>
-    <div class="skill-bar">
-      <div class="skill-bar-fill" style="width: 40%;"></div>
-    </div>
-  </div>
+            <div class="skill-item">
+              <div class="skill-label">Git &amp; GitHub</div>
+              <div class="skill-bar">
+                <div class="skill-bar-fill" style="width: 40%;"></div>
+              </div>
+            </div>
 
-  <div class="skill-item">
-    <div class="skill-label">SharePoint</div>
-    <div class="skill-bar">
-      <div class="skill-bar-fill" style="width: 40%;"></div>
-    </div>
-  </div>
-</div>
-
+            <div class="skill-item">
+              <div class="skill-label">SharePoint</div>
+              <div class="skill-bar">
+                <div class="skill-bar-fill" style="width: 40%;"></div>
+              </div>
+            </div>
+          </div>
 
           <div>
             <div class="skills-group-title">Réseau &amp; infrastructure</div>
