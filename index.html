@@ -269,33 +269,33 @@ body {
         transition: background-color 0.2s ease, color 0.2s ease,
                     transform 0.2s ease, box-shadow 0.2s ease;
       }
+.btn-primary {
+  background: var(--primary);
+  color: #ffffff;
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.35);
+}
 
-      .btn-primary {
-        background: var(--primary);
-        color: black;
-        box-shadow: 0 10px 25px rgba(75, 90, 213, 0.35);
-      }
+.btn-primary:hover {
+  background: var(--primary-dark);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 14px 32px rgba(37, 99, 235, 0.45);
+}
 
-      .btn-primary:hover {
-        background: var(--primary-dark);
-        color: black;
-        transform: translateY(-1px);
-        box-shadow: 0 14px 32px rgba(75, 90, 213, 0.45);
-      }
+.btn-ghost {
+  border: 1px solid rgba(15, 23, 42, 0.18);
+  color: #111827;
+  margin-left: 0.6rem;
+  background: #ffffff;
+}
 
-      .btn-ghost {
-        border: 1px solid rgba(15, 23, 42, 0.15);
-        color: black;
-        margin-left: 0.6rem;
-        background: #ffffff;
-      }
+.btn-ghost:hover {
+  border-color: var(--primary);
+  color: #111827;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
+}
 
-      .btn-ghost:hover {
-        border-color: var(--primary);
-        color: black;
-        transform: translateY(-1px);
-        box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
-      }
 
       section {
         margin-top: 2.5rem;
