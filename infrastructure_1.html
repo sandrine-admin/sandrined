@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Infrastructure — Homelab</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #080c14;
+      --bg2: #0d1220;
+      --bg3: #111827;
+      --border: rgba(99,179,237,0.12);
+      --accent: #38bdf8;
+      --accent2: #818cf8;
+      --accent3: #34d399;
+      --red: #f87171;
+      --yellow: #fbbf24;
+      --text: #e2e8f0;
+      --muted: #64748b;
+      --mono: 'Space Mono', monospace;
+      --sans: 'Syne', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* GRID BACKGROUND */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(56,189,248,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56,189,248,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* GLOW ORBS */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .orb1 { width: 500px; height: 500px; background: rgba(56,189,248,0.07); top: -100px; left: -100px; }
+    .orb2 { width: 400px; height: 400px; background: rgba(129,140,248,0.06); bottom: 100px; right: -100px; }
+    .orb3 { width: 300px; height: 300px; background: rgba(52,211,153,0.05); top: 50%; left: 50%; transform: translate(-50%,-50%); }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 60px 24px 80px;
+    }
+
+    /* HEADER */
+    header {
+      margin-bottom: 64px;
+    }
+    .tag {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      border: 1px solid rgba(56,189,248,0.3);
+      padding: 4px 12px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 20px;
+      animation: fadeUp 0.6s ease both;
+    }
+    h1 {
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+    h1 span { color: var(--accent); }
+    .subtitle {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 1rem;
+      font-family: var(--mono);
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    /* HOST CARD */
+    .host-card {
+      background: linear-gradient(135deg, rgba(56,189,248,0.08), rgba(129,140,248,0.05));
+      border: 1px solid rgba(56,189,248,0.25);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 48px;
+      display: grid;
+      grid-template-columns: auto 1fr repeat(3, auto);
+      gap: 32px;
+      align-items: center;
+      animation: fadeUp 0.6s 0.3s ease both;
+      position: relative;
+      overflow: hidden;
+    }
+    .host-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2), transparent);
+    }
+    .host-icon {
+      width: 52px; height: 52px;
+      background: rgba(56,189,248,0.1);
+      border: 1px solid rgba(56,189,248,0.3);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+    }
+    .host-name { font-size: 1.4rem; font-weight: 700; }
+    .host-sub { font-family: var(--mono); font-size: 0.75rem; color: var(--muted); margin-top: 4px; }
+    .host-stat { text-align: center; }
+    .host-stat .val { font-size: 1.5rem; font-weight: 700; color: var(--accent); font-family: var(--mono); }
+    .host-stat .lbl { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 4px; }
+
+    /* SECTION */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .section-header h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    .count-badge {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 2px 10px;
+      border-radius: 20px;
+    }
+
+    /* CONTAINER GRID */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    /* CONTAINER CARD */
+    .ccard {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+      animation: fadeUp 0.5s ease both;
+      position: relative;
+      overflow: hidden;
+    }
+    .ccard:hover {
+      border-color: rgba(56,189,248,0.35);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    }
+    .ccard.stopped {
+      opacity: 0.6;
+    }
+    .ccard.stopped:hover { opacity: 0.85; }
+
+    /* left accent bar */
+    .ccard::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 16px; bottom: 16px;
+      width: 3px;
+      border-radius: 0 3px 3px 0;
+    }
+    .ccard.running::before { background: var(--accent3); }
+    .ccard.stopped::before { background: var(--muted); }
+
+    .ccard-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .ccard-id {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .ccard-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+    .ccard-type {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--accent2);
+      border: 1px solid rgba(129,140,248,0.3);
+      padding: 2px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+    .ccard-type.qemu { color: var(--yellow); border-color: rgba(251,191,36,0.3); }
+
+    .status-dot {
+      display: inline-block;
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+    .running .status-dot { background: var(--accent3); box-shadow: 0 0 6px var(--accent3); animation: pulse 2s infinite; }
+    .stopped .status-dot { background: var(--muted); }
+
+    .status-label {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+    }
+    .running .status-label { color: var(--accent3); }
+    .stopped .status-label { color: var(--muted); }
+
+    /* SPECS */
+    .specs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .spec {
+      background: var(--bg3);
+      border-radius: 8px;
+      padding: 10px;
+      text-align: center;
+    }
+    .spec-val {
+      font-family: var(--mono);
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .spec-lbl {
+      font-size: 0.65rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 3px;
+    }
+
+    /* USAGE BARS */
+    .usage-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .usage-lbl {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      width: 34px;
+      text-transform: uppercase;
+    }
+    .bar-track {
+      flex: 1;
+      height: 4px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 1s ease;
+    }
+    .bar-fill.mem { background: linear-gradient(90deg, var(--accent2), var(--accent)); }
+    .bar-fill.disk { background: linear-gradient(90deg, var(--accent3), #86efac); }
+    .bar-fill.warn { background: linear-gradient(90deg, var(--yellow), #fde68a); }
+    .bar-fill.crit { background: linear-gradient(90deg, var(--red), #fca5a5); }
+    .usage-pct {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--muted);
+      width: 36px;
+      text-align: right;
+    }
+
+    /* SERVICES TAGS */
+    .services {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 14px;
+    }
+    .svc {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      background: rgba(56,189,248,0.07);
+      border: 1px solid rgba(56,189,248,0.15);
+      color: var(--accent);
+      padding: 3px 9px;
+      border-radius: 4px;
+    }
+    .svc.purple { background: rgba(129,140,248,0.07); border-color: rgba(129,140,248,0.2); color: var(--accent2); }
+    .svc.green { background: rgba(52,211,153,0.07); border-color: rgba(52,211,153,0.2); color: var(--accent3); }
+    .svc.yellow { background: rgba(251,191,36,0.07); border-color: rgba(251,191,36,0.2); color: var(--yellow); }
+
+    /* SUMMARY STRIP */
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 48px;
+      animation: fadeUp 0.6s 0.25s ease both;
+    }
+    .sum-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+    .sum-val { font-family: var(--mono); font-size: 2rem; font-weight: 700; }
+    .sum-lbl { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 6px; }
+    .sum-card.a .sum-val { color: var(--accent); }
+    .sum-card.b .sum-val { color: var(--accent3); }
+    .sum-card.c .sum-val { color: var(--accent2); }
+    .sum-card.d .sum-val { color: var(--yellow); }
+
+    /* NETWORK */
+    .network-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px 32px;
+      margin-bottom: 48px;
+      animation: fadeUp 0.6s ease both;
+    }
+    .net-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .net-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--bg3);
+      border-radius: 10px;
+      padding: 14px;
+    }
+    .net-icon {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .net-icon.blue { background: rgba(56,189,248,0.12); }
+    .net-icon.green { background: rgba(52,211,153,0.12); }
+    .net-icon.purple { background: rgba(129,140,248,0.12); }
+    .net-name { font-size: 0.85rem; font-weight: 600; }
+    .net-desc { font-family: var(--mono); font-size: 0.68rem; color: var(--muted); margin-top: 2px; }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+    footer span { color: var(--accent); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    /* Stagger cards */
+    .ccard:nth-child(1)  { animation-delay: 0.05s; }
+    .ccard:nth-child(2)  { animation-delay: 0.10s; }
+    .ccard:nth-child(3)  { animation-delay: 0.15s; }
+    .ccard:nth-child(4)  { animation-delay: 0.20s; }
+    .ccard:nth-child(5)  { animation-delay: 0.25s; }
+    .ccard:nth-child(6)  { animation-delay: 0.30s; }
+    .ccard:nth-child(7)  { animation-delay: 0.35s; }
+    .ccard:nth-child(8)  { animation-delay: 0.40s; }
+    .ccard:nth-child(9)  { animation-delay: 0.45s; }
+    .ccard:nth-child(10) { animation-delay: 0.50s; }
+
+    @media (max-width: 640px) {
+      .host-card { grid-template-columns: auto 1fr; }
+      .host-stat { display: none; }
+      .summary { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+
+  <div class="wrap">
+
+    <!-- HEADER -->
+    <header>
+      <div class="tag">// homelab infrastructure</div>
+      <h1>Mon <span>Infrastructure</span><br>Proxmox</h1>
+      <p class="subtitle">Proxmox VE &nbsp;·&nbsp; 4 vCPUs &nbsp;·&nbsp; 62.7 GiB RAM &nbsp;·&nbsp; 338 GiB Storage</p>
+    </header>
+
+    <!-- SUMMARY -->
+    <div class="summary">
+      <div class="sum-card a"><div class="sum-val">11</div><div class="sum-lbl">Conteneurs</div></div>
+      <div class="sum-card b"><div class="sum-val">6</div><div class="sum-lbl">En cours</div></div>
+      <div class="sum-card c"><div class="sum-val">62.7<span style="font-size:1rem">GiB</span></div><div class="sum-lbl">RAM Totale</div></div>
+      <div class="sum-card d"><div class="sum-val">44<span style="font-size:1rem">%</span></div><div class="sum-lbl">Stockage</div></div>
+    </div>
+
+    <!-- HOST -->
+    <div class="host-card">
+      <div class="host-icon">🖥️</div>
+      <div>
+        <div class="host-name">Proxmox VE</div>
+        <div class="host-sub">Hyperviseur principal</div>
+      </div>
+      <div class="host-stat"><div class="val">4</div><div class="lbl">vCPUs</div></div>
+      <div class="host-stat"><div class="val">62.7</div><div class="lbl">GiB RAM</div></div>
+      <div class="host-stat"><div class="val">338</div><div class="lbl">GiB Disk</div></div>
+    </div>
+
+    <!-- LXC CONTAINERS -->
+    <div class="section-header">
+      <h2>Conteneurs LXC</h2>
+      <div class="section-line"></div>
+      <div class="count-badge">10 conteneurs</div>
+    </div>
+
+    <div class="grid">
+
+      <!-- pihole -->
+      <div class="ccard running">
+        <div class="ccard-top">
+          <div>
+            <div class="ccard-id">lxc/100</div>
+            <div class="ccard-name">Pi-hole</div>
+          </div>
+          <div>
+            <div class="ccard-type">LXC</div>
+            <div style="margin-top:8px;text-align:right">
+              <span class="status-dot"></span><span class="status-label">running</span>
+            </div>
+          </div>
+        </div>
+        <div class="specs">
+          <div class="spec"><div class="spec-val">1</div><div class="spec-lbl">vCPU</div></div>
+          <div class="spec"><div class="spec-val">512</div><div class="spec-lbl">MiB RAM</div></div>
+          <div class="spec"><div class="spec-val">1.9</div><div class="spec-lbl">GiB Disk</div></div>
+        </div>
+        <div class="usage-row">
+          <span class="usage-lbl">MEM</span>
+          <div class="bar-track"><div class="bar-fill mem" style="width:10.2%"></div></div>
+          <span class="usage-pct">10.2%</span>
+        </div>
+        <div class="usage-row">
+          <span class="usage-lbl">DISK</span>
+          <div class="bar-track"><div class="bar-fill warn" style="width:47.5%"></div></div>
+          <span class="usage-pct">47.5%</span>
+        </div>
+        <div class="services">
+          <span class="svc">🛡️ DNS Filtering</span>
+          <span class="svc green">DHCP</span>
+          <span class="svc purple">Ad-block</span>
+        </div>
+      </div>
+
+      <!-- Excalidraw -->
+      <div class="ccard stopped">
+        <div class="ccard-top">
+          <div>
+            <div class="ccard-id">lxc/101</div>
+            <div class="ccard-name">Excalidraw</div>
+          </div>
+          <div>
+            <div class="ccard-type">LXC</div>
+            <div style="margin-top:8px;text-align:right">
+              <span class="status-dot"></span><span class="status-label">stopped</span>
+            </div>
+          </div>
+        </div>
+        <div class="specs">
+          <div class="spec"><div class="spec-val">1</div><div class="spec-lbl">vCPU</div></div>
+          <div class="spec"><div class="spec-val">512</div><div class="spec-lbl">MiB RAM</div></div>
+          <div class="spec"><div class="spec-val">8</div><div class="spec-lbl">GiB Disk</div></div>
+        </div>
+        <div class="services">
+          <span class="svc">✏️ Whiteboard</span>
+          <span class="svc purple">Self-hosted</span>
+        </div>
+      </div>
+
+      <!-- Uptime Kuma -->
+      <div class="ccard running">
+        <div class="ccard-top">
+          <div>
+            <div class="ccard-id">lxc/102</div>
+            <div class="ccard-name">Uptime Kuma</div>
+          </div>
+          <div>
+            <div class="ccard-type">LXC</div>
+            <div style="margin-top:8px;text-align:right">
+              <span class="status-dot"></span><span class="status-label">running</span>
+            </div>
+          </div>
+        </div>
+        <div class="specs">
+          <div class="spec"><div class="spec-val">1</div><div class="spec-lbl">vCPU</div></div>
+          <div class="spec"><div class="spec-val">1</div><div class="spec-lbl">GiB RAM</div></div>
+          <div class="spec"><div class="spec-val">3.86</div><div class="spec-lbl">GiB Disk</div></div>
+        </div>
+        <div class="usage-row">
+          <span class="usage-lbl">MEM</span>
+          <div class="bar-track"><div class="bar-fill mem" style="width:27.9%"></div></div>
+          <span class="usage-pct">27.9%</span>
+        </div>
+        <div class="usage-row">
+          <span class="usage-lbl">DISK</span>
+          <div class="bar-track"><div class="bar-fill disk" style="width:54.9%"></div></div>
+          <span class="usage-pct">54.9%</span>
+        </div>
+        <div class="services">
+          <span class="svc">📊 Monitoring</span>
+          <span class="svc green">Status Page</span>
+        </div>
+      </div>
+
+      <!-- Nextcloud -->
+      <div class="ccard running">
+        <div class="ccard-top">
+          <div>
+            <div class="ccard-id">lxc/104</div>
+            <div class="ccard-name">Nextcloud</div>
+          </div>
+          <div>
+            <div class="ccard-type">LXC</div>
+            <div style="margin-top:8px;text-align:right">
+              <span class="status-dot"></span><span class="status-label">running</span>
+            </div>
+          </div>
+        </div>
+        <div class="specs">
+          <div class="spec"><div class="spec-val">2</div><div class="spec-lbl">vCPU</div></div>
+          <div class="spec"><div class="spec-val">6</div><div class="spec-lbl">GiB RAM</div></div>
+          <div class="spec"><div class="spec-val">48.9</div><div class="spec-lbl">GiB Disk</div></div>
+        </div>
+        <div class="usage-row">
+          <span class="usage-lbl">MEM</span>
+          <div class="bar-track"><div class="bar-fill mem" style="width:8.23%"></div></div>
+          <span class="usage-pct">8.2%</span>
+        </div>
+        <div class="usage-row">
+          <span class="usage-lbl">DISK</span>
+          <div class="bar-track"><div class="bar-fill disk" style="width:15.3%"></div></div>
+          <span class="usage-pct">15.3%</span>
+        </div>
+        <div class="services">
+          <span class="svc">☁️ Cloud Storage</span>
+          <span class="svc green">Docker</span>
+          <span class="svc purple">Collabora</span>
+          <span class="svc yellow">🐳 Portainer</span>
+        </div>
+      </div>
+
+      <!-- Grafana -->
+      <div class="ccard running">
+        <div class="ccard-top">
+          <div>
+            <div class="ccard-id">lxc/105</div>
+            <div class="ccard-name">Grafana</div>
+          </div>
+          <div>
+            <div class="ccard-type">LXC</div>
+            <div style="margin-top:8px;text-align:right">
+              <span class="status-dot"></span><span class="status-label">running</span>
+            </div>
+          </div>
+        </div>
+        <div class="specs">
+          <div class="spec"><div class="spec-val">2</div><div class="spec-lbl">vCPU</div></div>
+          <div class="spec"><div class="spec-val">14.5</div><div class="spec-lbl">GiB RAM</div></div>
+          <div class="spec"><div class="spec-val">13.7</div><div class="spec-lbl">GiB Disk</div></div>
+        </div>
+        <div class="usage-row">
+          <span class="usage-lbl">MEM</span>
+          <div class="bar-track"><div class="bar-fill mem" style="width:1.95%"></div></div>
+          <span class="usage-pct">1.9%</span>
+        </div>
+        <div class="usage-row">
+          <span class="usage-lbl">DISK</span>
+          <div class="bar-track"><div class="bar-fill disk" style="width:24.8%"></div></div>
+          <span class="usage-pct">24.8%</span>
+        </div>
+        <div class="services">
+          <span class="svc">📈 Dashboards</span>
+          <span class="svc green">Prometheus</span>
+          <span class="svc yellow">Alerting</span>
+        </div>
+      </div>
+
+      <!-- Stepca -->
+      <div class="ccard stopped">
+        <div class="ccard-top">
+          <div>
+            <div class="ccard-id">lxc/106</div>
+            <div class="ccard-name">Step CA</div>
+          </div>
+          <div>
+            <div class="ccard-type">LXC</div>
+            <div style="margin-top:8px;text-align:right">
+              <span class="status-dot"></span><span class="status-label">stopped</span>
+            </div>
+          </div>
+        </div>
+        <div class="specs">
+          <div class="spec"><div class="spec-val">1</div><div class="spec-lbl">vCPU</div></div>
+          <div class="spec"><div class="spec-val">512</div><div class="spec-lbl">MiB RAM</div></div>
+          <div class="spec"><div class="spec-val">4</div><div class="spec-lbl">GiB Disk</div></div>
+        </div>
+        <div class="services">
+          <span class="svc">🔐 PKI / CA</span>
+          <span class="svc purple">TLS Certs</span>
+        </div>
+      </div>
+
+      <!-- Ollama -->
+      <div class="ccard stopped">
+        <div class="ccard-top">
+          <div>
+            <div class="ccard-id">lxc/107</div>
+            <div class="ccard-name">Ollama</div>
+          </div>
+          <div>
+            <div class="ccard-type">LXC</div>
+            <div style="margin-top:8px;text-align:right">
+              <span class="status-dot"></span><span class="status-label">stopped</span>
+            </div>
+          </div>
+        </div>
+        <div class="specs">
+          <div class="spec"><div class="spec-val">4</div><div class="spec-lbl">vCPU</div></div>
+          <div class="spec"><div class="spec-val">8</div><div class="spec-lbl">GiB RAM</div></div>
+          <div class="spec"><div class="spec-val">30</div><div class="spec-lbl">GiB Disk</div></div>
+        </div>
+        <div class="services">
+          <span class="svc">🤖 LLM Runtime</span>
+          <span class="svc purple">AI local</span>
+        </div>
+      </div>
+
+      <!-- OpenWebUI -->
+      <div class="ccard stopped">
+        <div class="ccard-top">
+          <div>
+            <div class="ccard-id">lxc/108</div>
+            <div class="ccard-name">Open WebUI</div>
+          </div>
+          <div>
+            <div class="ccard-type">LXC</div>
+            <div style="margin-top:8px;text-align:right">
+              <span class="status-dot"></span><span class="status-label">stopped</span>
+            </div>
+          </div>
+        </div>
+        <div class="specs">
+          <div class="spec"><div class="spec-val">2</div><div class="spec-lbl">vCPU</div></div>
+          <div class="spec"><div class="spec-val">2</div><div class="spec-lbl">GiB RAM</div></div>
+          <div class="spec"><div class="spec-val">30</div><div class="spec-lbl">GiB Disk</div></div>
+        </div>
+        <div class="services">
+          <span class="svc">💬 Chat UI</span>
+          <span class="svc purple">Ollama frontend</span>
+        </div>
+      </div>
+
+      <!-- Jellyfin -->
+      <div class="ccard stopped">
+        <div class="ccard-top">
+          <div>
+            <div class="ccard-id">lxc/109</div>
+            <div class="ccard-name">Jellyfin</div>
+          </div>
+          <div>
+            <div class="ccard-type">LXC</div>
+            <div style="margin-top:8px;text-align:right">
+              <span class="status-dot"></span><span class="status-label">stopped</span>
+            </div>
+          </div>
+        </div>
+        <div class="specs">
+          <div class="spec"><div class="spec-val">2</div><div class="spec-lbl">vCPU</div></div>
+          <div class="spec"><div class="spec-val">4</div><div class="spec-lbl">GiB RAM</div></div>
+          <div class="spec"><div class="spec-val">20</div><div class="spec-lbl">GiB Disk</div></div>
+        </div>
+        <div class="services">
+          <span class="svc">🎬 Media Server</span>
+          <span class="svc green">Streaming</span>
+        </div>
+      </div>
+
+      <!-- Hermes -->
+      <div class="ccard running">
+        <div class="ccard-top">
+          <div>
+            <div class="ccard-id">lxc/110</div>
+            <div class="ccard-name">Hermès</div>
+          </div>
+          <div>
+            <div class="ccard-type">LXC</div>
+            <div style="margin-top:8px;text-align:right">
+              <span class="status-dot"></span><span class="status-label">running</span>
+            </div>
+          </div>
+        </div>
+        <div class="specs">
+          <div class="spec"><div class="spec-val">2</div><div class="spec-lbl">vCPU</div></div>
+          <div class="spec"><div class="spec-val">4</div><div class="spec-lbl">GiB RAM</div></div>
+          <div class="spec"><div class="spec-val">20</div><div class="spec-lbl">GiB Disk</div></div>
+        </div>
+        <div class="services">
+          <span class="svc">🤖 AI Agent</span>
+          <span class="svc purple">Nous Research</span>
+          <span class="svc green">15+ LLM providers</span>
+          <span class="svc yellow">Telegram · Discord</span>
+          <span class="svc">Debian 13</span>
+          <span class="svc green">Node.js 22</span>
+        </div>
+      </div>
+
+    </div>
+    <div class="section-header">
+      <h2>Machines Virtuelles</h2>
+      <div class="section-line"></div>
+      <div class="count-badge">1 VM</div>
+    </div>
+
+    <div class="grid" style="margin-bottom:48px">
+      <div class="ccard running">
+        <div class="ccard-top">
+          <div>
+            <div class="ccard-id">qemu/200</div>
+            <div class="ccard-name">Windows Server 2025</div>
+          </div>
+          <div>
+            <div class="ccard-type qemu">QEMU</div>
+            <div style="margin-top:8px;text-align:right">
+              <span class="status-dot"></span><span class="status-label">running</span>
+            </div>
+          </div>
+        </div>
+        <div class="specs">
+          <div class="spec"><div class="spec-val">4</div><div class="spec-lbl">vCPU</div></div>
+          <div class="spec"><div class="spec-val">8</div><div class="spec-lbl">GiB RAM</div></div>
+          <div class="spec"><div class="spec-val">—</div><div class="spec-lbl">Disk</div></div>
+        </div>
+        <div class="usage-row">
+          <span class="usage-lbl">MEM</span>
+          <div class="bar-track"><div class="bar-fill warn" style="width:18.5%"></div></div>
+          <span class="usage-pct">18.5%</span>
+        </div>
+        <div class="services">
+          <span class="svc yellow">🪟 Windows Server</span>
+          <span class="svc">Active Directory</span>
+          <span class="svc purple">QEMU/KVM</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- NETWORK -->
+    <div class="section-header">
+      <h2>Réseau & Services</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="network-card">
+      <div class="net-grid">
+        <div class="net-item">
+          <div class="net-icon blue">🌐</div>
+          <div>
+            <div class="net-name">Réseau local</div>
+            <div class="net-desc">LAN privé</div>
+          </div>
+        </div>
+        <div class="net-item">
+          <div class="net-icon green">🛡️</div>
+          <div>
+            <div class="net-name">DNS filtré</div>
+            <div class="net-desc">Pi-hole · lxc/100</div>
+          </div>
+        </div>
+        <div class="net-item">
+          <div class="net-icon purple">📊</div>
+          <div>
+            <div class="net-name">Monitoring</div>
+            <div class="net-desc">Grafana + Prometheus</div>
+          </div>
+        </div>
+        <div class="net-item">
+          <div class="net-icon blue">🔐</div>
+          <div>
+            <div class="net-name">PKI interne</div>
+            <div class="net-desc">Step CA · TLS</div>
+          </div>
+        </div>
+        <div class="net-item">
+          <div class="net-icon green">☁️</div>
+          <div>
+            <div class="net-name">Cloud privé</div>
+            <div class="net-desc">Nextcloud Docker</div>
+          </div>
+        </div>
+        <div class="net-item">
+          <div class="net-icon purple">🤖</div>
+          <div>
+            <div class="net-name">IA locale & Agent</div>
+            <div class="net-desc">Ollama · Hermès · Open WebUI</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      Généré depuis <span>Proxmox VE</span> &nbsp;·&nbsp; <span id="date"></span>
+    </footer>
+
+  </div>
+
+  <script>
+    document.getElementById('date').textContent = new Date().toLocaleDateString('fr-BE', { year:'numeric', month:'long', day:'numeric' });
+  </script>
+</body>
+</html>
