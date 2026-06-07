@@ -947,5 +947,26 @@ body {
     <div class="analytics-badge">
       Visites suivies avec Google Analytics
     </div>
+
+      </script>
+
+<script>
+      function toggleAccordion(btn) {
+        const content = btn.nextElementSibling;
+        const arrow = btn.querySelector('span');
+        const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
+        if (isOpen) {
+          content.style.maxHeight = '0';
+          arrow.style.transform = 'rotate(0deg)';
+        } else {
+          content.style.maxHeight = content.scrollHeight + 'px';
+          arrow.style.transform = 'rotate(-180deg)';
+        }
+      }
+    </script>
+
+    <div class="analytics-badge">
+      Visites suivies avec Google Analytics
+    </div>
   </body>
 </html>
