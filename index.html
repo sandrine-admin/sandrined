@@ -1136,6 +1136,193 @@ body {
     </div>
 
   </div>
+
+
+    <section id="glossaire">
+  <h3>Glossaire</h3>
+  <p class="section-desc">
+    Définitions des termes techniques utilisés dans mes projets.
+  </p>
+
+  <div style="margin-top:1.2rem; display:flex; flex-direction:column; gap:0.6rem;">
+
+    <!-- Virtualisation & Infrastructure -->
+    <div style="border-radius:10px; border:1px solid rgba(148,163,184,0.3); background:#fff; overflow:hidden;">
+      <button onclick="toggleAccordion(this)"
+              style="width:100%; text-align:left; padding:0.9rem 1rem; background:none; border:none;
+                     font-family:inherit; font-size:0.95rem; font-weight:600; cursor:pointer;
+                     display:flex; justify-content:space-between; align-items:center; color:#111827;">
+        🖥️ Virtualisation & Infrastructure
+        <span style="font-size:1.1rem; transition:transform 0.2s;">▾</span>
+      </button>
+      <div style="max-height:0; overflow:hidden; transition:max-height 0.3s ease;">
+        <div style="padding:0 1rem 1rem; font-size:0.9rem; color:#374151;">
+          <dl style="display:grid; grid-template-columns: 160px 1fr; gap:0.5rem 1rem; margin:0;">
+            <dt style="font-weight:600;">Proxmox VE</dt>
+            <dd style="margin:0;">Hyperviseur open-source basé sur Linux permettant de gérer des machines virtuelles (VMs) et des conteneurs LXC depuis une interface web.</dd>
+            <dt style="font-weight:600;">VM</dt>
+            <dd style="margin:0;">Machine Virtuelle — émulation complète d'un ordinateur physique, avec son propre OS, isolée du système hôte.</dd>
+            <dt style="font-weight:600;">LXC</dt>
+            <dd style="margin:0;">Linux Container — conteneur léger qui partage le noyau Linux de l'hôte. Plus léger qu'une VM, idéal pour les services Linux simples.</dd>
+            <dt style="font-weight:600;">Docker</dt>
+            <dd style="margin:0;">Plateforme de conteneurisation qui permet d'empaqueter une application et ses dépendances dans un conteneur portable et isolé.</dd>
+            <dt style="font-weight:600;">Docker Compose</dt>
+            <dd style="margin:0;">Outil permettant de définir et gérer plusieurs conteneurs Docker via un fichier YAML, simplifiant le déploiement de stacks applicatives.</dd>
+            <dt style="font-weight:600;">Hyperviseur</dt>
+            <dd style="margin:0;">Logiciel qui permet de faire tourner plusieurs systèmes d'exploitation sur une même machine physique en les isolant les uns des autres.</dd>
+            <dt style="font-weight:600;">Snapshot</dt>
+            <dd style="margin:0;">Capture de l'état d'une VM ou d'un conteneur à un instant précis, permettant de revenir en arrière en cas de problème.</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <!-- Réseau -->
+    <div style="border-radius:10px; border:1px solid rgba(148,163,184,0.3); background:#fff; overflow:hidden;">
+      <button onclick="toggleAccordion(this)"
+              style="width:100%; text-align:left; padding:0.9rem 1rem; background:none; border:none;
+                     font-family:inherit; font-size:0.95rem; font-weight:600; cursor:pointer;
+                     display:flex; justify-content:space-between; align-items:center; color:#111827;">
+        🌐 Réseau
+        <span style="font-size:1.1rem; transition:transform 0.2s;">▾</span>
+      </button>
+      <div style="max-height:0; overflow:hidden; transition:max-height 0.3s ease;">
+        <div style="padding:0 1rem 1rem; font-size:0.9rem; color:#374151;">
+          <dl style="display:grid; grid-template-columns: 160px 1fr; gap:0.5rem 1rem; margin:0;">
+            <dt style="font-weight:600;">DNS</dt>
+            <dd style="margin:0;">Domain Name System — système qui traduit les noms de domaine (ex: sandrinede.com) en adresses IP compréhensibles par les machines.</dd>
+            <dt style="font-weight:600;">DHCP</dt>
+            <dd style="margin:0;">Dynamic Host Configuration Protocol — protocole qui attribue automatiquement une adresse IP aux appareils qui se connectent au réseau.</dd>
+            <dt style="font-weight:600;">VPN</dt>
+            <dd style="margin:0;">Virtual Private Network — tunnel chiffré entre deux points sur Internet, permettant de sécuriser les communications ou d'accéder à un réseau privé à distance.</dd>
+            <dt style="font-weight:600;">Tunnel</dt>
+            <dd style="margin:0;">Connexion chiffrée entre deux points qui encapsule le trafic réseau. Utilisé ici via Cloudflare pour exposer des services sans ouvrir de ports.</dd>
+            <dt style="font-weight:600;">VLAN</dt>
+            <dd style="margin:0;">Virtual LAN — segmentation logique d'un réseau physique en plusieurs réseaux virtuels isolés, pour des raisons de sécurité ou d'organisation.</dd>
+            <dt style="font-weight:600;">Pare-feu</dt>
+            <dd style="margin:0;">Système de sécurité qui filtre le trafic réseau entrant et sortant selon des règles définies, pour protéger le réseau des accès non autorisés.</dd>
+            <dt style="font-weight:600;">Proxy</dt>
+            <dd style="margin:0;">Serveur intermédiaire entre un client et un serveur, qui peut filtrer, mettre en cache ou anonymiser les requêtes réseau.</dd>
+            <dt style="font-weight:600;">RDP</dt>
+            <dd style="margin:0;">Remote Desktop Protocol — protocole Microsoft permettant de prendre le contrôle d'un bureau Windows à distance via le réseau.</dd>
+            <dt style="font-weight:600;">SSH</dt>
+            <dd style="margin:0;">Secure Shell — protocole chiffré permettant d'accéder à distance à un terminal Linux/Unix de manière sécurisée.</dd>
+            <dt style="font-weight:600;">Pi-hole</dt>
+            <dd style="margin:0;">Serveur DNS local qui bloque les publicités et domaines malveillants pour tous les appareils du réseau, sans configuration sur chaque appareil.</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <!-- Systèmes & Active Directory -->
+    <div style="border-radius:10px; border:1px solid rgba(148,163,184,0.3); background:#fff; overflow:hidden;">
+      <button onclick="toggleAccordion(this)"
+              style="width:100%; text-align:left; padding:0.9rem 1rem; background:none; border:none;
+                     font-family:inherit; font-size:0.95rem; font-weight:600; cursor:pointer;
+                     display:flex; justify-content:space-between; align-items:center; color:#111827;">
+        👤 Systèmes & Active Directory
+        <span style="font-size:1.1rem; transition:transform 0.2s;">▾</span>
+      </button>
+      <div style="max-height:0; overflow:hidden; transition:max-height 0.3s ease;">
+        <div style="padding:0 1rem 1rem; font-size:0.9rem; color:#374151;">
+          <dl style="display:grid; grid-template-columns: 160px 1fr; gap:0.5rem 1rem; margin:0;">
+            <dt style="font-weight:600;">Active Directory</dt>
+            <dd style="margin:0;">Service d'annuaire Microsoft qui centralise la gestion des utilisateurs, ordinateurs et ressources d'un réseau Windows (authentification, droits, politiques).</dd>
+            <dt style="font-weight:600;">Entra ID</dt>
+            <dd style="margin:0;">Anciennement Azure Active Directory — service d'identité cloud de Microsoft qui gère les accès aux applications et ressources cloud.</dd>
+            <dt style="font-weight:600;">Domaine</dt>
+            <dd style="margin:0;">Ensemble d'ordinateurs et d'utilisateurs gérés centralement par un Active Directory. Tous les objets partagent la même base de données d'annuaire.</dd>
+            <dt style="font-weight:600;">Contrôleur de domaine</dt>
+            <dd style="margin:0;">Serveur Windows qui héberge Active Directory et gère l'authentification et les politiques pour tous les objets du domaine.</dd>
+            <dt style="font-weight:600;">OU</dt>
+            <dd style="margin:0;">Organizational Unit — unité organisationnelle dans Active Directory permettant de regrouper et organiser les objets (utilisateurs, ordinateurs) pour y appliquer des GPO.</dd>
+            <dt style="font-weight:600;">GPO</dt>
+            <dd style="margin:0;">Group Policy Object — ensemble de règles et paramètres appliqués automatiquement aux utilisateurs et ordinateurs d'un domaine Active Directory.</dd>
+            <dt style="font-weight:600;">JML</dt>
+            <dd style="margin:0;">Joiners-Movers-Leavers — processus RH et IT de gestion du cycle de vie des comptes : création à l'arrivée, modification en cas de changement de poste, désactivation au départ.</dd>
+            <dt style="font-weight:600;">LDAP</dt>
+            <dd style="margin:0;">Lightweight Directory Access Protocol — protocole standard pour accéder et modifier les annuaires comme Active Directory.</dd>
+            <dt style="font-weight:600;">PowerShell</dt>
+            <dd style="margin:0;">Langage de script et shell de Microsoft, très utilisé pour l'automatisation des tâches d'administration Windows et Active Directory.</dd>
+            <dt style="font-weight:600;">WPF</dt>
+            <dd style="margin:0;">Windows Presentation Foundation — framework Microsoft pour créer des interfaces graphiques (GUI) pour les applications Windows.</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sécurité -->
+    <div style="border-radius:10px; border:1px solid rgba(148,163,184,0.3); background:#fff; overflow:hidden;">
+      <button onclick="toggleAccordion(this)"
+              style="width:100%; text-align:left; padding:0.9rem 1rem; background:none; border:none;
+                     font-family:inherit; font-size:0.95rem; font-weight:600; cursor:pointer;
+                     display:flex; justify-content:space-between; align-items:center; color:#111827;">
+        🛡️ Sécurité
+        <span style="font-size:1.1rem; transition:transform 0.2s;">▾</span>
+      </button>
+      <div style="max-height:0; overflow:hidden; transition:max-height 0.3s ease;">
+        <div style="padding:0 1rem 1rem; font-size:0.9rem; color:#374151;">
+          <dl style="display:grid; grid-template-columns: 160px 1fr; gap:0.5rem 1rem; margin:0;">
+            <dt style="font-weight:600;">SIEM</dt>
+            <dd style="margin:0;">Security Information and Event Management — système qui collecte, analyse et corrèle les logs et événements de sécurité de l'infrastructure pour détecter les menaces.</dd>
+            <dt style="font-weight:600;">Wazuh</dt>
+            <dd style="margin:0;">Solution SIEM open-source qui surveille les systèmes, détecte les intrusions, analyse les vulnérabilités et génère des alertes de sécurité.</dd>
+            <dt style="font-weight:600;">IAM</dt>
+            <dd style="margin:0;">Identity and Access Management — ensemble de processus et outils pour gérer les identités numériques et contrôler qui a accès à quoi dans un système.</dd>
+            <dt style="font-weight:600;">MFA</dt>
+            <dd style="margin:0;">Multi-Factor Authentication — méthode d'authentification qui exige au moins deux preuves d'identité (ex: mot de passe + code SMS) pour accéder à un compte.</dd>
+            <dt style="font-weight:600;">Zero Trust</dt>
+            <dd style="margin:0;">Modèle de sécurité qui ne fait confiance à aucun utilisateur ou appareil par défaut, même à l'intérieur du réseau. Chaque accès doit être vérifié.</dd>
+            <dt style="font-weight:600;">Chiffrement</dt>
+            <dd style="margin:0;">Transformation des données en un format illisible sans clé de déchiffrement, pour protéger les informations en transit ou au repos.</dd>
+            <dt style="font-weight:600;">HTTPS</dt>
+            <dd style="margin:0;">HTTP Sécurisé — version chiffrée du protocole web HTTP, utilisant TLS pour protéger les échanges entre le navigateur et le serveur.</dd>
+            <dt style="font-weight:600;">Certificat SSL/TLS</dt>
+            <dd style="margin:0;">Fichier numérique qui authentifie l'identité d'un site web et chiffre les communications, matérialisé par le cadenas dans le navigateur.</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cloud -->
+    <div style="border-radius:10px; border:1px solid rgba(148,163,184,0.3); background:#fff; overflow:hidden;">
+      <button onclick="toggleAccordion(this)"
+              style="width:100%; text-align:left; padding:0.9rem 1rem; background:none; border:none;
+                     font-family:inherit; font-size:0.95rem; font-weight:600; cursor:pointer;
+                     display:flex; justify-content:space-between; align-items:center; color:#111827;">
+        ☁️ Cloud
+        <span style="font-size:1.1rem; transition:transform 0.2s;">▾</span>
+      </button>
+      <div style="max-height:0; overflow:hidden; transition:max-height 0.3s ease;">
+        <div style="padding:0 1rem 1rem; font-size:0.9rem; color:#374151;">
+          <dl style="display:grid; grid-template-columns: 160px 1fr; gap:0.5rem 1rem; margin:0;">
+            <dt style="font-weight:600;">IaaS</dt>
+            <dd style="margin:0;">Infrastructure as a Service — modèle cloud où le fournisseur gère le matériel et la virtualisation. L'utilisateur gère l'OS, les applications et les données. Ex: AWS EC2, Azure VM.</dd>
+            <dt style="font-weight:600;">PaaS</dt>
+            <dd style="margin:0;">Platform as a Service — modèle cloud où le fournisseur gère l'infrastructure et l'OS. L'utilisateur se concentre uniquement sur son application. Ex: Heroku, Azure App Service.</dd>
+            <dt style="font-weight:600;">SaaS</dt>
+            <dd style="margin:0;">Software as a Service — logiciel hébergé et géré entièrement par le fournisseur, accessible via navigateur. L'utilisateur ne gère rien. Ex: Gmail, Microsoft 365, Zoom.</dd>
+            <dt style="font-weight:600;">Azure</dt>
+            <dd style="margin:0;">Plateforme cloud de Microsoft offrant des services d'infrastructure, d'identité (Entra ID), de sécurité et d'applications à l'échelle mondiale.</dd>
+            <dt style="font-weight:600;">AWS</dt>
+            <dd style="margin:0;">Amazon Web Services — plateforme cloud d'Amazon, leader du marché, offrant plus de 200 services (calcul, stockage, base de données, IA...).</dd>
+            <dt style="font-weight:600;">Cloudflare</dt>
+            <dd style="margin:0;">Service réseau mondial offrant DNS, CDN, protection DDoS et tunnels sécurisés. Utilisé ici pour exposer les services du homelab sans ouvrir de ports.</dd>
+            <dt style="font-weight:600;">CDN</dt>
+            <dd style="margin:0;">Content Delivery Network — réseau de serveurs répartis géographiquement pour distribuer le contenu web au plus près des utilisateurs et réduire la latence.</dd>
+            <dt style="font-weight:600;">Microsoft Graph API</dt>
+            <dd style="margin:0;">API REST de Microsoft permettant d'interagir avec les services Microsoft 365 et Entra ID (gestion des utilisateurs, groupes, mails...) via des requêtes HTTP.</dd>
+            <dt style="font-weight:600;">Entra Connect</dt>
+            <dd style="margin:0;">Outil Microsoft qui synchronise les comptes d'un Active Directory on-premises vers Entra ID (Azure AD), permettant une gestion d'identité hybride.</dd>
+            <dt style="font-weight:600;">Tenant</dt>
+            <dd style="margin:0;">Instance dédiée des services Microsoft 365 / Entra ID d'une organisation. Chaque entreprise ou lab a son propre tenant avec ses utilisateurs et ressources.</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
 <section id="contact">
   <h3>Contact</h3>
   <p class="section-desc">
