@@ -842,45 +842,66 @@ body {
 </div>
 </section>
 
-    <section>
+   <section>
   <h3>Et la suite&nbsp;?</h3>
   <p class="section-desc">
-    Ce que je prépare et ce qui arrive prochainement.
+    Notes techniques sur mes projets et déploiements.
   </p>
 
-  <div style="display:flex; flex-direction:column; gap:1rem; margin-top:1.2rem;">
+  <div style="margin-top:1.2rem; display:flex; flex-direction:column; gap:0.6rem;">
 
-    <div style="border-left:3px solid rgba(75,90,213,0.35); padding-left:0.8rem;">
-      <p style="margin:0 0 0.2rem; font-weight:600; font-size:0.95rem;">
-        📄 Publication du TFE — septembre 2026
-      </p>
-      <p style="margin:0; font-size:0.9rem; color:#374151;">
-        Mon travail de fin d'études porte sur l'automatisation JML (Joiners-Movers-Leavers) 
-        avec PowerShell dans un environnement hybride Active Directory et Entra ID (Azure AD). 
-        Il inclut un portail web, une interface graphique WPF et une intégration SIEM avec Wazuh.
-      </p>
-    </div>
-
-    <div style="border-left:3px solid rgba(75,90,213,0.35); padding-left:0.8rem;">
-      <p style="margin:0 0 0.2rem; font-weight:600; font-size:0.95rem;">
-        📝 Notes techniques à venir
-      </p>
-      <p style="margin:0; font-size:0.9rem; color:#374151;">
-        Je prévois de documenter des sujets que j'ai pratiqués : Cloudflare Tunnel, 
-        Proxmox & LXC, Pi-hole, NUT pour shutdown automatique, et cybersécurité pratique.
-      </p>
-    </div>
-
-    <div style="border-left:3px solid rgba(75,90,213,0.35); padding-left:0.8rem;">
-      <p style="margin:0 0 0.2rem; font-weight:600; font-size:0.95rem;">
-        🎯 Certifications visées
-      </p>
-      <p style="margin:0; font-size:0.9rem; color:#374151;">
-        CCNA · AZ-900 (Azure Fundamentals) · CompTIA Security+
-      </p>
+    <!-- Article Guacamole -->
+    <div style="border-radius:10px; border:1px solid rgba(148,163,184,0.3); background:#fff; overflow:hidden;">
+      <button onclick="toggleAccordion(this)"
+              style="width:100%; text-align:left; padding:0.9rem 1rem; background:none; border:none;
+                     font-family:inherit; font-size:0.95rem; font-weight:600; cursor:pointer;
+                     display:flex; justify-content:space-between; align-items:center; color:#111827;">
+        🖥️ Déploiement d'Apache Guacamole — RDP via navigateur
+        <span style="font-size:1.1rem; transition:transform 0.2s;">▾</span>
+      </button>
+      <div style="max-height:0; overflow:hidden; transition:max-height 0.3s ease;">
+        <div style="padding:0 1rem 1rem; font-size:0.9rem; color:#374151;">
+          <p><strong>Contexte :</strong> J'avais besoin d'accéder à mes machines Windows Server 2025
+          (JMLDC01, JMLDC02) via RDP depuis n'importe où, sans exposer le port 3389 directement
+          sur Internet. Apache Guacamole permet d'accéder au bureau à distance via un simple
+          navigateur web.</p>
+          <p><strong>Infrastructure :</strong></p>
+          <ul>
+            <li>Déploiement via <strong>Docker Compose</strong> sur un conteneur LXC Proxmox</li>
+            <li>Stack composée de deux conteneurs : <code>guacamole</code> et <code>guacd</code></li>
+            <li>Backend de stockage : fichier de configuration XML (mode sans base de données)</li>
+            <li>Exposition publique via <strong>Cloudflare Tunnel</strong> sous le sous-domaine
+            <code>rdp.sandrinede.com/guacamole</code></li>
+          </ul>
+          <p><strong>Ce que j'ai configuré :</strong></p>
+          <ul>
+            <li>Connexion RDP vers JMLDC01 et JMLDC02 avec authentification domaine</li>
+            <li>Lancement automatique de l'interface WPF GUI JML au démarrage de la session RDP</li>
+            <li>Configuration du tunnel Cloudflare pour router le trafic HTTPS vers Guacamole</li>
+          </ul>
+          <p><strong>Problèmes rencontrés :</strong></p>
+          <ul>
+            <li>Le chemin <code>/guacamole</code> dans l'URL nécessitait une configuration
+            spécifique côté Cloudflare Tunnel</li>
+            <li>Intérêt d'évoluer vers un backend <strong>MySQL</strong> pour gérer les
+            utilisateurs plus facilement (prévu)</li>
+          </ul>
+          <p><strong>Résultat :</strong> Accès RDP sécurisé depuis n'importe quel navigateur,
+          sans VPN, sans exposition de port RDP — tout passe par HTTPS via Cloudflare.</p>
+          <p style="margin-top:0.8rem;">
+            <strong>Outils utilisés :</strong>&nbsp;
+            <span class="badge">Apache Guacamole</span>
+            <span class="badge">Docker Compose</span>
+            <span class="badge">Proxmox LXC</span>
+            <span class="badge">Cloudflare Tunnel</span>
+            <span class="badge">Windows Server 2025</span>
+          </p>
+        </div>
+      </div>
     </div>
 
   </div>
+</section>
 </section>
 
 <section id="contact">
