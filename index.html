@@ -850,7 +850,9 @@ body {
 
   <div style="margin-top:1.2rem; display:flex; flex-direction:column; gap:0.6rem;">
 
-    <!-- Article Guacamole -->
+  <div style="margin-top:1.2rem; display:flex; flex-direction:column; gap:0.6rem;">
+
+    <!-- Guacamole -->
     <div style="border-radius:10px; border:1px solid rgba(148,163,184,0.3); background:#fff; overflow:hidden;">
       <button onclick="toggleAccordion(this)"
               style="width:100%; text-align:left; padding:0.9rem 1rem; background:none; border:none;
@@ -863,15 +865,13 @@ body {
         <div style="padding:0 1rem 1rem; font-size:0.9rem; color:#374151;">
           <p><strong>Contexte :</strong> J'avais besoin d'accéder à mes machines Windows Server 2025
           (JMLDC01, JMLDC02) via RDP depuis n'importe où, sans exposer le port 3389 directement
-          sur Internet. Apache Guacamole permet d'accéder au bureau à distance via un simple
-          navigateur web.</p>
+          sur Internet. Apache Guacamole permet d'accéder au bureau à distance via un simple navigateur web.</p>
           <p><strong>Infrastructure :</strong></p>
           <ul>
             <li>Déploiement via <strong>Docker Compose</strong> sur un conteneur LXC Proxmox</li>
             <li>Stack composée de deux conteneurs : <code>guacamole</code> et <code>guacd</code></li>
             <li>Backend de stockage : fichier de configuration XML (mode sans base de données)</li>
-            <li>Exposition publique via <strong>Cloudflare Tunnel</strong> sous le sous-domaine
-            <code>rdp.sandrinede.com/guacamole</code></li>
+            <li>Exposition publique via <strong>Cloudflare Tunnel</strong> sous <code>rdp.sandrinede.com/guacamole</code></li>
           </ul>
           <p><strong>Ce que j'ai configuré :</strong></p>
           <ul>
@@ -881,15 +881,11 @@ body {
           </ul>
           <p><strong>Problèmes rencontrés :</strong></p>
           <ul>
-            <li>Le chemin <code>/guacamole</code> dans l'URL nécessitait une configuration
-            spécifique côté Cloudflare Tunnel</li>
-            <li>Intérêt d'évoluer vers un backend <strong>MySQL</strong> pour gérer les
-            utilisateurs plus facilement (prévu)</li>
+            <li>Le chemin <code>/guacamole</code> dans l'URL nécessitait une configuration spécifique côté Cloudflare Tunnel</li>
+            <li>Intérêt d'évoluer vers un backend <strong>MySQL</strong> pour gérer les utilisateurs plus facilement (prévu)</li>
           </ul>
-          <p><strong>Résultat :</strong> Accès RDP sécurisé depuis n'importe quel navigateur,
-          sans VPN, sans exposition de port RDP — tout passe par HTTPS via Cloudflare.</p>
-          <p style="margin-top:0.8rem;">
-            <strong>Outils utilisés :</strong>&nbsp;
+          <p><strong>Résultat :</strong> Accès RDP sécurisé depuis n'importe quel navigateur, sans VPN, sans exposition de port RDP.</p>
+          <p style="margin-top:0.8rem;"><strong>Outils utilisés :</strong>&nbsp;
             <span class="badge">Apache Guacamole</span>
             <span class="badge">Docker Compose</span>
             <span class="badge">Proxmox LXC</span>
@@ -900,10 +896,246 @@ body {
       </div>
     </div>
 
-  </div>
-</section>
-</section>
+    <!-- Wazuh -->
+    <div style="border-radius:10px; border:1px solid rgba(148,163,184,0.3); background:#fff; overflow:hidden;">
+      <button onclick="toggleAccordion(this)"
+              style="width:100%; text-align:left; padding:0.9rem 1rem; background:none; border:none;
+                     font-family:inherit; font-size:0.95rem; font-weight:600; cursor:pointer;
+                     display:flex; justify-content:space-between; align-items:center; color:#111827;">
+        🛡️ Déploiement de Wazuh SIEM
+        <span style="font-size:1.1rem; transition:transform 0.2s;">▾</span>
+      </button>
+      <div style="max-height:0; overflow:hidden; transition:max-height 0.3s ease;">
+        <div style="padding:0 1rem 1rem; font-size:0.9rem; color:#374151;">
+          <p><strong>Contexte :</strong> Dans le cadre de mon TFE, j'ai déployé Wazuh pour monitorer
+          l'infrastructure et détecter les événements de sécurité sur mes contrôleurs de domaine.</p>
+          <p><strong>Infrastructure :</strong></p>
+          <ul>
+            <li>Installation de Wazuh sur une VM Ubuntu dédiée dans Proxmox</li>
+            <li>Agents Wazuh installés sur JMLDC01 et JMLDC02 (Windows Server 2025)</li>
+            <li>Dashboard exposé via <strong>Cloudflare Tunnel</strong> sous <code>wazuh.sandrinede.com</code></li>
+            <li>Index configuré : <code>wazuh-states-vulnerabilities-*</code></li>
+          </ul>
+          <p><strong>Ce que j'ai configuré :</strong></p>
+          <ul>
+            <li>Création d'un service systemd <code>wazuh-start.service</code> pour le bon ordre de démarrage</li>
+            <li>Configuration des dashboards de monitoring dans l'interface web</li>
+            <li>Connexion des agents Windows au manager Wazuh</li>
+          </ul>
+          <p><strong>Problèmes rencontrés :</strong></p>
+          <ul>
+            <li>L'index <code>wazuh-alerts-*</code> restait vide à cause d'une incompatibilité de version avec Filebeat</li>
+            <li>Ordre de démarrage des services incorrect au boot — résolu avec un service systemd personnalisé</li>
+          </ul>
+          <p><strong>Résultat :</strong> Dashboard SIEM fonctionnel avec visibilité sur les vulnérabilités et les événements système.</p>
+          <p style="margin-top:0.8rem;"><strong>Outils utilisés :</strong>&nbsp;
+            <span class="badge">Wazuh</span>
+            <span class="badge">Ubuntu</span>
+            <span class="badge">Proxmox</span>
+            <span class="badge">Cloudflare Tunnel</span>
+            <span class="badge">Windows Server 2025</span>
+          </p>
+        </div>
+      </div>
+    </div>
 
+    <!-- Cloudflare Tunnel -->
+    <div style="border-radius:10px; border:1px solid rgba(148,163,184,0.3); background:#fff; overflow:hidden;">
+      <button onclick="toggleAccordion(this)"
+              style="width:100%; text-align:left; padding:0.9rem 1rem; background:none; border:none;
+                     font-family:inherit; font-size:0.95rem; font-weight:600; cursor:pointer;
+                     display:flex; justify-content:space-between; align-items:center; color:#111827;">
+        ☁️ Exposition de services avec Cloudflare Tunnel
+        <span style="font-size:1.1rem; transition:transform 0.2s;">▾</span>
+      </button>
+      <div style="max-height:0; overflow:hidden; transition:max-height 0.3s ease;">
+        <div style="padding:0 1rem 1rem; font-size:0.9rem; color:#374151;">
+          <p><strong>Contexte :</strong> Pour exposer mes services homelab sur Internet sans ouvrir
+          de ports sur ma box, j'utilise Cloudflare Tunnel — une solution sécurisée qui crée un
+          tunnel chiffré entre mes services et Cloudflare.</p>
+          <p><strong>Services exposés :</strong></p>
+          <ul>
+            <li><code>portail-rh.sandrinede.com</code> — Portail web JML</li>
+            <li><code>wazuh.sandrinede.com</code> — Dashboard SIEM</li>
+            <li><code>rdp.sandrinede.com</code> — Apache Guacamole</li>
+            <li><code>infra.sandrinede.com</code> — Dashboard Proxmox temps réel</li>
+          </ul>
+          <p><strong>Ce que j'ai configuré :</strong></p>
+          <ul>
+            <li>Installation du daemon <code>cloudflared</code> sur les conteneurs LXC concernés</li>
+            <li>Création des tunnels et règles d'ingress dans le dashboard Cloudflare</li>
+            <li>Certificats HTTPS automatiques via Cloudflare (pas besoin de Let's Encrypt)</li>
+          </ul>
+          <p><strong>Avantages :</strong></p>
+          <ul>
+            <li>Aucun port ouvert sur la box — sécurité maximale</li>
+            <li>HTTPS automatique sur tous les sous-domaines</li>
+            <li>Protection DDoS incluse</li>
+          </ul>
+          <p style="margin-top:0.8rem;"><strong>Outils utilisés :</strong>&nbsp;
+            <span class="badge">Cloudflare Tunnel</span>
+            <span class="badge">cloudflared</span>
+            <span class="badge">Proxmox LXC</span>
+            <span class="badge">DNS Cloudflare</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Homelab Proxmox -->
+    <div style="border-radius:10px; border:1px solid rgba(148,163,184,0.3); background:#fff; overflow:hidden;">
+      <button onclick="toggleAccordion(this)"
+              style="width:100%; text-align:left; padding:0.9rem 1rem; background:none; border:none;
+                     font-family:inherit; font-size:0.95rem; font-weight:600; cursor:pointer;
+                     display:flex; justify-content:space-between; align-items:center; color:#111827;">
+        🏠 Homelab Proxmox — Architecture et services
+        <span style="font-size:1.1rem; transition:transform 0.2s;">▾</span>
+      </button>
+      <div style="max-height:0; overflow:hidden; transition:max-height 0.3s ease;">
+        <div style="padding:0 1rem 1rem; font-size:0.9rem; color:#374151;">
+          <p><strong>Contexte :</strong> Mon homelab tourne sur un serveur Proxmox VE personnel.
+          Il héberge l'ensemble de mon infrastructure de lab et de mes services auto-hébergés.</p>
+          <p><strong>Services hébergés :</strong></p>
+          <ul>
+            <li>🪟 <strong>Windows Server 2025</strong> — JMLDC01 et JMLDC02 (domaine lab.sandrinede.com)</li>
+            <li>🛡️ <strong>Wazuh</strong> — SIEM et détection d'intrusion</li>
+            <li>📊 <strong>Grafana</strong> — Dashboard de monitoring</li>
+            <li>🎬 <strong>Jellyfin</strong> — Serveur multimédia</li>
+            <li>🤖 <strong>Hermès Agent</strong> — Agent IA (Google Gemini 2.5 Flash)</li>
+            <li>🌐 <strong>Pi-hole</strong> — Filtrage DNS</li>
+            <li>☁️ <strong>Nextcloud</strong> — Stockage auto-hébergé</li>
+            <li>🖥️ <strong>Apache Guacamole</strong> — Accès RDP via navigateur</li>
+            <li>📡 <strong>Uptime Kuma</strong> — Monitoring de disponibilité</li>
+          </ul>
+          <p><strong>Technologies utilisées :</strong></p>
+          <ul>
+            <li>Conteneurs <strong>LXC</strong> pour les services Linux légers</li>
+            <li><strong>VMs</strong> pour Windows Server 2025</li>
+            <li><strong>Docker</strong> dans certains LXC pour Nextcloud, Guacamole</li>
+            <li>Exposition via <strong>Cloudflare Tunnel</strong></li>
+          </ul>
+          <p style="margin-top:0.8rem;"><strong>Outils utilisés :</strong>&nbsp;
+            <span class="badge">Proxmox VE</span>
+            <span class="badge">LXC</span>
+            <span class="badge">Docker</span>
+            <span class="badge">Windows Server 2025</span>
+            <span class="badge">Ubuntu</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- JML Portal -->
+    <div style="border-radius:10px; border:1px solid rgba(148,163,184,0.3); background:#fff; overflow:hidden;">
+      <button onclick="toggleAccordion(this)"
+              style="width:100%; text-align:left; padding:0.9rem 1rem; background:none; border:none;
+                     font-family:inherit; font-size:0.95rem; font-weight:600; cursor:pointer;
+                     display:flex; justify-content:space-between; align-items:center; color:#111827;">
+        🔒 Automatisation JML — Active Directory & Entra ID
+        <span style="font-size:1.1rem; transition:transform 0.2s;">▾</span>
+      </button>
+      <div style="max-height:0; overflow:hidden; transition:max-height 0.3s ease;">
+        <div style="padding:0 1rem 1rem; font-size:0.9rem; color:#374151;">
+          <p><strong>Contexte :</strong> Mon TFE porte sur l'automatisation du cycle de vie des
+          comptes utilisateurs (Joiners-Movers-Leavers) dans un environnement hybride
+          Active Directory et Entra ID (Azure AD).</p>
+          <p><strong>Ce que j'ai développé :</strong></p>
+          <ul>
+            <li>Scripts PowerShell pour créer, modifier et désactiver des comptes AD</li>
+            <li>Synchronisation avec <strong>Entra ID</strong> via Microsoft Entra Connect</li>
+            <li>Portail web RH exposé sous <code>portail-rh.sandrinede.com</code></li>
+            <li>Interface graphique <strong>WPF</strong> pour les actions sans ligne de commande</li>
+            <li>Intégration <strong>Microsoft Graph API</strong> pour les actions cloud</li>
+            <li>Monitoring des événements via <strong>Wazuh SIEM</strong></li>
+          </ul>
+          <p><strong>Infrastructure AD :</strong></p>
+          <ul>
+            <li>Domaine <code>lab.sandrinede.com</code> avec deux contrôleurs de domaine</li>
+            <li>JMLDC01 — Contrôleur principal</li>
+            <li>JMLDC02 — Contrôleur secondaire</li>
+            <li>Synchronisation hybride vers Entra ID (tenant sandrinede.com)</li>
+          </ul>
+          <p><strong>Résultat :</strong> Système JML complet opérationnel — de la création du
+          compte AD jusqu'à la synchronisation cloud, avec portail web et interface graphique.</p>
+          <p style="margin-top:0.8rem;"><strong>Outils utilisés :</strong>&nbsp;
+            <span class="badge">PowerShell</span>
+            <span class="badge">Active Directory</span>
+            <span class="badge">Entra ID</span>
+            <span class="badge">Microsoft Graph API</span>
+            <span class="badge">WPF</span>
+            <span class="badge">Windows Server 2025</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pi-hole -->
+    <div style="border-radius:10px; border:1px solid rgba(148,163,184,0.3); background:#fff; overflow:hidden;">
+      <button onclick="toggleAccordion(this)"
+              style="width:100%; text-align:left; padding:0.9rem 1rem; background:none; border:none;
+                     font-family:inherit; font-size:0.95rem; font-weight:600; cursor:pointer;
+                     display:flex; justify-content:space-between; align-items:center; color:#111827;">
+        🌐 Pi-hole — Filtrage DNS sur le réseau
+        <span style="font-size:1.1rem; transition:transform 0.2s;">▾</span>
+      </button>
+      <div style="max-height:0; overflow:hidden; transition:max-height 0.3s ease;">
+        <div style="padding:0 1rem 1rem; font-size:0.9rem; color:#374151;">
+          <p><strong>Contexte :</strong> Pi-hole est un serveur DNS qui bloque les publicités
+          et les domaines malveillants pour tous les appareils du réseau, sans installer
+          d'extension dans chaque navigateur.</p>
+          <p><strong>Ce que j'ai mis en place :</strong></p>
+          <ul>
+            <li>Installation de Pi-hole sur un conteneur LXC Proxmox</li>
+            <li>Configuration comme serveur DNS primaire du réseau</li>
+            <li>Gestion des listes de blocage (publicités, trackers, malwares)</li>
+            <li>Vérification du trafic DNS via le dashboard Pi-hole</li>
+            <li>DNS local pour résoudre les noms de mes services internes</li>
+          </ul>
+          <p><strong>Résultat :</strong> Blocage des publicités et trackers sur l'ensemble
+          du réseau domestique, avec visibilité complète sur les requêtes DNS.</p>
+          <p style="margin-top:0.8rem;"><strong>Outils utilisés :</strong>&nbsp;
+            <span class="badge">Pi-hole</span>
+            <span class="badge">Proxmox LXC</span>
+            <span class="badge">DNS</span>
+            <span class="badge">Raspberry Pi</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Grafana -->
+    <div style="border-radius:10px; border:1px solid rgba(148,163,184,0.3); background:#fff; overflow:hidden;">
+      <button onclick="toggleAccordion(this)"
+              style="width:100%; text-align:left; padding:0.9rem 1rem; background:none; border:none;
+                     font-family:inherit; font-size:0.95rem; font-weight:600; cursor:pointer;
+                     display:flex; justify-content:space-between; align-items:center; color:#111827;">
+        📊 Grafana — Dashboard de monitoring Proxmox
+        <span style="font-size:1.1rem; transition:transform 0.2s;">▾</span>
+      </button>
+      <div style="max-height:0; overflow:hidden; transition:max-height 0.3s ease;">
+        <div style="padding:0 1rem 1rem; font-size:0.9rem; color:#374151;">
+          <p><strong>Contexte :</strong> J'ai déployé Grafana pour avoir une vue en temps réel
+          de l'état de mon infrastructure Proxmox — CPU, RAM, stockage et état des VMs/LXC.</p>
+          <p><strong>Ce que j'ai mis en place :</strong></p>
+          <ul>
+            <li>Grafana déployé dans un conteneur LXC Proxmox</li>
+            <li>Connexion à l'API Proxmox via un token read-only dédié</li>
+            <li>Dashboard temps réel exposé sous <code>infra.sandrinede.com</code></li>
+            <li>Visualisation de l'état de tous les conteneurs et VMs</li>
+          </ul>
+          <p><strong>Résultat :</strong> Dashboard de monitoring en temps réel accessible
+          publiquement — visible directement depuis le portfolio.</p>
+          <p style="margin-top:0.8rem;"><strong>Outils utilisés :</strong>&nbsp;
+            <span class="badge">Grafana</span>
+            <span class="badge">Proxmox API</span>
+            <span class="badge">Proxmox LXC</span>
+            <span class="badge">Cloudflare Tunnel</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
 <section id="contact">
   <h3>Contact</h3>
   <p class="section-desc">
