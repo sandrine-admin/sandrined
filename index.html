@@ -1332,10 +1332,43 @@ body {
 <section id="contact">
   <h3>Contact</h3>
   <p class="section-desc">
-    Pour toute question ou échange autour de l’infrastructure IT, du support ou de mes projets,
-    vous pouvez me contacter à :
-    <a href="mailto:sandrinesde@proton.me">sandrinesde@proton.me</a>
+    Pour toute question ou échange autour de l'infrastructure IT, du support ou de mes projets,
+    n'hésitez pas à me contacter via ce formulaire.
   </p>
+
+  <form action="https://formspree.io/f/xnjypwba" method="POST"
+        style="margin-top:1.2rem; display:flex; flex-direction:column; gap:0.8rem; max-width:520px;">
+
+    <div style="display:flex; flex-direction:column; gap:0.3rem;">
+      <label style="font-size:0.85rem; font-weight:600; color:#374151;">Nom</label>
+      <input type="text" name="name" required placeholder="Votre nom"
+             style="padding:0.6rem 0.9rem; border-radius:8px; border:1px solid rgba(148,163,184,0.5);
+                    font-family:inherit; font-size:0.9rem; outline:none; background:#fff;">
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:0.3rem;">
+      <label style="font-size:0.85rem; font-weight:600; color:#374151;">Email</label>
+      <input type="email" name="email" required placeholder="votre@email.com"
+             style="padding:0.6rem 0.9rem; border-radius:8px; border:1px solid rgba(148,163,184,0.5);
+                    font-family:inherit; font-size:0.9rem; outline:none; background:#fff;">
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:0.3rem;">
+      <label style="font-size:0.85rem; font-weight:600; color:#374151;">Message</label>
+      <textarea name="message" required placeholder="Votre message..." rows="5"
+                style="padding:0.6rem 0.9rem; border-radius:8px; border:1px solid rgba(148,163,184,0.5);
+                       font-family:inherit; font-size:0.9rem; outline:none; background:#fff; resize:vertical;"></textarea>
+    </div>
+
+    <button type="submit"
+            style="padding:0.7rem 1.4rem; border-radius:999px; border:none; cursor:pointer;
+                   background:var(--primary); color:#fff; font-family:inherit; font-size:0.9rem;
+                   font-weight:600; letter-spacing:0.03em; align-self:flex-start;
+                   box-shadow:0 10px 25px rgba(37,99,235,0.35); transition:background 0.2s ease;">
+      Envoyer le message ✉️
+    </button>
+
+  </form>
 </section>
 
       <footer>
