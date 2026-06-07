@@ -6,1433 +6,973 @@
   <meta name="description" content="Portfolio de Sandrine, administratrice systèmes & support IT à Charleroi : gestion Active Directory, scripts PowerShell JML, réseau (CCNA), Docker et automatisation d'infrastructure.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Inter:300,400,500,700&display=swap">
-
-    <style>
-:root {
-  --primary: #3b82f6;        /* bleu principal */
-  --primary-dark: #1d4ed8;   /* bleu foncé */
-  --accent: #f97373;         /* accent corail */
-  --bg: #f3f4f6;             /* fond gris très clair, plus doux */
-}
-* { box-sizing: border-box; }
-
-body {
-  margin: 0;
-  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: var(--bg);
-  color: #111827;
-}
-
-
-      .topbar {
-        position: sticky;
-        top: 0;
-        z-index: 20;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0.8rem 2rem;
-        background: rgba(75, 90, 213, 0.06);
-        backdrop-filter: blur(10px);
-        border-bottom: 1px solid rgba(148, 163, 184, 0.25);
-      }
-
-      .topbar-left {
-        display: flex;
-        align-items: center;
-        gap: 1.5rem;
-      }
-
-      .logo {
-        font-weight: 700;
-        letter-spacing: 0.06em;
-        font-size: 1rem;
-      }
-
-      .topnav {
-        display: flex;
-        gap: 0.5rem;
-      }
-
-      .nav-link {
-        font-size: 0.9rem;
-        text-decoration: none;
-        color: black;
-        padding: 0.35rem 0.7rem;
-        border-radius: 999px;
-        transition: background-color 0.15s ease, color 0.15s ease;
-      }
-
-      .nav-link:hover {
-        background: rgba(15, 23, 42, 0.03);
-        color: black;
-      }
-
-      .nav-link.active {
-        background: rgba(75, 90, 213, 0.12);
-        color: black;
-        font-weight: 600;
-      }
-
-      .topbar-right {
-        display: flex;
-        align-items: center;
-        gap: 0.4rem;
-      }
-
-      .top-icon {
-        width: 26px;
-        height: 26px;
-        border-radius: 999px;
-        border: 1px solid rgba(148, 163, 184, 0.6);
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.7rem;
-        color: #6b7280;
-        background: #fffdf8;
-        cursor: default;
-      }
-
-      .top-icon:hover {
-        border-color: #4b5ad5;
-        color: #4b5ad5;
-      }
-
-      main {
-        max-width: 960px;
-        margin: 1rem auto 3rem;
-        padding: 0 1.5rem;
-      }
-
-      .hero {
-        background: radial-gradient(circle at top left, #eef2ff, #ffffff);
-        border-radius: 18px;
-        padding: 2.5rem 2.5rem 2rem;
-        box-shadow: 0 22px 55px rgba(15,23,42,0.18);
-        display: grid;
-        grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-        gap: 2rem;
-        border: 1px solid rgba(148, 163, 184, 0.3);
-      }
-
-      .hero h2 {
-        margin-top: 0;
-        font-size: 2.3rem;
-        letter-spacing: 0.02em;
-      }
-
-      .hero p.lead {
-        font-size: 1.05rem;
-        color: #4b5563;
-      }
-
-      .tagline {
-        display: inline-block;
-        padding: 0.15rem 0.75rem;
-        border-radius: 999px;
-        background: rgba(75,90,213,0.07);
-        color: var(--primary-dark);
-        font-size: 0.8rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        margin-bottom: 0.7rem;
-      }
-
-      .badges {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.6rem;
-        margin-top: 1rem;
-      }
-
-      .badge {
-        font-size: 0.8rem;
-        padding: 0.35rem 0.8rem;
-        border-radius: 999px;
-        background: #eef0ff;
-        color: var(--primary-dark);
-      }
-
-      .badge.accent {
-        background: #ffe4e4;
-        color: #b43333;
-      }
-
-      .skills-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 2rem;
-        margin-top: 1.5rem;
-      }
-
-      .skills-group-title {
-        font-weight: 600;
-        margin-bottom: 0.8rem;
-        font-size: 0.95rem;
-      }
-
-      .skill-item {
-        margin-bottom: 0.6rem;
-      }
-
-      .skill-label {
-        font-size: 0.85rem;
-        margin-bottom: 0.15rem;
-        display: flex;
-        align-items: center;
-        gap: 0.35rem;
-      }
-
-      .skill-icon {
-        width: 22px;
-        height: 22px;
-        object-fit: contain;
-      }
-
-      .skill-bar {
-        height: 6px;
-        border-radius: 999px;
-        background: #e5e7eb;
-        overflow: hidden;
-      }
-
-      .skill-bar-fill {
-        height: 100%;
-        background: #4b5563;
-        border-radius: 999px;
-      }
-
-      .cert-badges {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
-        margin-top: 1.5rem;
-      }
-
-      .cert-badge-item {
-        background: #ffffff;
-        border-radius: 12px;
-        padding: 0.7rem 0.9rem;
-        box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        max-width: 180px;
-        text-decoration: none;
-      }
-
-      .cert-badge-item img {
-        height: 80px;
-        display: block;
-      }
-
-      .cert-badge-item span {
-        margin-top: 0.4rem;
-        font-size: 0.8rem;
-        text-align: center;
-        color: #374151;
-      }
-
-      .hero-side {
-        align-self: center;
-        text-align: right;
-      }
-
-      .hero-pill {
-        display: inline-block;
-        padding: 0.6rem 1.2rem;
-        border-radius: 999px;
-        background: #fff7f2;
-        border: 1px dashed rgba(249,115,115,0.5);
-        color: #b43333;
-        font-size: 0.8rem;
-      }
-
-      .links {
-        margin-top: 1.5rem;
-      }
-
-      .btn {
-        display: inline-block;
-        padding: 0.7rem 1.4rem;
-        border-radius: 999px;
-        text-decoration: none;
-        font-size: 0.9rem;
-        font-weight: 600;
-        letter-spacing: 0.03em;
-        transition: background-color 0.2s ease, color 0.2s ease,
-                    transform 0.2s ease, box-shadow 0.2s ease;
-      }
-.btn-primary {
-  background: var(--primary);
-  color: #ffffff;
-  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.35);
-}
-
-.btn-primary:hover {
-  background: var(--primary-dark);
-  color: #ffffff;
-  transform: translateY(-1px);
-  box-shadow: 0 14px 32px rgba(37, 99, 235, 0.45);
-}
-
-.btn-ghost {
-  border: 1px solid rgba(15, 23, 42, 0.18);
-  color: #111827;
-  margin-left: 0.6rem;
-  background: #ffffff;
-}
-
-.btn-ghost:hover {
-  border-color: var(--primary);
-  color: #111827;
-  transform: translateY(-1px);
-  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
-}
-
-
-      section {
-        margin-top: 2.5rem;
-      }
-
-      #about {
-  margin-top: 3rem;  /* au lieu de 2.5rem si tu veux plus d’air */
-}
-
-
-      h3 {
-        margin-bottom: 0.2rem;
-      }
-
-      p.section-desc {
-        margin-top: 0;
-        color: #555;
-        font-size: 0.95rem;
-      }
-
-      section p.section-desc {
-        margin-top: 1rem;
-      }
-
-      ul {
-        padding-left: 1.2rem;
-      }
-
-      footer {
-        text-align: center;
-        color: #777;
-        font-size: 0.85rem;
-        padding: 1.5rem 0 2rem;
-      }
-
-      @media (max-width: 800px) {
-        .hero {
-          grid-template-columns: minmax(0, 1fr);
-          text-align: left;
-        }
-        .hero-side {
-          text-align: left;
-        }
-      }
-
-      /* Projets : liste légère sans cartes blanches */
-      #projets {
-        background: transparent;
-        padding: 0;
-        box-shadow: none;
-      }
-
-      .projects-list {
-        list-style: none;
-        padding-left: 0;
-        margin-top: 1.5rem;
-      }
-
-      .projects-list li {
-        margin-bottom: 1.4rem;
-        border-left: 3px solid rgba(75, 90, 213, 0.35);
-        padding-left: 0.8rem;
-      }
-
-      .projects-list h4 {
-        margin: 0 0 0.2rem;
-        font-size: 1.02rem;
-      }
-
-      .project-meta {
-        margin: 0 0 0.4rem;
-        font-size: 0.8rem;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        color: #6b7280;
-      }
-
-      .projects-list p {
-        margin: 0;
-        font-size: 0.9rem;
-        color: #374151;
-      }
-
-      .analytics-badge {
-        position: fixed;
-        right: 16px;
-        bottom: 16px;
-        padding: 0.4rem 0.8rem;
-        border-radius: 999px;
-        background: rgba(15, 23, 42, 0.75);
-        color: #f9fafb;
-        font-size: 0.75rem;
-        box-shadow: 0 8px 20px rgba(15, 23, 42, 0.35);
-        z-index: 50;
-      }
-    </style>
-
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XY4V45T243"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-XY4V45T243');
-    </script>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,700&display=swap">
 
   <!-- Open Graph -->
-<meta property="og:title" content="Sandrine – Administratrice Systèmes & Support IT">
-<meta property="og:description" content="Portfolio IT : homelab Proxmox, Linux, réseau, cybersécurité et support. Découvrez mes projets et mon infrastructure en temps réel.">
-<meta property="og:url" content="https://sandrinede.com">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="sandrinede.com">
-<meta property="og:locale" content="fr_BE">
+  <meta property="og:title" content="Sandrine – Administratrice Systèmes & Support IT">
+  <meta property="og:description" content="Portfolio IT : homelab Proxmox, Linux, réseau, cybersécurité et support. Découvrez mes projets et mon infrastructure en temps réel.">
+  <meta property="og:url" content="https://sandrinede.com">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="sandrinede.com">
+  <meta property="og:locale" content="fr_BE">
 
-<!-- Twitter / Discord Card -->
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Sandrine – Administratrice Systèmes & Support IT">
-<meta name="twitter:description" content="Portfolio IT : homelab Proxmox, Linux, réseau, cybersécurité et support.">
+  <!-- Twitter / Discord Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Sandrine – Administratrice Systèmes & Support IT">
+  <meta name="twitter:description" content="Portfolio IT : homelab Proxmox, Linux, réseau, cybersécurité et support.">
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XY4V45T243"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-XY4V45T243');
-</script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XY4V45T243"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XY4V45T243');
+  </script>
+
+  <style>
+    :root {
+      --primary: #3b82f6;
+      --primary-dark: #1d4ed8;
+      --accent: #f97373;
+      --bg: #f3f4f6;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: #111827;
+    }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem 2rem;
+      background: rgba(75, 90, 213, 0.06);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+    }
+    .topbar-left { display: flex; align-items: center; gap: 1.5rem; }
+    .logo { font-weight: 700; letter-spacing: 0.06em; font-size: 1rem; }
+    .topnav { display: flex; gap: 0.5rem; }
+    .nav-link {
+      font-size: 0.9rem;
+      text-decoration: none;
+      color: black;
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+    .nav-link:hover { background: rgba(15, 23, 42, 0.03); color: black; }
+    .nav-link.active { background: rgba(75, 90, 213, 0.12); color: black; font-weight: 600; }
+    .topbar-right { display: flex; align-items: center; gap: 0.4rem; }
+    .top-icon {
+      width: 26px; height: 26px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 0.7rem; color: #6b7280; background: #fffdf8; cursor: default;
+      text-decoration: none;
+    }
+    .top-icon:hover { border-color: #4b5ad5; color: #4b5ad5; }
+    main { max-width: 960px; margin: 1rem auto 3rem; padding: 0 1.5rem; }
+    .hero {
+      background: radial-gradient(circle at top left, #eef2ff, #ffffff);
+      border-radius: 18px;
+      padding: 2.5rem 2.5rem 2rem;
+      box-shadow: 0 22px 55px rgba(15,23,42,0.18);
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 2rem;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+    }
+    .hero h2 { margin-top: 0; font-size: 2.3rem; letter-spacing: 0.02em; }
+    .hero p.lead { font-size: 1.05rem; color: #4b5563; }
+    .tagline {
+      display: inline-block;
+      padding: 0.15rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(75,90,213,0.07);
+      color: var(--primary-dark);
+      font-size: 0.8rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      margin-bottom: 0.7rem;
+    }
+    .badges { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1rem; }
+    .badge { font-size: 0.8rem; padding: 0.35rem 0.8rem; border-radius: 999px; background: #eef0ff; color: var(--primary-dark); }
+    .badge.accent { background: #ffe4e4; color: #b43333; }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; margin-top: 1.5rem; }
+    .skills-group-title { font-weight: 600; margin-bottom: 0.8rem; font-size: 0.95rem; }
+    .skill-item { margin-bottom: 0.6rem; }
+    .skill-label { font-size: 0.85rem; margin-bottom: 0.15rem; display: flex; align-items: center; gap: 0.35rem; }
+    .skill-bar { height: 6px; border-radius: 999px; background: #e5e7eb; overflow: hidden; }
+    .skill-bar-fill { height: 100%; background: #4b5563; border-radius: 999px; }
+    .cert-badges { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem; }
+    .cert-badge-item {
+      background: #ffffff; border-radius: 12px; padding: 0.7rem 0.9rem;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+      display: flex; flex-direction: column; align-items: center;
+      max-width: 180px; text-decoration: none;
+    }
+    .cert-badge-item img { height: 80px; display: block; }
+    .cert-badge-item span { margin-top: 0.4rem; font-size: 0.8rem; text-align: center; color: #374151; }
+    .hero-side { align-self: center; text-align: right; }
+    .hero-pill {
+      display: inline-block; padding: 0.6rem 1.2rem; border-radius: 999px;
+      background: #fff7f2; border: 1px dashed rgba(249,115,115,0.5);
+      color: #b43333; font-size: 0.8rem;
+    }
+    .links { margin-top: 1.5rem; }
+    .btn {
+      display: inline-block; padding: 0.7rem 1.4rem; border-radius: 999px;
+      text-decoration: none; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.03em;
+      transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn-primary { background: var(--primary); color: #ffffff; box-shadow: 0 10px 25px rgba(37, 99, 235, 0.35); }
+    .btn-primary:hover { background: var(--primary-dark); color: #ffffff; transform: translateY(-1px); box-shadow: 0 14px 32px rgba(37, 99, 235, 0.45); }
+    .btn-ghost { border: 1px solid rgba(15, 23, 42, 0.18); color: #111827; margin-left: 0.6rem; background: #ffffff; }
+    .btn-ghost:hover { border-color: var(--primary); color: #111827; transform: translateY(-1px); box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12); }
+    section { margin-top: 2.5rem; }
+    #about { margin-top: 3rem; }
+    h3 { margin-bottom: 0.2rem; }
+    p.section-desc { margin-top: 0; color: #555; font-size: 0.95rem; }
+    section p.section-desc { margin-top: 1rem; }
+    ul { padding-left: 1.2rem; }
+    footer { text-align: center; color: #777; font-size: 0.85rem; padding: 1.5rem 0 2rem; }
+    @media (max-width: 800px) {
+      .hero { grid-template-columns: minmax(0, 1fr); text-align: left; }
+      .hero-side { text-align: left; }
+    }
+    #projets { background: transparent; padding: 0; box-shadow: none; }
+    .projects-list { list-style: none; padding-left: 0; margin-top: 1.5rem; }
+    .projects-list li { margin-bottom: 1.4rem; border-left: 3px solid rgba(75, 90, 213, 0.35); padding-left: 0.8rem; }
+    .projects-list h4 { margin: 0 0 0.2rem; font-size: 1.02rem; }
+    .project-meta { margin: 0 0 0.4rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: #6b7280; }
+    .projects-list p { margin: 0; font-size: 0.9rem; color: #374151; }
+    .analytics-badge {
+      position: fixed; right: 16px; bottom: 16px;
+      padding: 0.4rem 0.8rem; border-radius: 999px;
+      background: rgba(15, 23, 42, 0.75); color: #f9fafb;
+      font-size: 0.75rem; box-shadow: 0 8px 20px rgba(15, 23, 42, 0.35); z-index: 50;
+    }
+    .accordion-wrap { margin-top: 1.2rem; display: flex; flex-direction: column; gap: 0.6rem; }
+    .accordion-item { border-radius: 10px; border: 1px solid rgba(148,163,184,0.3); background: #fff; overflow: hidden; }
+    .accordion-btn {
+      width: 100%; text-align: left; padding: 0.9rem 1rem;
+      background: none; border: none; font-family: inherit; font-size: 0.95rem;
+      font-weight: 600; cursor: pointer; display: flex;
+      justify-content: space-between; align-items: center; color: #111827;
+    }
+    .accordion-btn span { font-size: 1.1rem; transition: transform 0.2s; }
+    .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+    .accordion-inner { padding: 0 1rem 1rem; font-size: 0.9rem; color: #374151; }
+    .glossary-grid { display: grid; grid-template-columns: 160px 1fr; gap: 0.5rem 1rem; margin: 0; }
+    dt { font-weight: 600; }
+    dd { margin: 0; }
+  </style>
 </head>
-  
-  </head>
 
-  <body>
-    <header class="topbar">
-      <div class="topbar-left">
-        <span class="logo">sandrinede</span>
-        <nav class="topnav">
-          <a href="#home" class="nav-link active">Accueil</a>
-          <a href="#about" class="nav-link">À propos</a>
-          <a href="#projets" class="nav-link">Projets</a>
-          <a href="#competences" class="nav-link">Compétences</a>
-          <a href="#certificats" class="nav-link">Certificats</a>
-          <a href="#outils" class="nav-link">Outils</a>
-<a href="#glossaire" class="nav-link">Glossaire</a>
-<a href="#contact" class="nav-link">Contact</a>
-        </nav>
-      </div>
-<div class="topbar-right">
-  <a class="top-icon" href="https://github.com/sandrine-admin" target="_blank" rel="noopener"
-     title="GitHub">
-    G
-  </a>
-  <a class="top-icon" href="https://www.linkedin.com/in/sandrine-defontaine-5226423a4" target="_blank" rel="noopener"
-     title="LinkedIn">
-    in
-  </a>
-</div>
-    </header>
-
-    <main>
-<section class="hero" id="home">
-  <div>
-    <div class="tagline">Administratrice systèmes & support IT junior</div>
-
-    <h2>Sandrine – infrastructure & support IT</h2>
-
-    <p class="lead">
-      Je me forme à l’administration de systèmes et au support IT :
-      Active Directory, scripts PowerShell, virtualisation et réseau.
-      Ce site présente quelques projets et labs techniques.
-    </p>
-
-    <div class="links">
-      <a class="btn btn-primary" href="#projets">
-        Voir mes projets IT
-      </a>
-      <a class="btn btn-ghost" href="#about">
-        En savoir plus sur moi
-      </a>
+<body>
+  <header class="topbar">
+    <div class="topbar-left">
+      <span class="logo">sandrinede</span>
+      <nav class="topnav">
+        <a href="#home" class="nav-link active">Accueil</a>
+        <a href="#about" class="nav-link">À propos</a>
+        <a href="#projets" class="nav-link">Projets</a>
+        <a href="#competences" class="nav-link">Compétences</a>
+        <a href="#certificats" class="nav-link">Certificats</a>
+        <a href="#outils" class="nav-link">Outils</a>
+        <a href="#glossaire" class="nav-link">Glossaire</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
     </div>
-  </div>
-
-  <div class="hero-side">
-    <div class="hero-pill">
-      Portfolio technique en construction,
-      <br>centré sur l’administration systèmes et le support IT.
+    <div class="topbar-right">
+      <a class="top-icon" href="https://github.com/sandrine-admin" target="_blank" rel="noopener" title="GitHub">G</a>
+      <a class="top-icon" href="https://www.linkedin.com/in/sandrine-defontaine-5226423a4" target="_blank" rel="noopener" title="LinkedIn">in</a>
     </div>
-  </div>
-</section>
+  </header>
 
+  <main>
 
-<section id="about">
-  <h3>À propos</h3>
-  <p class="section-desc">
-    Quelques mots sur mon parcours et ce que je cherche à faire en IT.
-  </p>
-
-  <p>
-    Je m’appelle Sandrine et je m’intéresse particulièrement à l’infrastructure IT,
-    à l’administration de systèmes et au support utilisateur / helpdesk. Je développe
-    mes compétences de manière autodidacte, en expérimentant autour des systèmes, du
-    réseau et de la cybersécurité.
-  </p>
-
-  <p>
-    Ce site rassemble quelques projets personnels (lab virtuel, Pi-hole, Nextcloud,
-    automatisation JML dans Active Directory, etc.) qui illustrent ma curiosité pour
-    la technique et ma façon de documenter les problèmes rencontrés ainsi que les
-    solutions mises en place.
-  </p>
-
-  <p>
-    Je documente également certains projets dans des dépôts publics sur GitHub,
-    afin de garder une trace de mes tests et de mes progrès, et de pouvoir les
-    partager avec d’autres personnes intéressées par l’infrastructure IT.
-  </p>
-</section>
-
-
-<section id="projets">
-  <h3>Mes projets</h3>
-  <p class="section-desc">
-    Quelques projets et laboratoires autour de l’infrastructure IT,
-    du réseau, de la virtualisation et de la cybersécurité.
-  </p>
-
-
-        <ul class="projects-list">
-          <li>
-            <h4>Site personnel &amp; portfolio</h4>
-            <p class="project-meta">Projet web · GitHub Pages</p>
-            <p>
-              Création de ce site statique pour centraliser mon parcours, mes certificats
-              et mes outils, tout en pratiquant le HTML, le CSS et Git.
-            </p>
-          </li>
-
-          <li>
-            <h4>Laboratoire virtuel IT</h4>
-            <p class="project-meta">Virtualisation · Proxmox / VMware / VirtualBox</p>
-            <p>
-              Mise en place d’un lab avec plusieurs machines virtuelles pour pratiquer
-              l’administration système, le réseau et des scénarios de support.
-            </p>
-          </li>
-
-          <li>
-            <h4>Déploiement de Zulip</h4>
-            <p class="project-meta">Messagerie d’équipe · VM &amp; Docker</p>
-            <p>
-              Installation de Zulip sur une machine virtuelle puis en conteneur Docker,
-              création des utilisateurs et tests de canaux de discussion.
-            </p>
-          </li>
-
-          <li>
-            <h4>Pi-hole sur Raspberry Pi</h4>
-            <p class="project-meta">DNS &amp; filtrage · Réseau domestique</p>
-            <p>
-              Installation de Pi-hole pour filtrer les requêtes DNS du réseau, avec gestion
-              des listes de blocage et vérification du trafic.
-            </p>
-          </li>
-
-          <li>
-            <h4>Home Assistant</h4>
-            <p class="project-meta">Domotique · Automatisation</p>
-            <p>
-              Déploiement de Home Assistant pour centraliser et automatiser certains équipements
-              à la maison, avec configuration de plusieurs intégrations.
-            </p>
-          </li>
-
-          <li>
-            <h4>Nextcloud en conteneur Docker</h4>
-            <p class="project-meta">Stockage · Auto‑hébergement</p>
-            <p>
-              Mise en place de Nextcloud en conteneur Docker pour disposer d’un espace
-              de partage de fichiers auto‑hébergé.
-            </p>
-          </li>
-
-          <li>
-  <h4>Infrastructure Homelab – Proxmox Live</h4>
-  <p class="project-meta">Virtualisation · Proxmox / LXC / Docker · Temps réel</p>
-  <p>
-    Mise en place d'un homelab complet sur Proxmox VE avec 11 conteneurs LXC
-    et une VM : Pi-hole, Nextcloud, Grafana, Jellyfin, Hermès Agent (IA locale),
-    Windows Server 2025 et plus. Page de monitoring en temps réel exposée via
-    Cloudflare Tunnel.
-  </p>
-  <p style="margin-top: 0.5rem;">
-    <a href="https://infra.sandrinede.com"
-       target="_blank"
-       rel="noopener"
-       style="display:inline-block;padding:0.35rem 0.9rem;border-radius:999px;background:rgba(75,90,213,0.1);color:#1d4ed8;font-size:0.82rem;font-weight:600;text-decoration:none;border:1px solid rgba(75,90,213,0.25);">
-      🔴 Voir l'infra en direct →
-    </a>
-  </p>
-</li>
-        </ul>
-
-                 <li>
-            <h4>Projet en cours – Automatisation JML dans l’AD</h4>
-            <p class="project-meta">PowerShell · Active Directory</p>
-            <p>
-              Développement d’un script PowerShell pour automatiser le cycle JML
-              (Joiner, Mover, Leaver) dans Active Directory&nbsp;: création,
-              modification et désactivation de comptes utilisateurs.
-            </p>
-            <p>
-              Mise en place d’une interface graphique simplifiée avec des boutons,
-              permettant de lancer les principales actions sans utiliser la ligne
-              de commande.
-            </p>
-          </li>
-      </section>
-
-      <section id="competences">
-        <h3>Compétences</h3>
-        <p class="section-desc">
-          Un aperçu des domaines techniques que j’explore actuellement.
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div>
+        <div class="tagline">Administratrice systèmes & support IT junior</div>
+        <h2>Sandrine – infrastructure & support IT</h2>
+        <p class="lead">
+          Je me forme à l'administration de systèmes et au support IT :
+          Active Directory, scripts PowerShell, virtualisation et réseau.
+          Ce site présente quelques projets et labs techniques.
         </p>
+        <div class="links">
+          <a class="btn btn-primary" href="#projets">Voir mes projets IT</a>
+          <a class="btn btn-ghost" href="#about">En savoir plus sur moi</a>
+        </div>
+      </div>
+      <div class="hero-side">
+        <div class="hero-pill">
+          Portfolio technique en construction,<br>centré sur l'administration systèmes et le support IT.
+        </div>
+      </div>
+    </section>
 
-        <div class="skills-grid">
-          <div>
-            <div class="skills-group-title">Systèmes &amp; script</div>
+    <!-- À PROPOS -->
+    <section id="about">
+      <h3>À propos</h3>
+      <p class="section-desc">Quelques mots sur mon parcours et ce que je cherche à faire en IT.</p>
+      <p>Je m'appelle Sandrine et je m'intéresse particulièrement à l'infrastructure IT, à l'administration de systèmes et au support utilisateur / helpdesk. Je développe mes compétences de manière autodidacte, en expérimentant autour des systèmes, du réseau et de la cybersécurité.</p>
+      <p>Ce site rassemble quelques projets personnels (lab virtuel, Pi-hole, Nextcloud, automatisation JML dans Active Directory, etc.) qui illustrent ma curiosité pour la technique et ma façon de documenter les problèmes rencontrés ainsi que les solutions mises en place.</p>
+      <p>Je documente également certains projets dans des dépôts publics sur GitHub, afin de garder une trace de mes tests et de mes progrès, et de pouvoir les partager avec d'autres personnes intéressées par l'infrastructure IT.</p>
+    </section>
 
-            <div class="skill-item">
-              <div class="skill-label">Linux</div>
-              <div class="skill-bar">
-                <div class="skill-bar-fill" style="width: 45%;"></div>
-              </div>
-            </div>
+    <!-- PROJETS -->
+    <section id="projets">
+      <h3>Mes projets</h3>
+      <p class="section-desc">Quelques projets et laboratoires autour de l'infrastructure IT, du réseau, de la virtualisation et de la cybersécurité.</p>
+      <ul class="projects-list">
+        <li>
+          <h4>Site personnel &amp; portfolio</h4>
+          <p class="project-meta">Projet web · GitHub Pages</p>
+          <p>Création de ce site statique pour centraliser mon parcours, mes certificats et mes outils, tout en pratiquant le HTML, le CSS et Git.</p>
+        </li>
+        <li>
+          <h4>Laboratoire virtuel IT</h4>
+          <p class="project-meta">Virtualisation · Proxmox / VMware / VirtualBox</p>
+          <p>Mise en place d'un lab avec plusieurs machines virtuelles pour pratiquer l'administration système, le réseau et des scénarios de support.</p>
+        </li>
+        <li>
+          <h4>Déploiement de Zulip</h4>
+          <p class="project-meta">Messagerie d'équipe · VM &amp; Docker</p>
+          <p>Installation de Zulip sur une machine virtuelle puis en conteneur Docker, création des utilisateurs et tests de canaux de discussion.</p>
+        </li>
+        <li>
+          <h4>Pi-hole sur Raspberry Pi</h4>
+          <p class="project-meta">DNS &amp; filtrage · Réseau domestique</p>
+          <p>Installation de Pi-hole pour filtrer les requêtes DNS du réseau, avec gestion des listes de blocage et vérification du trafic.</p>
+        </li>
+        <li>
+          <h4>Home Assistant</h4>
+          <p class="project-meta">Domotique · Automatisation</p>
+          <p>Déploiement de Home Assistant pour centraliser et automatiser certains équipements à la maison, avec configuration de plusieurs intégrations.</p>
+        </li>
+        <li>
+          <h4>Nextcloud en conteneur Docker</h4>
+          <p class="project-meta">Stockage · Auto‑hébergement</p>
+          <p>Mise en place de Nextcloud en conteneur Docker pour disposer d'un espace de partage de fichiers auto‑hébergé.</p>
+        </li>
+        <li>
+          <h4>Infrastructure Homelab – Proxmox Live</h4>
+          <p class="project-meta">Virtualisation · Proxmox / LXC / Docker · Temps réel</p>
+          <p>Mise en place d'un homelab complet sur Proxmox VE avec 11 conteneurs LXC et une VM : Pi-hole, Nextcloud, Grafana, Jellyfin, Hermès Agent (IA locale), Windows Server 2025 et plus. Page de monitoring en temps réel exposée via Cloudflare Tunnel.</p>
+          <p style="margin-top: 0.5rem;">
+            <a href="https://infra.sandrinede.com" target="_blank" rel="noopener"
+               style="display:inline-block;padding:0.35rem 0.9rem;border-radius:999px;background:rgba(75,90,213,0.1);color:#1d4ed8;font-size:0.82rem;font-weight:600;text-decoration:none;border:1px solid rgba(75,90,213,0.25);">
+              🔴 Voir l'infra en direct →
+            </a>
+          </p>
+        </li>
+        <li>
+          <h4>Projet TFE – Automatisation JML dans l'AD</h4>
+          <p class="project-meta">PowerShell · Active Directory · Entra ID</p>
+          <p>Développement d'un système complet d'automatisation JML (Joiner, Mover, Leaver) dans Active Directory et Entra ID : scripts PowerShell, portail web RH, interface graphique WPF et intégration SIEM Wazuh.</p>
+        </li>
+      </ul>
+    </section>
 
-            <div class="skill-item">
-              <div class="skill-label">Windows</div>
-              <div class="skill-bar">
-                <div class="skill-bar-fill" style="width: 45%;"></div>
-              </div>
-            </div>
-
-            <div class="skill-item">
-              <div class="skill-label">PowerShell</div>
-              <div class="skill-bar">
-                <div class="skill-bar-fill" style="width: 35%;"></div>
-              </div>
-            </div>
+    <!-- COMPÉTENCES -->
+    <section id="competences">
+      <h3>Compétences</h3>
+      <p class="section-desc">Un aperçu des domaines techniques que j'explore actuellement.</p>
+      <div class="skills-grid">
+        <div>
+          <div class="skills-group-title">Systèmes &amp; script</div>
+          <div class="skill-item">
+            <div class="skill-label">Linux</div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:45%;"></div></div>
           </div>
-
-          <div>
-            <div class="skills-group-title">Virtualisation</div>
-
-            <div class="skill-item">
-              <div class="skill-label">Proxmox</div>
-              <div class="skill-bar">
-                <div class="skill-bar-fill" style="width: 30%;"></div>
-              </div>
-            </div>
-
-            <div class="skill-item">
-              <div class="skill-label">VMware</div>
-              <div class="skill-bar">
-                <div class="skill-bar-fill" style="width: 35%;"></div>
-              </div>
-            </div>
-
-            <div class="skill-item">
-              <div class="skill-label">VirtualBox</div>
-              <div class="skill-bar">
-                <div class="skill-bar-fill" style="width: 40%;"></div>
-              </div>
-            </div>
+          <div class="skill-item">
+            <div class="skill-label">Windows</div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:45%;"></div></div>
           </div>
-
-          <div>
-            <div class="skills-group-title">Outils &amp; collaboration</div>
-
-            <div class="skill-item">
-              <div class="skill-label">Git &amp; GitHub</div>
-              <div class="skill-bar">
-                <div class="skill-bar-fill" style="width: 40%;"></div>
-              </div>
-            </div>
-
-            <div class="skill-item">
-              <div class="skill-label">SharePoint</div>
-              <div class="skill-bar">
-                <div class="skill-bar-fill" style="width: 40%;"></div>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <div class="skills-group-title">Réseau &amp; infrastructure</div>
-
-            <div class="skill-item">
-              <div class="skill-label">DNS / Pi-hole</div>
-              <div class="skill-bar">
-                <div class="skill-bar-fill" style="width: 40%;"></div>
-              </div>
-            </div>
-
-            <div class="skill-item">
-              <div class="skill-label">Docker &amp; Portainer</div>
-              <div class="skill-bar">
-                <div class="skill-bar-fill" style="width: 35%;"></div>
-              </div>
-            </div>
-
-            <div class="skill-item">
-              <div class="skill-label">Home Assistant / domotique</div>
-              <div class="skill-bar">
-                <div class="skill-bar-fill" style="width: 30%;"></div>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <div class="skills-group-title">Support &amp; outils métiers</div>
-
-            <div class="skill-item">
-              <div class="skill-label">Jira (gestion de tickets)</div>
-              <div class="skill-bar">
-                <div class="skill-bar-fill" style="width: 45%;"></div>
-              </div>
-            </div>
-
-            <div class="skill-item">
-              <div class="skill-label">Outils ERP / CRM (SAP, Salesforce…)</div>
-              <div class="skill-bar">
-                <div class="skill-bar-fill" style="width: 35%;"></div>
-              </div>
-            </div>
+          <div class="skill-item">
+            <div class="skill-label">PowerShell</div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:35%;"></div></div>
           </div>
         </div>
-      </section>
-
-      <section id="outils">
-        <h3>Outils &amp; environnement</h3>
-        <p class="section-desc">
-          Les outils que j’utilise au quotidien pour apprendre, pratiquer et documenter.
-        </p>
-        <div class="badges">
-          <span class="badge">Visual Studio Code</span>
-          <span class="badge">Git &amp; GitHub</span>
-          <span class="badge">VirtualBox</span>
-          <span class="badge">PowerShell</span>
-          <span class="badge">Cisco Packet Tracer</span>
-          <span class="badge">Amazon Web Services (AWS)</span>
-          <span class="badge">Zulip (VM &amp; Docker)</span>
-          <span class="badge">Home Assistant</span>
-          <span class="badge">Pi-hole (Raspberry Pi)</span>
-          <span class="badge">Nextcloud (Docker)</span>
-          <span class="badge">Excalidraw (tableau blanc)</span>
-          <span class="badge">Portainer</span>
-          <span class="badge accent">Apprentissage autonome</span>
+        <div>
+          <div class="skills-group-title">Virtualisation</div>
+          <div class="skill-item">
+            <div class="skill-label">Proxmox</div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:30%;"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-label">VMware</div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:35%;"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-label">VirtualBox</div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:40%;"></div></div>
+          </div>
         </div>
-      </section>
-
-      <section id="outils-metier">
-        <h3>Outils métiers utilisés</h3>
-        <p class="section-desc">
-          Quelques outils applicatifs et portails que j’ai utilisés dans un contexte professionnel
-          (stages et emploi), en complément de mes outils IT.
-        </p>
-
-        <div class="badges">
-          <span class="badge">SAP</span>
-          <span class="badge">Salesforce</span>
-          <span class="badge">Microsoft Dynamics 365 Business Central</span>
-          <span class="badge">DevCentral</span>
-          <span class="badge">Drake</span>
-          <span class="badge">Guacamole</span>
-          <span class="badge">Jira</span>
+        <div>
+          <div class="skills-group-title">Outils &amp; collaboration</div>
+          <div class="skill-item">
+            <div class="skill-label">Git &amp; GitHub</div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:40%;"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-label">SharePoint</div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:40%;"></div></div>
+          </div>
         </div>
-
-        <p class="section-desc">
-          J’utilise également la suite bureautique au quotidien :
-        </p>
-
-        <div class="badges">
-          <span class="badge">Word</span>
-          <span class="badge">Excel</span>
-          <span class="badge">PowerPoint</span>
+        <div>
+          <div class="skills-group-title">Réseau &amp; infrastructure</div>
+          <div class="skill-item">
+            <div class="skill-label">DNS / Pi-hole</div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:40%;"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-label">Docker &amp; Portainer</div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:35%;"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-label">Home Assistant / domotique</div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:30%;"></div></div>
+          </div>
         </div>
-      </section>
-
-<section id="certificats">
-  <h3>Certificats</h3>
-  <p class="section-desc">
-    Quelques certificats obtenus.
-  </p>
-
- <div class="cert-badges">
-    <a class="cert-badge-item"
-       href="https://www.credly.com/badges/9c57849c-e538-47db-9406-821746f2b6cf/public_url"
-       target="_blank" rel="noopener">
-      <img src="images/computer-hardware-basics.png"
-           alt="Notions de base en matériel informatique">
-      <span>Notions de base en matériel informatique</span>
-    </a>
-
-    <a class="cert-badge-item"
-       href="https://www.credly.com/badges/ffb44076-f681-478f-bca1-09cb9717daa3/public_url"
-       target="_blank" rel="noopener">
-      <img src="images/introduction-to-cybersecurity.png"
-           alt="Introduction to Cybersecurity">
-      <span>Introduction to Cybersecurity</span>
-    </a>
-
-    <a class="cert-badge-item"
-       href="https://www.credly.com/badges/8148af19-2ac1-412f-a8c7-4fe010a3d58f/public_url"
-       target="_blank" rel="noopener">
-      <img src="images/linux-unhatched.png"
-           alt="Linux Unhatched">
-      <span>Linux Unhatched</span>
-    </a>
-
-    <a class="cert-badge-item"
-       href="https://www.credly.com/badges/657883ea-b29f-4b3c-b2c1-ed3ed09f7c7a/public_url"
-       target="_blank" rel="noopener">
-      <img src="images/introduction-to-modern-ai.png"
-           alt="Introduction to Modern AI">
-      <span>Introduction to Modern AI</span>
-    </a>
-
-    <a class="cert-badge-item"
-       href="https://www.credly.com/badges/63cd4071-2ab3-4fc9-b00a-6fed8bc27028/public_url"
-       target="_blank" rel="noopener">
-     <img src="images/technicienreseau.png"
-           alt="Parcours professionnel de technicien réseau">
-      <span>Parcours professionnel de technicien réseau</span>
-    </a>
-
-    <a class="cert-badge-item"
-       href="https://www.credly.com/badges/b97ed247-1245-4ee6-887f-964a900d298a/public_url"
-       target="_blank" rel="noopener">
-      <img src="images/notions.png"
-           alt="Notions de base des systèmes d'exploitation">
-      <span>Notions de base des systèmes d'exploitation</span>
-    </a>
-
-    <a class="cert-badge-item"
-       href="https://www.credly.com/badges/981e005f-df10-4b85-b905-4b0807519023/public_url"
-       target="_blank" rel="noopener">
-      <img src="https://images.credly.com/images/7bf55491-f0df-488f-84bf-4d51ada45316/linkedin_thumb_blob"
-           alt="Cisco Networking Academy Learn-A-Thon 2026">
-      <span>Cisco Learn-A-Thon 2026</span>
-    </a>
-</div>
-</section>
-
-   <section>
-  <h3>Et la suite&nbsp;?</h3>
-  <p class="section-desc">
-    Notes techniques sur mes projets et déploiements.
-  </p>
-
-  <div style="margin-top:1.2rem; display:flex; flex-direction:column; gap:0.6rem;">
-
-  <div style="margin-top:1.2rem; display:flex; flex-direction:column; gap:0.6rem;">
-
-    <!-- Guacamole -->
-    <div style="border-radius:10px; border:1px solid rgba(148,163,184,0.3); background:#fff; overflow:hidden;">
-      <button onclick="toggleAccordion(this)"
-              style="width:100%; text-align:left; padding:0.9rem 1rem; background:none; border:none;
-                     font-family:inherit; font-size:0.95rem; font-weight:600; cursor:pointer;
-                     display:flex; justify-content:space-between; align-items:center; color:#111827;">
-        🖥️ Déploiement d'Apache Guacamole — RDP via navigateur
-        <span style="font-size:1.1rem; transition:transform 0.2s;">▾</span>
-      </button>
-      <div style="max-height:0; overflow:hidden; transition:max-height 0.3s ease;">
-        <div style="padding:0 1rem 1rem; font-size:0.9rem; color:#374151;">
-          <p><strong>Contexte :</strong> J'avais besoin d'accéder à mes machines Windows Server 2025
-          (JMLDC01, JMLDC02) via RDP depuis n'importe où, sans exposer le port 3389 directement
-          sur Internet. Apache Guacamole permet d'accéder au bureau à distance via un simple navigateur web.</p>
-          <p><strong>Infrastructure :</strong></p>
-          <ul>
-            <li>Déploiement via <strong>Docker Compose</strong> sur un conteneur LXC Proxmox</li>
-            <li>Stack composée de deux conteneurs : <code>guacamole</code> et <code>guacd</code></li>
-            <li>Backend de stockage : fichier de configuration XML (mode sans base de données)</li>
-            <li>Exposition publique via <strong>Cloudflare Tunnel</strong> sous <code>rdp.sandrinede.com/guacamole</code></li>
-          </ul>
-          <p><strong>Ce que j'ai configuré :</strong></p>
-          <ul>
-            <li>Connexion RDP vers JMLDC01 et JMLDC02 avec authentification domaine</li>
-            <li>Lancement automatique de l'interface WPF GUI JML au démarrage de la session RDP</li>
-            <li>Configuration du tunnel Cloudflare pour router le trafic HTTPS vers Guacamole</li>
-          </ul>
-          <p><strong>Problèmes rencontrés :</strong></p>
-          <ul>
-            <li>Le chemin <code>/guacamole</code> dans l'URL nécessitait une configuration spécifique côté Cloudflare Tunnel</li>
-            <li>Intérêt d'évoluer vers un backend <strong>MySQL</strong> pour gérer les utilisateurs plus facilement (prévu)</li>
-          </ul>
-          <p><strong>Résultat :</strong> Accès RDP sécurisé depuis n'importe quel navigateur, sans VPN, sans exposition de port RDP.</p>
-          <p style="margin-top:0.8rem;"><strong>Outils utilisés :</strong>&nbsp;
-            <span class="badge">Apache Guacamole</span>
-            <span class="badge">Docker Compose</span>
-            <span class="badge">Proxmox LXC</span>
-            <span class="badge">Cloudflare Tunnel</span>
-            <span class="badge">Windows Server 2025</span>
-          </p>
+        <div>
+          <div class="skills-group-title">Support &amp; outils métiers</div>
+          <div class="skill-item">
+            <div class="skill-label">Jira (gestion de tickets)</div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:45%;"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-label">Outils ERP / CRM (SAP, Salesforce…)</div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:35%;"></div></div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- Wazuh -->
-    <div style="border-radius:10px; border:1px solid rgba(148,163,184,0.3); background:#fff; overflow:hidden;">
-      <button onclick="toggleAccordion(this)"
-              style="width:100%; text-align:left; padding:0.9rem 1rem; background:none; border:none;
-                     font-family:inherit; font-size:0.95rem; font-weight:600; cursor:pointer;
-                     display:flex; justify-content:space-between; align-items:center; color:#111827;">
-        🛡️ Déploiement de Wazuh SIEM
-        <span style="font-size:1.1rem; transition:transform 0.2s;">▾</span>
-      </button>
-      <div style="max-height:0; overflow:hidden; transition:max-height 0.3s ease;">
-        <div style="padding:0 1rem 1rem; font-size:0.9rem; color:#374151;">
-          <p><strong>Contexte :</strong> Dans le cadre de mon TFE, j'ai déployé Wazuh pour monitorer
-          l'infrastructure et détecter les événements de sécurité sur mes contrôleurs de domaine.</p>
-          <p><strong>Infrastructure :</strong></p>
-          <ul>
-            <li>Installation de Wazuh sur une VM Ubuntu dédiée dans Proxmox</li>
-            <li>Agents Wazuh installés sur JMLDC01 et JMLDC02 (Windows Server 2025)</li>
-            <li>Dashboard exposé via <strong>Cloudflare Tunnel</strong> sous <code>wazuh.sandrinede.com</code></li>
-            <li>Index configuré : <code>wazuh-states-vulnerabilities-*</code></li>
-          </ul>
-          <p><strong>Ce que j'ai configuré :</strong></p>
-          <ul>
-            <li>Création d'un service systemd <code>wazuh-start.service</code> pour le bon ordre de démarrage</li>
-            <li>Configuration des dashboards de monitoring dans l'interface web</li>
-            <li>Connexion des agents Windows au manager Wazuh</li>
-          </ul>
-          <p><strong>Problèmes rencontrés :</strong></p>
-          <ul>
-            <li>L'index <code>wazuh-alerts-*</code> restait vide à cause d'une incompatibilité de version avec Filebeat</li>
-            <li>Ordre de démarrage des services incorrect au boot — résolu avec un service systemd personnalisé</li>
-          </ul>
-          <p><strong>Résultat :</strong> Dashboard SIEM fonctionnel avec visibilité sur les vulnérabilités et les événements système.</p>
-          <p style="margin-top:0.8rem;"><strong>Outils utilisés :</strong>&nbsp;
-            <span class="badge">Wazuh</span>
-            <span class="badge">Ubuntu</span>
-            <span class="badge">Proxmox</span>
-            <span class="badge">Cloudflare Tunnel</span>
-            <span class="badge">Windows Server 2025</span>
-          </p>
-        </div>
+    <!-- OUTILS -->
+    <section id="outils">
+      <h3>Outils &amp; environnement</h3>
+      <p class="section-desc">Les outils que j'utilise au quotidien pour apprendre, pratiquer et documenter.</p>
+      <div class="badges">
+        <span class="badge">Visual Studio Code</span>
+        <span class="badge">Git &amp; GitHub</span>
+        <span class="badge">VirtualBox</span>
+        <span class="badge">PowerShell</span>
+        <span class="badge">Cisco Packet Tracer</span>
+        <span class="badge">Amazon Web Services (AWS)</span>
+        <span class="badge">Zulip (VM &amp; Docker)</span>
+        <span class="badge">Home Assistant</span>
+        <span class="badge">Pi-hole (Raspberry Pi)</span>
+        <span class="badge">Nextcloud (Docker)</span>
+        <span class="badge">Excalidraw (tableau blanc)</span>
+        <span class="badge">Portainer</span>
+        <span class="badge accent">Apprentissage autonome</span>
       </div>
-    </div>
+    </section>
 
-    <!-- Cloudflare Tunnel -->
-    <div style="border-radius:10px; border:1px solid rgba(148,163,184,0.3); background:#fff; overflow:hidden;">
-      <button onclick="toggleAccordion(this)"
-              style="width:100%; text-align:left; padding:0.9rem 1rem; background:none; border:none;
-                     font-family:inherit; font-size:0.95rem; font-weight:600; cursor:pointer;
-                     display:flex; justify-content:space-between; align-items:center; color:#111827;">
-        ☁️ Exposition de services avec Cloudflare Tunnel
-        <span style="font-size:1.1rem; transition:transform 0.2s;">▾</span>
-      </button>
-      <div style="max-height:0; overflow:hidden; transition:max-height 0.3s ease;">
-        <div style="padding:0 1rem 1rem; font-size:0.9rem; color:#374151;">
-          <p><strong>Contexte :</strong> Pour exposer mes services homelab sur Internet sans ouvrir
-          de ports sur ma box, j'utilise Cloudflare Tunnel — une solution sécurisée qui crée un
-          tunnel chiffré entre mes services et Cloudflare.</p>
-          <p><strong>Services exposés :</strong></p>
-          <ul>
-            <li><code>portail-rh.sandrinede.com</code> — Portail web JML</li>
-            <li><code>wazuh.sandrinede.com</code> — Dashboard SIEM</li>
-            <li><code>rdp.sandrinede.com</code> — Apache Guacamole</li>
-            <li><code>infra.sandrinede.com</code> — Dashboard Proxmox temps réel</li>
-          </ul>
-          <p><strong>Ce que j'ai configuré :</strong></p>
-          <ul>
-            <li>Installation du daemon <code>cloudflared</code> sur les conteneurs LXC concernés</li>
-            <li>Création des tunnels et règles d'ingress dans le dashboard Cloudflare</li>
-            <li>Certificats HTTPS automatiques via Cloudflare (pas besoin de Let's Encrypt)</li>
-          </ul>
-          <p><strong>Avantages :</strong></p>
-          <ul>
-            <li>Aucun port ouvert sur la box — sécurité maximale</li>
-            <li>HTTPS automatique sur tous les sous-domaines</li>
-            <li>Protection DDoS incluse</li>
-          </ul>
-          <p style="margin-top:0.8rem;"><strong>Outils utilisés :</strong>&nbsp;
-            <span class="badge">Cloudflare Tunnel</span>
-            <span class="badge">cloudflared</span>
-            <span class="badge">Proxmox LXC</span>
-            <span class="badge">DNS Cloudflare</span>
-          </p>
-        </div>
+    <!-- OUTILS MÉTIERS -->
+    <section id="outils-metier">
+      <h3>Outils métiers utilisés</h3>
+      <p class="section-desc">Quelques outils applicatifs et portails que j'ai utilisés dans un contexte professionnel (stages et emploi), en complément de mes outils IT.</p>
+      <div class="badges">
+        <span class="badge">SAP</span>
+        <span class="badge">Salesforce</span>
+        <span class="badge">Microsoft Dynamics 365 Business Central</span>
+        <span class="badge">DevCentral</span>
+        <span class="badge">Drake</span>
+        <span class="badge">Guacamole</span>
+        <span class="badge">Jira</span>
       </div>
-    </div>
-
-    <!-- Homelab Proxmox -->
-    <div style="border-radius:10px; border:1px solid rgba(148,163,184,0.3); background:#fff; overflow:hidden;">
-      <button onclick="toggleAccordion(this)"
-              style="width:100%; text-align:left; padding:0.9rem 1rem; background:none; border:none;
-                     font-family:inherit; font-size:0.95rem; font-weight:600; cursor:pointer;
-                     display:flex; justify-content:space-between; align-items:center; color:#111827;">
-        🏠 Homelab Proxmox — Architecture et services
-        <span style="font-size:1.1rem; transition:transform 0.2s;">▾</span>
-      </button>
-      <div style="max-height:0; overflow:hidden; transition:max-height 0.3s ease;">
-        <div style="padding:0 1rem 1rem; font-size:0.9rem; color:#374151;">
-          <p><strong>Contexte :</strong> Mon homelab tourne sur un serveur Proxmox VE personnel.
-          Il héberge l'ensemble de mon infrastructure de lab et de mes services auto-hébergés.</p>
-          <p><strong>Services hébergés :</strong></p>
-          <ul>
-            <li>🪟 <strong>Windows Server 2025</strong> — JMLDC01 et JMLDC02 (domaine lab.sandrinede.com)</li>
-            <li>🛡️ <strong>Wazuh</strong> — SIEM et détection d'intrusion</li>
-            <li>📊 <strong>Grafana</strong> — Dashboard de monitoring</li>
-            <li>🎬 <strong>Jellyfin</strong> — Serveur multimédia</li>
-            <li>🤖 <strong>Hermès Agent</strong> — Agent IA (Google Gemini 2.5 Flash)</li>
-            <li>🌐 <strong>Pi-hole</strong> — Filtrage DNS</li>
-            <li>☁️ <strong>Nextcloud</strong> — Stockage auto-hébergé</li>
-            <li>🖥️ <strong>Apache Guacamole</strong> — Accès RDP via navigateur</li>
-            <li>📡 <strong>Uptime Kuma</strong> — Monitoring de disponibilité</li>
-          </ul>
-          <p><strong>Technologies utilisées :</strong></p>
-          <ul>
-            <li>Conteneurs <strong>LXC</strong> pour les services Linux légers</li>
-            <li><strong>VMs</strong> pour Windows Server 2025</li>
-            <li><strong>Docker</strong> dans certains LXC pour Nextcloud, Guacamole</li>
-            <li>Exposition via <strong>Cloudflare Tunnel</strong></li>
-          </ul>
-          <p style="margin-top:0.8rem;"><strong>Outils utilisés :</strong>&nbsp;
-            <span class="badge">Proxmox VE</span>
-            <span class="badge">LXC</span>
-            <span class="badge">Docker</span>
-            <span class="badge">Windows Server 2025</span>
-            <span class="badge">Ubuntu</span>
-          </p>
-        </div>
+      <p class="section-desc">J'utilise également la suite bureautique au quotidien :</p>
+      <div class="badges">
+        <span class="badge">Word</span>
+        <span class="badge">Excel</span>
+        <span class="badge">PowerPoint</span>
       </div>
-    </div>
+    </section>
 
-    <!-- JML Portal -->
-    <div style="border-radius:10px; border:1px solid rgba(148,163,184,0.3); background:#fff; overflow:hidden;">
-      <button onclick="toggleAccordion(this)"
-              style="width:100%; text-align:left; padding:0.9rem 1rem; background:none; border:none;
-                     font-family:inherit; font-size:0.95rem; font-weight:600; cursor:pointer;
-                     display:flex; justify-content:space-between; align-items:center; color:#111827;">
-        🔒 Automatisation JML — Active Directory & Entra ID
-        <span style="font-size:1.1rem; transition:transform 0.2s;">▾</span>
-      </button>
-      <div style="max-height:0; overflow:hidden; transition:max-height 0.3s ease;">
-        <div style="padding:0 1rem 1rem; font-size:0.9rem; color:#374151;">
-          <p><strong>Contexte :</strong> Mon TFE porte sur l'automatisation du cycle de vie des
-          comptes utilisateurs (Joiners-Movers-Leavers) dans un environnement hybride
-          Active Directory et Entra ID (Azure AD).</p>
-          <p><strong>Ce que j'ai développé :</strong></p>
-          <ul>
-            <li>Scripts PowerShell pour créer, modifier et désactiver des comptes AD</li>
-            <li>Synchronisation avec <strong>Entra ID</strong> via Microsoft Entra Connect</li>
-            <li>Portail web RH exposé sous <code>portail-rh.sandrinede.com</code></li>
-            <li>Interface graphique <strong>WPF</strong> pour les actions sans ligne de commande</li>
-            <li>Intégration <strong>Microsoft Graph API</strong> pour les actions cloud</li>
-            <li>Monitoring des événements via <strong>Wazuh SIEM</strong></li>
-          </ul>
-          <p><strong>Infrastructure AD :</strong></p>
-          <ul>
-            <li>Domaine <code>lab.sandrinede.com</code> avec deux contrôleurs de domaine</li>
-            <li>JMLDC01 — Contrôleur principal</li>
-            <li>JMLDC02 — Contrôleur secondaire</li>
-            <li>Synchronisation hybride vers Entra ID (tenant sandrinede.com)</li>
-          </ul>
-          <p><strong>Résultat :</strong> Système JML complet opérationnel — de la création du
-          compte AD jusqu'à la synchronisation cloud, avec portail web et interface graphique.</p>
-          <p style="margin-top:0.8rem;"><strong>Outils utilisés :</strong>&nbsp;
-            <span class="badge">PowerShell</span>
-            <span class="badge">Active Directory</span>
-            <span class="badge">Entra ID</span>
-            <span class="badge">Microsoft Graph API</span>
-            <span class="badge">WPF</span>
-            <span class="badge">Windows Server 2025</span>
-          </p>
-        </div>
+    <!-- CERTIFICATS -->
+    <section id="certificats">
+      <h3>Certificats</h3>
+      <p class="section-desc">Quelques certificats obtenus.</p>
+      <div class="cert-badges">
+        <a class="cert-badge-item" href="https://www.credly.com/badges/9c57849c-e538-47db-9406-821746f2b6cf/public_url" target="_blank" rel="noopener">
+          <img src="images/computer-hardware-basics.png" alt="Notions de base en matériel informatique">
+          <span>Notions de base en matériel informatique</span>
+        </a>
+        <a class="cert-badge-item" href="https://www.credly.com/badges/ffb44076-f681-478f-bca1-09cb9717daa3/public_url" target="_blank" rel="noopener">
+          <img src="images/introduction-to-cybersecurity.png" alt="Introduction to Cybersecurity">
+          <span>Introduction to Cybersecurity</span>
+        </a>
+        <a class="cert-badge-item" href="https://www.credly.com/badges/8148af19-2ac1-412f-a8c7-4fe010a3d58f/public_url" target="_blank" rel="noopener">
+          <img src="images/linux-unhatched.png" alt="Linux Unhatched">
+          <span>Linux Unhatched</span>
+        </a>
+        <a class="cert-badge-item" href="https://www.credly.com/badges/657883ea-b29f-4b3c-b2c1-ed3ed09f7c7a/public_url" target="_blank" rel="noopener">
+          <img src="images/introduction-to-modern-ai.png" alt="Introduction to Modern AI">
+          <span>Introduction to Modern AI</span>
+        </a>
+        <a class="cert-badge-item" href="https://www.credly.com/badges/63cd4071-2ab3-4fc9-b00a-6fed8bc27028/public_url" target="_blank" rel="noopener">
+          <img src="images/technicienreseau.png" alt="Parcours professionnel de technicien réseau">
+          <span>Parcours professionnel de technicien réseau</span>
+        </a>
+        <a class="cert-badge-item" href="https://www.credly.com/badges/b97ed247-1245-4ee6-887f-964a900d298a/public_url" target="_blank" rel="noopener">
+          <img src="images/notions.png" alt="Notions de base des systèmes d'exploitation">
+          <span>Notions de base des systèmes d'exploitation</span>
+        </a>
+        <a class="cert-badge-item" href="https://www.credly.com/badges/981e005f-df10-4b85-b905-4b0807519023/public_url" target="_blank" rel="noopener">
+          <img src="https://images.credly.com/images/7bf55491-f0df-488f-84bf-4d51ada45316/linkedin_thumb_blob" alt="Cisco Networking Academy Learn-A-Thon 2026">
+          <span>Cisco Learn-A-Thon 2026</span>
+        </a>
       </div>
-    </div>
+    </section>
 
-    <!-- Pi-hole -->
-    <div style="border-radius:10px; border:1px solid rgba(148,163,184,0.3); background:#fff; overflow:hidden;">
-      <button onclick="toggleAccordion(this)"
-              style="width:100%; text-align:left; padding:0.9rem 1rem; background:none; border:none;
-                     font-family:inherit; font-size:0.95rem; font-weight:600; cursor:pointer;
-                     display:flex; justify-content:space-between; align-items:center; color:#111827;">
-        🌐 Pi-hole — Filtrage DNS sur le réseau
-        <span style="font-size:1.1rem; transition:transform 0.2s;">▾</span>
-      </button>
-      <div style="max-height:0; overflow:hidden; transition:max-height 0.3s ease;">
-        <div style="padding:0 1rem 1rem; font-size:0.9rem; color:#374151;">
-          <p><strong>Contexte :</strong> Pi-hole est un serveur DNS qui bloque les publicités
-          et les domaines malveillants pour tous les appareils du réseau, sans installer
-          d'extension dans chaque navigateur.</p>
-          <p><strong>Ce que j'ai mis en place :</strong></p>
-          <ul>
-            <li>Installation de Pi-hole sur un conteneur LXC Proxmox</li>
-            <li>Configuration comme serveur DNS primaire du réseau</li>
-            <li>Gestion des listes de blocage (publicités, trackers, malwares)</li>
-            <li>Vérification du trafic DNS via le dashboard Pi-hole</li>
-            <li>DNS local pour résoudre les noms de mes services internes</li>
-          </ul>
-          <p><strong>Résultat :</strong> Blocage des publicités et trackers sur l'ensemble
-          du réseau domestique, avec visibilité complète sur les requêtes DNS.</p>
-          <p style="margin-top:0.8rem;"><strong>Outils utilisés :</strong>&nbsp;
-            <span class="badge">Pi-hole</span>
-            <span class="badge">Proxmox LXC</span>
-            <span class="badge">DNS</span>
-            <span class="badge">Raspberry Pi</span>
-          </p>
+    <!-- ET LA SUITE -->
+    <section>
+      <h3>Et la suite&nbsp;?</h3>
+      <p class="section-desc">Notes techniques sur mes projets et déploiements.</p>
+      <div class="accordion-wrap">
+
+        <!-- Guacamole -->
+        <div class="accordion-item">
+          <button class="accordion-btn" onclick="toggleAccordion(this)">
+            🖥️ Déploiement d'Apache Guacamole — RDP via navigateur
+            <span>▾</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-inner">
+              <p><strong>Contexte :</strong> J'avais besoin d'accéder à mes machines Windows Server 2025 via RDP depuis n'importe où, sans exposer le port 3389 sur Internet. Apache Guacamole permet d'accéder au bureau à distance via un simple navigateur web.</p>
+              <p><strong>Infrastructure :</strong></p>
+              <ul>
+                <li>Déploiement via <strong>Docker Compose</strong> sur un conteneur LXC Proxmox</li>
+                <li>Stack composée de deux conteneurs : <code>guacamole</code> et <code>guacd</code></li>
+                <li>Backend de stockage : fichier de configuration XML (mode sans base de données)</li>
+                <li>Exposition publique via <strong>Cloudflare Tunnel</strong> sous <code>rdp.sandrinede.com/guacamole</code></li>
+              </ul>
+              <p><strong>Ce que j'ai configuré :</strong></p>
+              <ul>
+                <li>Connexion RDP vers JMLDC01 et JMLDC02 avec authentification domaine</li>
+                <li>Lancement automatique de l'interface WPF GUI JML au démarrage de la session RDP</li>
+                <li>Configuration du tunnel Cloudflare pour router le trafic HTTPS vers Guacamole</li>
+              </ul>
+              <p><strong>Problèmes rencontrés :</strong></p>
+              <ul>
+                <li>Le chemin <code>/guacamole</code> nécessitait une configuration spécifique côté Cloudflare Tunnel</li>
+                <li>Intérêt d'évoluer vers un backend <strong>MySQL</strong> pour gérer les utilisateurs plus facilement (prévu)</li>
+              </ul>
+              <p><strong>Résultat :</strong> Accès RDP sécurisé depuis n'importe quel navigateur, sans VPN, sans exposition de port RDP.</p>
+              <p style="margin-top:0.8rem;"><strong>Outils utilisés :</strong>&nbsp;
+                <span class="badge">Apache Guacamole</span>
+                <span class="badge">Docker Compose</span>
+                <span class="badge">Proxmox LXC</span>
+                <span class="badge">Cloudflare Tunnel</span>
+                <span class="badge">Windows Server 2025</span>
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
 
-    <!-- Grafana -->
-    <div style="border-radius:10px; border:1px solid rgba(148,163,184,0.3); background:#fff; overflow:hidden;">
-      <button onclick="toggleAccordion(this)"
-              style="width:100%; text-align:left; padding:0.9rem 1rem; background:none; border:none;
-                     font-family:inherit; font-size:0.95rem; font-weight:600; cursor:pointer;
-                     display:flex; justify-content:space-between; align-items:center; color:#111827;">
-        📊 Grafana — Dashboard de monitoring Proxmox
-        <span style="font-size:1.1rem; transition:transform 0.2s;">▾</span>
-      </button>
-      <div style="max-height:0; overflow:hidden; transition:max-height 0.3s ease;">
-        <div style="padding:0 1rem 1rem; font-size:0.9rem; color:#374151;">
-          <p><strong>Contexte :</strong> J'ai déployé Grafana pour avoir une vue en temps réel
-          de l'état de mon infrastructure Proxmox — CPU, RAM, stockage et état des VMs/LXC.</p>
-          <p><strong>Ce que j'ai mis en place :</strong></p>
-          <ul>
-            <li>Grafana déployé dans un conteneur LXC Proxmox</li>
-            <li>Connexion à l'API Proxmox via un token read-only dédié</li>
-            <li>Dashboard temps réel exposé sous <code>infra.sandrinede.com</code></li>
-            <li>Visualisation de l'état de tous les conteneurs et VMs</li>
-          </ul>
-          <p><strong>Résultat :</strong> Dashboard de monitoring en temps réel accessible
-          publiquement — visible directement depuis le portfolio.</p>
-          <p style="margin-top:0.8rem;"><strong>Outils utilisés :</strong>&nbsp;
-            <span class="badge">Grafana</span>
-            <span class="badge">Proxmox API</span>
-            <span class="badge">Proxmox LXC</span>
-            <span class="badge">Cloudflare Tunnel</span>
-          </p>
+        <!-- Wazuh -->
+        <div class="accordion-item">
+          <button class="accordion-btn" onclick="toggleAccordion(this)">
+            🛡️ Déploiement de Wazuh SIEM
+            <span>▾</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-inner">
+              <p><strong>Contexte :</strong> Dans le cadre de mon TFE, j'ai déployé Wazuh pour monitorer l'infrastructure et détecter les événements de sécurité sur mes contrôleurs de domaine.</p>
+              <p><strong>Infrastructure :</strong></p>
+              <ul>
+                <li>Installation de Wazuh sur une VM Ubuntu dédiée dans Proxmox</li>
+                <li>Agents Wazuh installés sur JMLDC01 et JMLDC02 (Windows Server 2025)</li>
+                <li>Dashboard exposé via <strong>Cloudflare Tunnel</strong> sous <code>wazuh.sandrinede.com</code></li>
+                <li>Index configuré : <code>wazuh-states-vulnerabilities-*</code></li>
+              </ul>
+              <p><strong>Ce que j'ai configuré :</strong></p>
+              <ul>
+                <li>Création d'un service systemd <code>wazuh-start.service</code> pour le bon ordre de démarrage</li>
+                <li>Configuration des dashboards de monitoring dans l'interface web</li>
+                <li>Connexion des agents Windows au manager Wazuh</li>
+              </ul>
+              <p><strong>Problèmes rencontrés :</strong></p>
+              <ul>
+                <li>L'index <code>wazuh-alerts-*</code> restait vide à cause d'une incompatibilité de version avec Filebeat</li>
+                <li>Ordre de démarrage des services incorrect au boot — résolu avec un service systemd personnalisé</li>
+              </ul>
+              <p><strong>Résultat :</strong> Dashboard SIEM fonctionnel avec visibilité sur les vulnérabilités et les événements système.</p>
+              <p style="margin-top:0.8rem;"><strong>Outils utilisés :</strong>&nbsp;
+                <span class="badge">Wazuh</span>
+                <span class="badge">Ubuntu</span>
+                <span class="badge">Proxmox</span>
+                <span class="badge">Cloudflare Tunnel</span>
+                <span class="badge">Windows Server 2025</span>
+              </p>
+            </div>
+          </div>
         </div>
+
+        <!-- Cloudflare Tunnel -->
+        <div class="accordion-item">
+          <button class="accordion-btn" onclick="toggleAccordion(this)">
+            ☁️ Exposition de services avec Cloudflare Tunnel
+            <span>▾</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-inner">
+              <p><strong>Contexte :</strong> Pour exposer mes services homelab sur Internet sans ouvrir de ports sur ma box, j'utilise Cloudflare Tunnel — une solution sécurisée qui crée un tunnel chiffré entre mes services et Cloudflare.</p>
+              <p><strong>Services exposés :</strong></p>
+              <ul>
+                <li><code>portail-rh.sandrinede.com</code> — Portail web JML</li>
+                <li><code>wazuh.sandrinede.com</code> — Dashboard SIEM</li>
+                <li><code>rdp.sandrinede.com</code> — Apache Guacamole</li>
+                <li><code>infra.sandrinede.com</code> — Dashboard Proxmox temps réel</li>
+              </ul>
+              <p><strong>Ce que j'ai configuré :</strong></p>
+              <ul>
+                <li>Installation du daemon <code>cloudflared</code> sur les conteneurs LXC concernés</li>
+                <li>Création des tunnels et règles d'ingress dans le dashboard Cloudflare</li>
+                <li>Certificats HTTPS automatiques via Cloudflare</li>
+              </ul>
+              <p><strong>Avantages :</strong></p>
+              <ul>
+                <li>Aucun port ouvert sur la box — sécurité maximale</li>
+                <li>HTTPS automatique sur tous les sous-domaines</li>
+                <li>Protection DDoS incluse</li>
+              </ul>
+              <p style="margin-top:0.8rem;"><strong>Outils utilisés :</strong>&nbsp;
+                <span class="badge">Cloudflare Tunnel</span>
+                <span class="badge">cloudflared</span>
+                <span class="badge">Proxmox LXC</span>
+                <span class="badge">DNS Cloudflare</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Homelab Proxmox -->
+        <div class="accordion-item">
+          <button class="accordion-btn" onclick="toggleAccordion(this)">
+            🏠 Homelab Proxmox — Architecture et services
+            <span>▾</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-inner">
+              <p><strong>Contexte :</strong> Mon homelab tourne sur un serveur Proxmox VE personnel. Il héberge l'ensemble de mon infrastructure de lab et de mes services auto-hébergés.</p>
+              <p><strong>Services hébergés :</strong></p>
+              <ul>
+                <li>🪟 <strong>Windows Server 2025</strong> — JMLDC01 et JMLDC02 (domaine lab.sandrinede.com)</li>
+                <li>🛡️ <strong>Wazuh</strong> — SIEM et détection d'intrusion</li>
+                <li>📊 <strong>Grafana</strong> — Dashboard de monitoring</li>
+                <li>🎬 <strong>Jellyfin</strong> — Serveur multimédia</li>
+                <li>🤖 <strong>Hermès Agent</strong> — Agent IA (Google Gemini 2.5 Flash)</li>
+                <li>🌐 <strong>Pi-hole</strong> — Filtrage DNS</li>
+                <li>☁️ <strong>Nextcloud</strong> — Stockage auto-hébergé</li>
+                <li>🖥️ <strong>Apache Guacamole</strong> — Accès RDP via navigateur</li>
+                <li>📡 <strong>Uptime Kuma</strong> — Monitoring de disponibilité</li>
+              </ul>
+              <p><strong>Technologies utilisées :</strong></p>
+              <ul>
+                <li>Conteneurs <strong>LXC</strong> pour les services Linux légers</li>
+                <li><strong>VMs</strong> pour Windows Server 2025</li>
+                <li><strong>Docker</strong> dans certains LXC pour Nextcloud, Guacamole</li>
+                <li>Exposition via <strong>Cloudflare Tunnel</strong></li>
+              </ul>
+              <p style="margin-top:0.8rem;"><strong>Outils utilisés :</strong>&nbsp;
+                <span class="badge">Proxmox VE</span>
+                <span class="badge">LXC</span>
+                <span class="badge">Docker</span>
+                <span class="badge">Windows Server 2025</span>
+                <span class="badge">Ubuntu</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- JML -->
+        <div class="accordion-item">
+          <button class="accordion-btn" onclick="toggleAccordion(this)">
+            🔒 Automatisation JML — Active Directory &amp; Entra ID
+            <span>▾</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-inner">
+              <p><strong>Contexte :</strong> Mon TFE porte sur l'automatisation du cycle de vie des comptes utilisateurs (Joiners-Movers-Leavers) dans un environnement hybride Active Directory et Entra ID (Azure AD).</p>
+              <p><strong>Ce que j'ai développé :</strong></p>
+              <ul>
+                <li>Scripts PowerShell pour créer, modifier et désactiver des comptes AD</li>
+                <li>Synchronisation avec <strong>Entra ID</strong> via Microsoft Entra Connect</li>
+                <li>Portail web RH exposé sous <code>portail-rh.sandrinede.com</code></li>
+                <li>Interface graphique <strong>WPF</strong> pour les actions sans ligne de commande</li>
+                <li>Intégration <strong>Microsoft Graph API</strong> pour les actions cloud</li>
+                <li>Monitoring des événements via <strong>Wazuh SIEM</strong></li>
+              </ul>
+              <p><strong>Infrastructure AD :</strong></p>
+              <ul>
+                <li>Domaine <code>lab.sandrinede.com</code> avec deux contrôleurs de domaine</li>
+                <li>JMLDC01 — Contrôleur principal</li>
+                <li>JMLDC02 — Contrôleur secondaire</li>
+                <li>Synchronisation hybride vers Entra ID</li>
+              </ul>
+              <p><strong>Résultat :</strong> Système JML complet opérationnel — de la création du compte AD jusqu'à la synchronisation cloud, avec portail web et interface graphique.</p>
+              <p style="margin-top:0.8rem;"><strong>Outils utilisés :</strong>&nbsp;
+                <span class="badge">PowerShell</span>
+                <span class="badge">Active Directory</span>
+                <span class="badge">Entra ID</span>
+                <span class="badge">Microsoft Graph API</span>
+                <span class="badge">WPF</span>
+                <span class="badge">Windows Server 2025</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pi-hole -->
+        <div class="accordion-item">
+          <button class="accordion-btn" onclick="toggleAccordion(this)">
+            🌐 Pi-hole — Filtrage DNS sur le réseau
+            <span>▾</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-inner">
+              <p><strong>Contexte :</strong> Pi-hole est un serveur DNS qui bloque les publicités et les domaines malveillants pour tous les appareils du réseau, sans installer d'extension dans chaque navigateur.</p>
+              <p><strong>Ce que j'ai mis en place :</strong></p>
+              <ul>
+                <li>Installation de Pi-hole sur un conteneur LXC Proxmox</li>
+                <li>Configuration comme serveur DNS primaire du réseau</li>
+                <li>Gestion des listes de blocage (publicités, trackers, malwares)</li>
+                <li>Vérification du trafic DNS via le dashboard Pi-hole</li>
+                <li>DNS local pour résoudre les noms de mes services internes</li>
+              </ul>
+              <p><strong>Résultat :</strong> Blocage des publicités et trackers sur l'ensemble du réseau domestique, avec visibilité complète sur les requêtes DNS.</p>
+              <p style="margin-top:0.8rem;"><strong>Outils utilisés :</strong>&nbsp;
+                <span class="badge">Pi-hole</span>
+                <span class="badge">Proxmox LXC</span>
+                <span class="badge">DNS</span>
+                <span class="badge">Raspberry Pi</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Grafana -->
+        <div class="accordion-item">
+          <button class="accordion-btn" onclick="toggleAccordion(this)">
+            📊 Grafana — Dashboard de monitoring Proxmox
+            <span>▾</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-inner">
+              <p><strong>Contexte :</strong> J'ai déployé Grafana pour avoir une vue en temps réel de l'état de mon infrastructure Proxmox — CPU, RAM, stockage et état des VMs/LXC.</p>
+              <p><strong>Ce que j'ai mis en place :</strong></p>
+              <ul>
+                <li>Grafana déployé dans un conteneur LXC Proxmox</li>
+                <li>Connexion à l'API Proxmox via un token read-only dédié</li>
+                <li>Dashboard temps réel exposé sous <code>infra.sandrinede.com</code></li>
+                <li>Visualisation de l'état de tous les conteneurs et VMs</li>
+              </ul>
+              <p><strong>Résultat :</strong> Dashboard de monitoring en temps réel accessible publiquement — visible directement depuis le portfolio.</p>
+              <p style="margin-top:0.8rem;"><strong>Outils utilisés :</strong>&nbsp;
+                <span class="badge">Grafana</span>
+                <span class="badge">Proxmox API</span>
+                <span class="badge">Proxmox LXC</span>
+                <span class="badge">Cloudflare Tunnel</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
       </div>
-    </div>
+    </section>
 
-  </div>
-
-
+    <!-- GLOSSAIRE -->
     <section id="glossaire">
-  <h3>Glossaire</h3>
-  <p class="section-desc">
-    Définitions des termes techniques utilisés dans mes projets.
-  </p>
+      <h3>Glossaire</h3>
+      <p class="section-desc">Définitions des termes techniques utilisés dans mes projets.</p>
+      <div class="accordion-wrap">
 
-  <div style="margin-top:1.2rem; display:flex; flex-direction:column; gap:0.6rem;">
-
-    <!-- Virtualisation & Infrastructure -->
-    <div style="border-radius:10px; border:1px solid rgba(148,163,184,0.3); background:#fff; overflow:hidden;">
-      <button onclick="toggleAccordion(this)"
-              style="width:100%; text-align:left; padding:0.9rem 1rem; background:none; border:none;
-                     font-family:inherit; font-size:0.95rem; font-weight:600; cursor:pointer;
-                     display:flex; justify-content:space-between; align-items:center; color:#111827;">
-        🖥️ Virtualisation & Infrastructure
-        <span style="font-size:1.1rem; transition:transform 0.2s;">▾</span>
-      </button>
-      <div style="max-height:0; overflow:hidden; transition:max-height 0.3s ease;">
-        <div style="padding:0 1rem 1rem; font-size:0.9rem; color:#374151;">
-          <dl style="display:grid; grid-template-columns: 160px 1fr; gap:0.5rem 1rem; margin:0;">
-            <dt style="font-weight:600;">Proxmox VE</dt>
-            <dd style="margin:0;">Hyperviseur open-source basé sur Linux permettant de gérer des machines virtuelles (VMs) et des conteneurs LXC depuis une interface web.</dd>
-            <dt style="font-weight:600;">VM</dt>
-            <dd style="margin:0;">Machine Virtuelle — émulation complète d'un ordinateur physique, avec son propre OS, isolée du système hôte.</dd>
-            <dt style="font-weight:600;">LXC</dt>
-            <dd style="margin:0;">Linux Container — conteneur léger qui partage le noyau Linux de l'hôte. Plus léger qu'une VM, idéal pour les services Linux simples.</dd>
-            <dt style="font-weight:600;">Docker</dt>
-            <dd style="margin:0;">Plateforme de conteneurisation qui permet d'empaqueter une application et ses dépendances dans un conteneur portable et isolé.</dd>
-            <dt style="font-weight:600;">Docker Compose</dt>
-            <dd style="margin:0;">Outil permettant de définir et gérer plusieurs conteneurs Docker via un fichier YAML, simplifiant le déploiement de stacks applicatives.</dd>
-            <dt style="font-weight:600;">Hyperviseur</dt>
-            <dd style="margin:0;">Logiciel qui permet de faire tourner plusieurs systèmes d'exploitation sur une même machine physique en les isolant les uns des autres.</dd>
-            <dt style="font-weight:600;">Snapshot</dt>
-            <dd style="margin:0;">Capture de l'état d'une VM ou d'un conteneur à un instant précis, permettant de revenir en arrière en cas de problème.</dd>
-          </dl>
+        <!-- Virtualisation -->
+        <div class="accordion-item">
+          <button class="accordion-btn" onclick="toggleAccordion(this)">
+            🖥️ Virtualisation &amp; Infrastructure
+            <span>▾</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-inner">
+              <dl class="glossary-grid">
+                <dt>Proxmox VE</dt><dd>Hyperviseur open-source basé sur Linux permettant de gérer des machines virtuelles (VMs) et des conteneurs LXC depuis une interface web.</dd>
+                <dt>VM</dt><dd>Machine Virtuelle — émulation complète d'un ordinateur physique, avec son propre OS, isolée du système hôte.</dd>
+                <dt>LXC</dt><dd>Linux Container — conteneur léger qui partage le noyau Linux de l'hôte. Plus léger qu'une VM, idéal pour les services Linux simples.</dd>
+                <dt>Docker</dt><dd>Plateforme de conteneurisation qui permet d'empaqueter une application et ses dépendances dans un conteneur portable et isolé.</dd>
+                <dt>Docker Compose</dt><dd>Outil permettant de définir et gérer plusieurs conteneurs Docker via un fichier YAML, simplifiant le déploiement de stacks applicatives.</dd>
+                <dt>Hyperviseur</dt><dd>Logiciel qui permet de faire tourner plusieurs systèmes d'exploitation sur une même machine physique en les isolant les uns des autres.</dd>
+                <dt>Snapshot</dt><dd>Capture de l'état d'une VM ou d'un conteneur à un instant précis, permettant de revenir en arrière en cas de problème.</dd>
+                <dt>Stack</dt><dd>Ensemble de logiciels/services qui fonctionnent ensemble pour faire tourner une application. Ex: la stack Guacamole = conteneur guacamole + conteneur guacd.</dd>
+                <dt>Daemon</dt><dd>Programme qui tourne en arrière-plan en permanence sur un système Linux, sans interface graphique. Ex: cloudflared maintient le tunnel Cloudflare actif.</dd>
+              </dl>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
 
-    <!-- Réseau -->
-    <div style="border-radius:10px; border:1px solid rgba(148,163,184,0.3); background:#fff; overflow:hidden;">
-      <button onclick="toggleAccordion(this)"
-              style="width:100%; text-align:left; padding:0.9rem 1rem; background:none; border:none;
-                     font-family:inherit; font-size:0.95rem; font-weight:600; cursor:pointer;
-                     display:flex; justify-content:space-between; align-items:center; color:#111827;">
-        🌐 Réseau
-        <span style="font-size:1.1rem; transition:transform 0.2s;">▾</span>
-      </button>
-      <div style="max-height:0; overflow:hidden; transition:max-height 0.3s ease;">
-        <div style="padding:0 1rem 1rem; font-size:0.9rem; color:#374151;">
-          <dl style="display:grid; grid-template-columns: 160px 1fr; gap:0.5rem 1rem; margin:0;">
-            <dt style="font-weight:600;">DNS</dt>
-            <dd style="margin:0;">Domain Name System — système qui traduit les noms de domaine (ex: sandrinede.com) en adresses IP compréhensibles par les machines.</dd>
-            <dt style="font-weight:600;">DHCP</dt>
-            <dd style="margin:0;">Dynamic Host Configuration Protocol — protocole qui attribue automatiquement une adresse IP aux appareils qui se connectent au réseau.</dd>
-            <dt style="font-weight:600;">VPN</dt>
-            <dd style="margin:0;">Virtual Private Network — tunnel chiffré entre deux points sur Internet, permettant de sécuriser les communications ou d'accéder à un réseau privé à distance.</dd>
-            <dt style="font-weight:600;">Tunnel</dt>
-            <dd style="margin:0;">Connexion chiffrée entre deux points qui encapsule le trafic réseau. Utilisé ici via Cloudflare pour exposer des services sans ouvrir de ports.</dd>
-            <dt style="font-weight:600;">VLAN</dt>
-            <dd style="margin:0;">Virtual LAN — segmentation logique d'un réseau physique en plusieurs réseaux virtuels isolés, pour des raisons de sécurité ou d'organisation.</dd>
-            <dt style="font-weight:600;">Pare-feu</dt>
-            <dd style="margin:0;">Système de sécurité qui filtre le trafic réseau entrant et sortant selon des règles définies, pour protéger le réseau des accès non autorisés.</dd>
-            <dt style="font-weight:600;">Proxy</dt>
-            <dd style="margin:0;">Serveur intermédiaire entre un client et un serveur, qui peut filtrer, mettre en cache ou anonymiser les requêtes réseau.</dd>
-            <dt style="font-weight:600;">RDP</dt>
-            <dd style="margin:0;">Remote Desktop Protocol — protocole Microsoft permettant de prendre le contrôle d'un bureau Windows à distance via le réseau.</dd>
-            <dt style="font-weight:600;">SSH</dt>
-            <dd style="margin:0;">Secure Shell — protocole chiffré permettant d'accéder à distance à un terminal Linux/Unix de manière sécurisée.</dd>
-            <dt style="font-weight:600;">Pi-hole</dt>
-            <dd style="margin:0;">Serveur DNS local qui bloque les publicités et domaines malveillants pour tous les appareils du réseau, sans configuration sur chaque appareil.</dd>
-          </dl>
+        <!-- Réseau -->
+        <div class="accordion-item">
+          <button class="accordion-btn" onclick="toggleAccordion(this)">
+            🌐 Réseau
+            <span>▾</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-inner">
+              <dl class="glossary-grid">
+                <dt>DNS</dt><dd>Domain Name System — système qui traduit les noms de domaine (ex: sandrinede.com) en adresses IP compréhensibles par les machines.</dd>
+                <dt>DHCP</dt><dd>Dynamic Host Configuration Protocol — protocole qui attribue automatiquement une adresse IP aux appareils qui se connectent au réseau.</dd>
+                <dt>VPN</dt><dd>Virtual Private Network — tunnel chiffré entre deux points sur Internet, permettant de sécuriser les communications ou d'accéder à un réseau privé à distance.</dd>
+                <dt>Tunnel</dt><dd>Connexion chiffrée entre deux points qui encapsule le trafic réseau. Utilisé ici via Cloudflare pour exposer des services sans ouvrir de ports.</dd>
+                <dt>VLAN</dt><dd>Virtual LAN — segmentation logique d'un réseau physique en plusieurs réseaux virtuels isolés, pour des raisons de sécurité ou d'organisation.</dd>
+                <dt>Pare-feu</dt><dd>Système de sécurité qui filtre le trafic réseau entrant et sortant selon des règles définies, pour protéger le réseau des accès non autorisés.</dd>
+                <dt>Proxy</dt><dd>Serveur intermédiaire entre un client et un serveur, qui peut filtrer, mettre en cache ou anonymiser les requêtes réseau.</dd>
+                <dt>RDP</dt><dd>Remote Desktop Protocol — protocole Microsoft permettant de prendre le contrôle d'un bureau Windows à distance via le réseau.</dd>
+                <dt>SSH</dt><dd>Secure Shell — protocole chiffré permettant d'accéder à distance à un terminal Linux/Unix de manière sécurisée.</dd>
+                <dt>Port</dt><dd>Point d'entrée numérique sur un serveur pour un service spécifique. Ex: port 80 pour HTTP, 443 pour HTTPS, 3389 pour RDP. Cloudflare Tunnel évite d'ouvrir ces ports.</dd>
+                <dt>Sous-domaine</dt><dd>Préfixe ajouté à un nom de domaine principal. Ex: wazuh.sandrinede.com, infra.sandrinede.com sont des sous-domaines de sandrinede.com.</dd>
+                <dt>Pi-hole</dt><dd>Serveur DNS local qui bloque les publicités et domaines malveillants pour tous les appareils du réseau, sans configuration sur chaque appareil.</dd>
+              </dl>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
 
-    <!-- Systèmes & Active Directory -->
-    <div style="border-radius:10px; border:1px solid rgba(148,163,184,0.3); background:#fff; overflow:hidden;">
-      <button onclick="toggleAccordion(this)"
-              style="width:100%; text-align:left; padding:0.9rem 1rem; background:none; border:none;
-                     font-family:inherit; font-size:0.95rem; font-weight:600; cursor:pointer;
-                     display:flex; justify-content:space-between; align-items:center; color:#111827;">
-        👤 Systèmes & Active Directory
-        <span style="font-size:1.1rem; transition:transform 0.2s;">▾</span>
-      </button>
-      <div style="max-height:0; overflow:hidden; transition:max-height 0.3s ease;">
-        <div style="padding:0 1rem 1rem; font-size:0.9rem; color:#374151;">
-          <dl style="display:grid; grid-template-columns: 160px 1fr; gap:0.5rem 1rem; margin:0;">
-            <dt style="font-weight:600;">Active Directory</dt>
-            <dd style="margin:0;">Service d'annuaire Microsoft qui centralise la gestion des utilisateurs, ordinateurs et ressources d'un réseau Windows (authentification, droits, politiques).</dd>
-            <dt style="font-weight:600;">Entra ID</dt>
-            <dd style="margin:0;">Anciennement Azure Active Directory — service d'identité cloud de Microsoft qui gère les accès aux applications et ressources cloud.</dd>
-            <dt style="font-weight:600;">Domaine</dt>
-            <dd style="margin:0;">Ensemble d'ordinateurs et d'utilisateurs gérés centralement par un Active Directory. Tous les objets partagent la même base de données d'annuaire.</dd>
-            <dt style="font-weight:600;">Contrôleur de domaine</dt>
-            <dd style="margin:0;">Serveur Windows qui héberge Active Directory et gère l'authentification et les politiques pour tous les objets du domaine.</dd>
-            <dt style="font-weight:600;">OU</dt>
-            <dd style="margin:0;">Organizational Unit — unité organisationnelle dans Active Directory permettant de regrouper et organiser les objets (utilisateurs, ordinateurs) pour y appliquer des GPO.</dd>
-            <dt style="font-weight:600;">GPO</dt>
-            <dd style="margin:0;">Group Policy Object — ensemble de règles et paramètres appliqués automatiquement aux utilisateurs et ordinateurs d'un domaine Active Directory.</dd>
-            <dt style="font-weight:600;">JML</dt>
-            <dd style="margin:0;">Joiners-Movers-Leavers — processus RH et IT de gestion du cycle de vie des comptes : création à l'arrivée, modification en cas de changement de poste, désactivation au départ.</dd>
-            <dt style="font-weight:600;">LDAP</dt>
-            <dd style="margin:0;">Lightweight Directory Access Protocol — protocole standard pour accéder et modifier les annuaires comme Active Directory.</dd>
-            <dt style="font-weight:600;">PowerShell</dt>
-            <dd style="margin:0;">Langage de script et shell de Microsoft, très utilisé pour l'automatisation des tâches d'administration Windows et Active Directory.</dd>
-            <dt style="font-weight:600;">WPF</dt>
-            <dd style="margin:0;">Windows Presentation Foundation — framework Microsoft pour créer des interfaces graphiques (GUI) pour les applications Windows.</dd>
-          </dl>
+        <!-- Systèmes & AD -->
+        <div class="accordion-item">
+          <button class="accordion-btn" onclick="toggleAccordion(this)">
+            👤 Systèmes &amp; Active Directory
+            <span>▾</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-inner">
+              <dl class="glossary-grid">
+                <dt>Active Directory</dt><dd>Service d'annuaire Microsoft qui centralise la gestion des utilisateurs, ordinateurs et ressources d'un réseau Windows (authentification, droits, politiques).</dd>
+                <dt>Entra ID</dt><dd>Anciennement Azure Active Directory — service d'identité cloud de Microsoft qui gère les accès aux applications et ressources cloud.</dd>
+                <dt>Domaine</dt><dd>Ensemble d'ordinateurs et d'utilisateurs gérés centralement par un Active Directory. Tous les objets partagent la même base de données d'annuaire.</dd>
+                <dt>Contrôleur de domaine</dt><dd>Serveur Windows qui héberge Active Directory et gère l'authentification et les politiques pour tous les objets du domaine.</dd>
+                <dt>OU</dt><dd>Organizational Unit — unité organisationnelle dans Active Directory permettant de regrouper et organiser les objets pour y appliquer des GPO.</dd>
+                <dt>GPO</dt><dd>Group Policy Object — ensemble de règles et paramètres appliqués automatiquement aux utilisateurs et ordinateurs d'un domaine Active Directory.</dd>
+                <dt>JML</dt><dd>Joiners-Movers-Leavers — processus RH et IT de gestion du cycle de vie des comptes : création à l'arrivée, modification en cas de changement de poste, désactivation au départ.</dd>
+                <dt>LDAP</dt><dd>Lightweight Directory Access Protocol — protocole standard pour accéder et modifier les annuaires comme Active Directory.</dd>
+                <dt>PowerShell</dt><dd>Langage de script et shell de Microsoft, très utilisé pour l'automatisation des tâches d'administration Windows et Active Directory.</dd>
+                <dt>WPF</dt><dd>Windows Presentation Foundation — framework Microsoft pour créer des interfaces graphiques (GUI) pour les applications Windows.</dd>
+              </dl>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
 
-    <!-- Sécurité -->
-    <div style="border-radius:10px; border:1px solid rgba(148,163,184,0.3); background:#fff; overflow:hidden;">
-      <button onclick="toggleAccordion(this)"
-              style="width:100%; text-align:left; padding:0.9rem 1rem; background:none; border:none;
-                     font-family:inherit; font-size:0.95rem; font-weight:600; cursor:pointer;
-                     display:flex; justify-content:space-between; align-items:center; color:#111827;">
-        🛡️ Sécurité
-        <span style="font-size:1.1rem; transition:transform 0.2s;">▾</span>
-      </button>
-      <div style="max-height:0; overflow:hidden; transition:max-height 0.3s ease;">
-        <div style="padding:0 1rem 1rem; font-size:0.9rem; color:#374151;">
-          <dl style="display:grid; grid-template-columns: 160px 1fr; gap:0.5rem 1rem; margin:0;">
-            <dt style="font-weight:600;">SIEM</dt>
-            <dd style="margin:0;">Security Information and Event Management — système qui collecte, analyse et corrèle les logs et événements de sécurité de l'infrastructure pour détecter les menaces.</dd>
-            <dt style="font-weight:600;">Wazuh</dt>
-            <dd style="margin:0;">Solution SIEM open-source qui surveille les systèmes, détecte les intrusions, analyse les vulnérabilités et génère des alertes de sécurité.</dd>
-            <dt style="font-weight:600;">IAM</dt>
-            <dd style="margin:0;">Identity and Access Management — ensemble de processus et outils pour gérer les identités numériques et contrôler qui a accès à quoi dans un système.</dd>
-            <dt style="font-weight:600;">MFA</dt>
-            <dd style="margin:0;">Multi-Factor Authentication — méthode d'authentification qui exige au moins deux preuves d'identité (ex: mot de passe + code SMS) pour accéder à un compte.</dd>
-            <dt style="font-weight:600;">Zero Trust</dt>
-            <dd style="margin:0;">Modèle de sécurité qui ne fait confiance à aucun utilisateur ou appareil par défaut, même à l'intérieur du réseau. Chaque accès doit être vérifié.</dd>
-            <dt style="font-weight:600;">Chiffrement</dt>
-            <dd style="margin:0;">Transformation des données en un format illisible sans clé de déchiffrement, pour protéger les informations en transit ou au repos.</dd>
-            <dt style="font-weight:600;">HTTPS</dt>
-            <dd style="margin:0;">HTTP Sécurisé — version chiffrée du protocole web HTTP, utilisant TLS pour protéger les échanges entre le navigateur et le serveur.</dd>
-            <dt style="font-weight:600;">Certificat SSL/TLS</dt>
-            <dd style="margin:0;">Fichier numérique qui authentifie l'identité d'un site web et chiffre les communications, matérialisé par le cadenas dans le navigateur.</dd>
-          </dl>
+        <!-- Sécurité -->
+        <div class="accordion-item">
+          <button class="accordion-btn" onclick="toggleAccordion(this)">
+            🛡️ Sécurité
+            <span>▾</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-inner">
+              <dl class="glossary-grid">
+                <dt>SIEM</dt><dd>Security Information and Event Management — système qui collecte, analyse et corrèle les logs et événements de sécurité de l'infrastructure pour détecter les menaces.</dd>
+                <dt>Wazuh</dt><dd>Solution SIEM open-source qui surveille les systèmes, détecte les intrusions, analyse les vulnérabilités et génère des alertes de sécurité.</dd>
+                <dt>IAM</dt><dd>Identity and Access Management — ensemble de processus et outils pour gérer les identités numériques et contrôler qui a accès à quoi dans un système.</dd>
+                <dt>MFA</dt><dd>Multi-Factor Authentication — méthode d'authentification qui exige au moins deux preuves d'identité (ex: mot de passe + code SMS) pour accéder à un compte.</dd>
+                <dt>Zero Trust</dt><dd>Modèle de sécurité qui ne fait confiance à aucun utilisateur ou appareil par défaut, même à l'intérieur du réseau. Chaque accès doit être vérifié.</dd>
+                <dt>Chiffrement</dt><dd>Transformation des données en un format illisible sans clé de déchiffrement, pour protéger les informations en transit ou au repos.</dd>
+                <dt>HTTPS</dt><dd>HTTP Sécurisé — version chiffrée du protocole web HTTP, utilisant TLS pour protéger les échanges entre le navigateur et le serveur.</dd>
+                <dt>Certificat SSL/TLS</dt><dd>Fichier numérique qui authentifie l'identité d'un site web et chiffre les communications, matérialisé par le cadenas dans le navigateur.</dd>
+              </dl>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
 
-    <!-- Cloud -->
-    <div style="border-radius:10px; border:1px solid rgba(148,163,184,0.3); background:#fff; overflow:hidden;">
-      <button onclick="toggleAccordion(this)"
-              style="width:100%; text-align:left; padding:0.9rem 1rem; background:none; border:none;
-                     font-family:inherit; font-size:0.95rem; font-weight:600; cursor:pointer;
-                     display:flex; justify-content:space-between; align-items:center; color:#111827;">
-        ☁️ Cloud
-        <span style="font-size:1.1rem; transition:transform 0.2s;">▾</span>
-      </button>
-      <div style="max-height:0; overflow:hidden; transition:max-height 0.3s ease;">
-        <div style="padding:0 1rem 1rem; font-size:0.9rem; color:#374151;">
-          <dl style="display:grid; grid-template-columns: 160px 1fr; gap:0.5rem 1rem; margin:0;">
-            <dt style="font-weight:600;">IaaS</dt>
-            <dd style="margin:0;">Infrastructure as a Service — modèle cloud où le fournisseur gère le matériel et la virtualisation. L'utilisateur gère l'OS, les applications et les données. Ex: AWS EC2, Azure VM.</dd>
-            <dt style="font-weight:600;">PaaS</dt>
-            <dd style="margin:0;">Platform as a Service — modèle cloud où le fournisseur gère l'infrastructure et l'OS. L'utilisateur se concentre uniquement sur son application. Ex: Heroku, Azure App Service.</dd>
-            <dt style="font-weight:600;">SaaS</dt>
-            <dd style="margin:0;">Software as a Service — logiciel hébergé et géré entièrement par le fournisseur, accessible via navigateur. L'utilisateur ne gère rien. Ex: Gmail, Microsoft 365, Zoom.</dd>
-            <dt style="font-weight:600;">Azure</dt>
-            <dd style="margin:0;">Plateforme cloud de Microsoft offrant des services d'infrastructure, d'identité (Entra ID), de sécurité et d'applications à l'échelle mondiale.</dd>
-            <dt style="font-weight:600;">AWS</dt>
-            <dd style="margin:0;">Amazon Web Services — plateforme cloud d'Amazon, leader du marché, offrant plus de 200 services (calcul, stockage, base de données, IA...).</dd>
-            <dt style="font-weight:600;">Cloudflare</dt>
-            <dd style="margin:0;">Service réseau mondial offrant DNS, CDN, protection DDoS et tunnels sécurisés. Utilisé ici pour exposer les services du homelab sans ouvrir de ports.</dd>
-            <dt style="font-weight:600;">CDN</dt>
-            <dd style="margin:0;">Content Delivery Network — réseau de serveurs répartis géographiquement pour distribuer le contenu web au plus près des utilisateurs et réduire la latence.</dd>
-            <dt style="font-weight:600;">Microsoft Graph API</dt>
-            <dt style="font-weight:600;">API</dt>
-<dd style="margin:0;">Application Programming Interface — interface qui permet à deux applications de communiquer entre elles. Par exemple, l'API Proxmox permet à Grafana de récupérer les données de l'infrastructure, et l'API Microsoft Graph permet de gérer les utilisateurs Entra ID via des scripts PowerShell.</dd>
-
-<dt style="font-weight:600;">API REST</dt>
-<dd style="margin:0;">Type d'API qui fonctionne via HTTP, comme un site web. Elle utilise des requêtes GET (lire), POST (créer), PUT (modifier) et DELETE (supprimer) pour interagir avec un service distant.</dd>
-
-<dt style="font-weight:600;">Token</dt>
-<dd style="margin:0;">Clé d'accès temporaire utilisée pour s'authentifier auprès d'une API sans utiliser un mot de passe. Par exemple, le token read-only Proxmox utilisé par Grafana.</dd>
-            <dd style="margin:0;">API REST de Microsoft permettant d'interagir avec les services Microsoft 365 et Entra ID (gestion des utilisateurs, groupes, mails...) via des requêtes HTTP.</dd>
-            <dt style="font-weight:600;">Entra Connect</dt>
-            <dd style="margin:0;">Outil Microsoft qui synchronise les comptes d'un Active Directory on-premises vers Entra ID (Azure AD), permettant une gestion d'identité hybride.</dd>
-            <dt style="font-weight:600;">Tenant</dt>
-            <dd style="margin:0;">Instance dédiée des services Microsoft 365 / Entra ID d'une organisation. Chaque entreprise ou lab a son propre tenant avec ses utilisateurs et ressources.</dd>
-          </dl>
+        <!-- Cloud -->
+        <div class="accordion-item">
+          <button class="accordion-btn" onclick="toggleAccordion(this)">
+            ☁️ Cloud
+            <span>▾</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-inner">
+              <dl class="glossary-grid">
+                <dt>IaaS</dt><dd>Infrastructure as a Service — modèle cloud où le fournisseur gère le matériel et la virtualisation. L'utilisateur gère l'OS, les applications et les données. Ex: AWS EC2, Azure VM.</dd>
+                <dt>PaaS</dt><dd>Platform as a Service — modèle cloud où le fournisseur gère l'infrastructure et l'OS. L'utilisateur se concentre uniquement sur son application. Ex: Heroku, Azure App Service.</dd>
+                <dt>SaaS</dt><dd>Software as a Service — logiciel hébergé et géré entièrement par le fournisseur, accessible via navigateur. L'utilisateur ne gère rien. Ex: Gmail, Microsoft 365, Zoom.</dd>
+                <dt>API</dt><dd>Application Programming Interface — interface qui permet à deux applications de communiquer entre elles. Ex: l'API Proxmox permet à Grafana de récupérer les données de l'infrastructure.</dd>
+                <dt>API REST</dt><dd>Type d'API qui fonctionne via HTTP. Elle utilise des requêtes GET (lire), POST (créer), PUT (modifier) et DELETE (supprimer) pour interagir avec un service distant.</dd>
+                <dt>Token</dt><dd>Clé d'accès temporaire utilisée pour s'authentifier auprès d'une API sans utiliser un mot de passe. Ex: le token read-only Proxmox utilisé par Grafana.</dd>
+                <dt>Azure</dt><dd>Plateforme cloud de Microsoft offrant des services d'infrastructure, d'identité (Entra ID), de sécurité et d'applications à l'échelle mondiale.</dd>
+                <dt>AWS</dt><dd>Amazon Web Services — plateforme cloud d'Amazon, leader du marché, offrant plus de 200 services (calcul, stockage, base de données, IA...).</dd>
+                <dt>Cloudflare</dt><dd>Service réseau mondial offrant DNS, CDN, protection DDoS et tunnels sécurisés. Utilisé ici pour exposer les services du homelab sans ouvrir de ports.</dd>
+                <dt>CDN</dt><dd>Content Delivery Network — réseau de serveurs répartis géographiquement pour distribuer le contenu web au plus près des utilisateurs et réduire la latence.</dd>
+                <dt>Microsoft Graph API</dt><dd>API REST de Microsoft permettant d'interagir avec les services Microsoft 365 et Entra ID (gestion des utilisateurs, groupes, mails...) via des requêtes HTTP.</dd>
+                <dt>Entra Connect</dt><dd>Outil Microsoft qui synchronise les comptes d'un Active Directory on-premises vers Entra ID (Azure AD), permettant une gestion d'identité hybride.</dd>
+                <dt>Tenant</dt><dd>Instance dédiée des services Microsoft 365 / Entra ID d'une organisation. Chaque entreprise ou lab a son propre tenant avec ses utilisateurs et ressources.</dd>
+              </dl>
+            </div>
+          </div>
         </div>
+
+        <!-- AWS -->
+        <div class="accordion-item">
+          <button class="accordion-btn" onclick="toggleAccordion(this)">
+            🟠 Amazon Web Services (AWS)
+            <span>▾</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-inner">
+              <dl class="glossary-grid">
+                <dt>EC2</dt><dd>Elastic Compute Cloud — service AWS qui permet de louer des serveurs virtuels (instances) dans le cloud. C'est le service IaaS de base d'AWS.</dd>
+                <dt>S3</dt><dd>Simple Storage Service — service de stockage objet AWS permettant de stocker et récupérer n'importe quelle quantité de données. Très utilisé pour les sauvegardes, sites statiques et fichiers.</dd>
+                <dt>IAM (AWS)</dt><dd>Identity and Access Management — service AWS qui gère les utilisateurs, groupes et permissions d'accès aux ressources AWS. Permet d'appliquer le principe du moindre privilège.</dd>
+                <dt>Region</dt><dd>Zone géographique où AWS dispose de data centers. Ex: eu-west-1 (Irlande), eu-central-1 (Francfort). Chaque région est indépendante pour la résilience et la conformité des données.</dd>
+                <dt>Availability Zone</dt><dd>Zone de disponibilité — data center physiquement séparé à l'intérieur d'une région AWS. Chaque région en a minimum 3, pour garantir la haute disponibilité.</dd>
+                <dt>VPC</dt><dd>Virtual Private Cloud — réseau privé virtuel isolé dans AWS où tu déploies tes ressources. Permet de contrôler les adresses IP, sous-réseaux et règles de sécurité réseau.</dd>
+                <dt>Security Group</dt><dd>Pare-feu virtuel AWS qui contrôle le trafic entrant et sortant des instances EC2. Fonctionne comme une liste de règles autorisant ou bloquant des ports et protocoles.</dd>
+                <dt>Lambda</dt><dd>Service AWS de Functions as a Service (FaaS) — exécute du code sans gérer de serveur. Le code ne tourne que lors d'un déclenchement et la facturation est à la milliseconde.</dd>
+                <dt>RDS</dt><dd>Relational Database Service — service AWS de base de données managée (MySQL, PostgreSQL, SQL Server...). AWS gère les sauvegardes, mises à jour et haute disponibilité.</dd>
+                <dt>CloudWatch</dt><dd>Service de monitoring et logs AWS. Collecte les métriques des services AWS, génère des alertes et stocke les logs applicatifs.</dd>
+                <dt>CloudTrail</dt><dd>Service AWS qui enregistre toutes les actions effectuées sur le compte AWS (qui a fait quoi, quand). Essentiel pour l'audit de sécurité.</dd>
+                <dt>SQS</dt><dd>Simple Queue Service — service de file de messages AWS permettant à des applications de communiquer de manière asynchrone. Premier service AWS lancé publiquement en 2004.</dd>
+                <dt>Route 53</dt><dd>Service DNS managé d'AWS permettant de gérer les noms de domaine et router le trafic vers les ressources AWS ou externes.</dd>
+                <dt>Elastic Beanstalk</dt><dd>Service PaaS d'AWS qui déploie automatiquement une application (Node.js, Python, Java...) sans gérer l'infrastructure sous-jacente.</dd>
+                <dt>Pay-as-you-go</dt><dd>Modèle de facturation AWS où tu paies uniquement ce que tu consommes, sans engagement. Pas de serveur à acheter, pas de contrat minimum.</dd>
+                <dt>Free Tier</dt><dd>Niveau gratuit AWS offrant un accès limité à certains services pendant 12 mois (ou indéfiniment pour certains). Idéal pour apprendre et tester sans frais.</dd>
+                <dt>ARN</dt><dd>Amazon Resource Name — identifiant unique d'une ressource AWS. Format : arn:aws:service:region:account-id:resource. Utilisé dans les politiques IAM et configurations.</dd>
+                <dt>CLI AWS</dt><dd>Interface en ligne de commande pour interagir avec les services AWS depuis un terminal, sans passer par la console web.</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+
+        <!-- Linux & Scripting -->
+        <div class="accordion-item">
+          <button class="accordion-btn" onclick="toggleAccordion(this)">
+            🐧 Linux &amp; Scripting
+            <span>▾</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-inner">
+              <dl class="glossary-grid">
+                <dt>Linux</dt><dd>Système d'exploitation open-source basé sur le noyau Linux. Très utilisé pour les serveurs, l'infrastructure et le cloud. La majorité des serveurs web et conteneurs tournent sous Linux.</dd>
+                <dt>Ubuntu</dt><dd>Distribution Linux populaire basée sur Debian, très utilisée pour les serveurs. Utilisée ici pour les VMs Wazuh et certains conteneurs LXC du homelab.</dd>
+                <dt>Bash</dt><dd>Shell et langage de script standard sous Linux. Permet d'automatiser des tâches, gérer des fichiers et exécuter des commandes en séquence.</dd>
+                <dt>Systemd</dt><dd>Système d'initialisation et gestionnaire de services Linux. Permet de démarrer, arrêter et surveiller des services au boot. Utilisé ici pour créer le service wazuh-start.service.</dd>
+                <dt>Service systemd</dt><dd>Fichier de configuration (.service) qui définit comment un programme doit être lancé par systemd au démarrage du système, avec ses dépendances et son ordre de démarrage.</dd>
+                <dt>Terminal</dt><dd>Interface en ligne de commande permettant d'interagir avec le système d'exploitation via du texte. Indispensable pour administrer des serveurs Linux à distance.</dd>
+                <dt>Cron</dt><dd>Planificateur de tâches Linux qui exécute automatiquement des scripts ou commandes à des horaires définis. Équivalent Linux du Planificateur de tâches Windows.</dd>
+                <dt>Package</dt><dd>Logiciel précompilé installable via un gestionnaire de paquets (apt, yum...). Ex: sudo apt install nginx installe le serveur web Nginx.</dd>
+                <dt>apt</dt><dd>Advanced Package Tool — gestionnaire de paquets des distributions Debian/Ubuntu. Permet d'installer, mettre à jour et supprimer des logiciels facilement.</dd>
+                <dt>Root</dt><dd>Compte super-administrateur sous Linux avec tous les droits sur le système. Équivalent de l'administrateur sous Windows. À utiliser avec précaution.</dd>
+                <dt>sudo</dt><dd>Commande Linux permettant d'exécuter une commande avec les droits root sans se connecter en tant que root. Permet de tracer qui a fait quoi.</dd>
+                <dt>Script</dt><dd>Fichier texte contenant une série de commandes exécutées automatiquement. En Bash sous Linux ou en PowerShell sous Windows pour automatiser des tâches répétitives.</dd>
+                <dt>Log</dt><dd>Fichier qui enregistre chronologiquement les événements d'un système ou application. Indispensable pour diagnostiquer des problèmes et surveiller la sécurité.</dd>
+                <dt>grep</dt><dd>Commande Linux pour rechercher du texte dans des fichiers ou la sortie d'une commande. Très utilisée pour filtrer des logs. Ex: cat syslog | grep error.</dd>
+                <dt>Pipe</dt><dd>Opérateur | qui redirige la sortie d'une commande vers l'entrée d'une autre. Permet de chaîner des commandes. Ex: cat fichier.log | grep error | wc -l.</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+
+        <!-- Domotique -->
+        <div class="accordion-item">
+          <button class="accordion-btn" onclick="toggleAccordion(this)">
+            🏠 Domotique
+            <span>▾</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-inner">
+              <dl class="glossary-grid">
+                <dt>Home Assistant</dt><dd>Plateforme domotique open-source qui centralise et automatise les équipements connectés de la maison. Tourne ici sur un Raspberry Pi.</dd>
+                <dt>Raspberry Pi</dt><dd>Nano-ordinateur low-cost et basse consommation, très utilisé pour les projets DIY, la domotique et l'apprentissage. Idéal pour faire tourner Home Assistant en permanence.</dd>
+                <dt>Intégration</dt><dd>Dans Home Assistant, module qui connecte un appareil ou service externe (Philips Hue, Spotify, météo...) pour le contrôler depuis l'interface.</dd>
+                <dt>Automation</dt><dd>Règle dans Home Assistant qui déclenche automatiquement une action quand une condition est remplie. Ex: allumer les lumières quand le soleil se couche.</dd>
+                <dt>Dashboard</dt><dd>Interface visuelle personnalisable dans Home Assistant qui affiche l'état des équipements et permet de les contrôler.</dd>
+                <dt>HACS</dt><dd>Home Assistant Community Store — gestionnaire de plugins communautaires pour Home Assistant. Permet d'installer des thèmes, cartes et intégrations non officielles comme Mushroom Cards.</dd>
+                <dt>Mushroom Cards</dt><dd>Collection de cartes UI modernes et épurées pour le dashboard Home Assistant, installables via HACS.</dd>
+                <dt>IoT</dt><dd>Internet of Things (Internet des Objets) — ensemble des appareils physiques connectés à Internet qui collectent et échangent des données. Ex: ampoules connectées, capteurs de température.</dd>
+                <dt>Uptime Kuma</dt><dd>Outil de monitoring open-source auto-hébergé qui surveille la disponibilité des services et envoie des alertes en cas de panne.</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+
       </div>
-    </div>
+    </section>
 
-  </div>
-</section>
-<section id="contact">
-  <h3>Contact</h3>
-  <p class="section-desc">
-    Pour toute question ou échange autour de l'infrastructure IT, du support ou de mes projets,
-    n'hésitez pas à me contacter via ce formulaire.
-  </p>
-
-  <form action="https://formspree.io/f/xnjypwba" method="POST"
-        style="margin-top:1.2rem; display:flex; flex-direction:column; gap:0.8rem; max-width:520px;">
-
-    <div style="display:flex; flex-direction:column; gap:0.3rem;">
-      <label style="font-size:0.85rem; font-weight:600; color:#374151;">Nom</label>
-      <input type="text" name="name" required placeholder="Votre nom"
-             style="padding:0.6rem 0.9rem; border-radius:8px; border:1px solid rgba(148,163,184,0.5);
-                    font-family:inherit; font-size:0.9rem; outline:none; background:#fff;">
-    </div>
-
-    <div style="display:flex; flex-direction:column; gap:0.3rem;">
-      <label style="font-size:0.85rem; font-weight:600; color:#374151;">Email</label>
-      <input type="email" name="email" required placeholder="votre@email.com"
-             style="padding:0.6rem 0.9rem; border-radius:8px; border:1px solid rgba(148,163,184,0.5);
-                    font-family:inherit; font-size:0.9rem; outline:none; background:#fff;">
-    </div>
-
-    <div style="display:flex; flex-direction:column; gap:0.3rem;">
-      <label style="font-size:0.85rem; font-weight:600; color:#374151;">Message</label>
-      <textarea name="message" required placeholder="Votre message..." rows="5"
-                style="padding:0.6rem 0.9rem; border-radius:8px; border:1px solid rgba(148,163,184,0.5);
-                       font-family:inherit; font-size:0.9rem; outline:none; background:#fff; resize:vertical;"></textarea>
-    </div>
-
-    <button type="submit"
-            style="padding:0.7rem 1.4rem; border-radius:999px; border:none; cursor:pointer;
-                   background:var(--primary); color:#fff; font-family:inherit; font-size:0.9rem;
-                   font-weight:600; letter-spacing:0.03em; align-self:flex-start;
-                   box-shadow:0 10px 25px rgba(37,99,235,0.35); transition:background 0.2s ease;">
-      Envoyer le message ✉️
-    </button>
-
-  </form>
-</section>
-
-      <footer>
-      &copy; 2026 sandrined – hébergé sur GitHub Pages · Soutenir le projet
-
-      <form action="https://www.paypal.com/donate" method="post" target="_blank">
-        <input type="hidden" name="hosted_button_id" value="RNJYHKTRS4LME" />
-        <input type="image"
-               src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif"
-               border="0"
-               name="submit"
-               title="PayPal - The safer, easier way to pay online!"
-               alt="Donate with PayPal button" />
-        <img alt="" border="0"
-             src="https://www.paypal.com/en_BE/i/scr/pixel.gif"
-             width="1" height="1" />
+    <!-- CONTACT -->
+    <section id="contact">
+      <h3>Contact</h3>
+      <p class="section-desc">Pour toute question ou échange autour de l'infrastructure IT, du support ou de mes projets, n'hésitez pas à me contacter via ce formulaire.</p>
+      <form action="https://formspree.io/f/xnjypwba" method="POST"
+            style="margin-top:1.2rem; display:flex; flex-direction:column; gap:0.8rem; max-width:520px;">
+        <div style="display:flex; flex-direction:column; gap:0.3rem;">
+          <label style="font-size:0.85rem; font-weight:600; color:#374151;">Nom</label>
+          <input type="text" name="name" required placeholder="Votre nom"
+                 style="padding:0.6rem 0.9rem; border-radius:8px; border:1px solid rgba(148,163,184,0.5); font-family:inherit; font-size:0.9rem; outline:none; background:#fff;">
+        </div>
+        <div style="display:flex; flex-direction:column; gap:0.3rem;">
+          <label style="font-size:0.85rem; font-weight:600; color:#374151;">Email</label>
+          <input type="email" name="email" required placeholder="votre@email.com"
+                 style="padding:0.6rem 0.9rem; border-radius:8px; border:1px solid rgba(148,163,184,0.5); font-family:inherit; font-size:0.9rem; outline:none; background:#fff;">
+        </div>
+        <div style="display:flex; flex-direction:column; gap:0.3rem;">
+          <label style="font-size:0.85rem; font-weight:600; color:#374151;">Message</label>
+          <textarea name="message" required placeholder="Votre message..." rows="5"
+                    style="padding:0.6rem 0.9rem; border-radius:8px; border:1px solid rgba(148,163,184,0.5); font-family:inherit; font-size:0.9rem; outline:none; background:#fff; resize:vertical;"></textarea>
+        </div>
+        <button type="submit"
+                style="padding:0.7rem 1.4rem; border-radius:999px; border:none; cursor:pointer; background:var(--primary); color:#fff; font-family:inherit; font-size:0.9rem; font-weight:600; letter-spacing:0.03em; align-self:flex-start; box-shadow:0 10px 25px rgba(37,99,235,0.35); transition:background 0.2s ease;">
+          Envoyer le message ✉️
+        </button>
       </form>
-    </footer>
+    </section>
 
+  </main>
 
-    <script>
-      document.querySelectorAll('a[href^="#"]').forEach(function (link) {
-        link.addEventListener('click', function (e) {
-          e.preventDefault();
-          var targetId = this.getAttribute('href').substring(1);
-          var target = document.getElementById(targetId);
-          if (target) {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-        });
+  <footer>
+    &copy; 2026 sandrined – hébergé sur GitHub Pages · Soutenir le projet
+    <form action="https://www.paypal.com/donate" method="post" target="_blank">
+      <input type="hidden" name="hosted_button_id" value="RNJYHKTRS4LME" />
+      <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+      <img alt="" border="0" src="https://www.paypal.com/en_BE/i/scr/pixel.gif" width="1" height="1" />
+    </form>
+  </footer>
+
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        var target = document.getElementById(this.getAttribute('href').substring(1));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
-    </script>
+    });
 
-    <div class="analytics-badge">
-      Visites suivies avec Google Analytics
-    </div>
-
-      </script>
-
-<script>
-      function toggleAccordion(btn) {
-        const content = btn.nextElementSibling;
-        const arrow = btn.querySelector('span');
-        const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
-        if (isOpen) {
-          content.style.maxHeight = '0';
-          arrow.style.transform = 'rotate(0deg)';
-        } else {
-          content.style.maxHeight = content.scrollHeight + 'px';
-          arrow.style.transform = 'rotate(-180deg)';
-        }
+    function toggleAccordion(btn) {
+      var content = btn.nextElementSibling;
+      var arrow = btn.querySelector('span');
+      var isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
+      if (isOpen) {
+        content.style.maxHeight = '0';
+        arrow.style.transform = 'rotate(0deg)';
+      } else {
+        content.style.maxHeight = content.scrollHeight + 'px';
+        arrow.style.transform = 'rotate(-180deg)';
       }
-    </script>
+    }
+  </script>
 
-    <div class="analytics-badge">
-      Visites suivies avec Google Analytics
-    </div>
-  </body>
+  <div class="analytics-badge">Visites suivies avec Google Analytics</div>
+
+</body>
 </html>
