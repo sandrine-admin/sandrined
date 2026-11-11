@@ -227,7 +227,7 @@
       <h3>À propos</h3>
       <p class="section-desc">Quelques mots sur mon parcours et ce que je cherche à faire en IT.</p>
       <p>Je m'appelle Sandrine et je m'intéresse particulièrement à l'infrastructure IT, à l'administration de systèmes et au support utilisateur / helpdesk. Je développe mes compétences de manière autodidacte, en expérimentant autour des systèmes, du réseau et de la cybersécurité.</p>
-      <p>Ce site rassemble quelques projets personnels (lab virtuel, Pi-hole, Nextcloud, automatisation JML dans Active Directory, etc.) qui illustrent ma curiosité pour la technique et ma façon de documenter les problèmes rencontrés ainsi que les solutions mises en place.</p>
+      <p>Ce site rassemble quelques projets personnels (homelab Proxmox géré en Infrastructure as Code, automatisation JML dans Active Directory, lab virtuel, etc.) qui illustrent ma curiosité pour la technique et ma façon de documenter les problèmes rencontrés ainsi que les solutions mises en place.</p>
       <p>Je documente également certains projets dans des dépôts publics sur GitHub, afin de garder une trace de mes tests et de mes progrès, et de pouvoir les partager avec d'autres personnes intéressées par l'infrastructure IT.</p>
     </section>
 
@@ -255,27 +255,35 @@
           <h4>Pi-hole sur Raspberry Pi</h4>
           <p class="project-meta">DNS &amp; filtrage · Réseau domestique</p>
           <p>Installation de Pi-hole pour filtrer les requêtes DNS du réseau, avec gestion des listes de blocage et vérification du trafic.</p>
+          <p style="margin:0.3rem 0 0;font-size:0.8rem;color:#6b7280;"><em>Projet terminé : service retiré du homelab en novembre 2026.</em></p>
         </li>
         <li>
           <h4>Home Assistant</h4>
           <p class="project-meta">Domotique · Automatisation</p>
           <p>Déploiement de Home Assistant pour centraliser et automatiser certains équipements à la maison, avec configuration de plusieurs intégrations.</p>
+          <p style="margin:0.3rem 0 0;font-size:0.8rem;color:#6b7280;"><em>Projet terminé : service retiré du homelab en novembre 2026.</em></p>
         </li>
         <li>
           <h4>Nextcloud en conteneur Docker</h4>
           <p class="project-meta">Stockage · Auto‑hébergement</p>
           <p>Mise en place de Nextcloud en conteneur Docker pour disposer d'un espace de partage de fichiers auto‑hébergé.</p>
+          <p style="margin:0.3rem 0 0;font-size:0.8rem;color:#6b7280;"><em>Projet terminé : service retiré du homelab en novembre 2026.</em></p>
         </li>
         <li>
           <h4>Infrastructure Homelab – Proxmox Live</h4>
           <p class="project-meta">Virtualisation · Proxmox / LXC / Docker · Temps réel</p>
-          <p>Mise en place d'un homelab complet sur Proxmox VE avec 11 conteneurs LXC et une VM : Pi-hole, Nextcloud, Grafana, Jellyfin, Hermès Agent (IA locale), Windows Server 2025 et plus. Page de monitoring en temps réel exposée via Cloudflare Tunnel.</p>
+          <p>Homelab sur Proxmox VE, recentré en novembre 2026 sur mes projets : deux contrôleurs de domaine Windows Server 2025 (Active Directory), un SIEM Wazuh, et des conteneurs créés et configurés automatiquement (Terraform + Ansible) pour le serveur web du portail JML et le coffre-fort à secrets. Sauvegardes vers un NAS Synology. Page de monitoring en temps réel exposée via Cloudflare Tunnel.</p>
           <p style="margin-top: 0.5rem;">
             <a href="https://infra.sandrinede.com" target="_blank" rel="noopener"
                style="display:inline-block;padding:0.35rem 0.9rem;border-radius:999px;background:rgba(75,90,213,0.1);color:#1d4ed8;font-size:0.82rem;font-weight:600;text-decoration:none;border:1px solid rgba(75,90,213,0.25);">
               🔴 Voir l'infra en direct →
             </a>
           </p>
+        </li>
+        <li>
+          <h4>Infrastructure as Code du homelab</h4>
+          <p class="project-meta">Terraform · Ansible · OpenBao · Git</p>
+          <p>Mon homelab est décrit dans du code versionné sur GitHub : Terraform crée les conteneurs Proxmox sur un réseau privé dédié, Ansible les configure (Docker, serveur web du portail, coffre-fort OpenBao). Aucun secret n'est écrit dans le code : ils sont rangés dans OpenBao, et chaque service ne peut lire que les siens. Le même outillage prépare le déploiement de mon TFE de 3e année sur AWS.</p>
         </li>
         <li>
           <h4>Projet TFE – Automatisation JML dans l'AD</h4>
@@ -357,6 +365,25 @@
           </div>
         </div>
         <div>
+          <div class="skills-group-title">Automatisation &amp; DevOps</div>
+          <div class="skill-item">
+            <div class="skill-label">Terraform (Infrastructure as Code)</div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:25%;"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-label">Ansible</div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:25%;"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-label">Gestion des secrets (OpenBao)</div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:25%;"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-label">Tests automatiques &amp; CI (Pester, pytest, GitHub Actions)</div>
+            <div class="skill-bar"><div class="skill-bar-fill" style="width:20%;"></div></div>
+          </div>
+        </div>
+        <div>
           <div class="skills-group-title">Support &amp; outils métiers</div>
           <div class="skill-item">
             <div class="skill-label">Jira (gestion de tickets)</div>
@@ -382,9 +409,10 @@
         <span class="badge">Cisco Packet Tracer</span>
         <span class="badge">Amazon Web Services (AWS)</span>
         <span class="badge">Zulip (VM &amp; Docker)</span>
-        <span class="badge">Home Assistant</span>
-        <span class="badge">Pi-hole (Raspberry Pi)</span>
-        <span class="badge">Nextcloud (Docker)</span>
+        <span class="badge">Terraform</span>
+        <span class="badge">Ansible</span>
+        <span class="badge">OpenBao</span>
+        <span class="badge">GitHub Actions</span>
         <span class="badge">Excalidraw (tableau blanc)</span>
         <span class="badge">Portainer</span>
         <span class="badge accent">Apprentissage autonome</span>
@@ -469,6 +497,7 @@
           </button>
           <div class="accordion-content">
             <div class="accordion-inner">
+              <p style="font-size:0.85rem;color:#6b7280;"><em>Statut : service retiré en novembre 2026 ; note conservée pour la démarche.</em></p>
               <p><strong>Contexte :</strong> J'avais besoin d'accéder à mes machines Windows Server 2025 via RDP depuis n'importe où, sans exposer le port 3389 sur Internet. Apache Guacamole permet d'accéder au bureau à distance via un simple navigateur web.</p>
               <p><strong>Infrastructure :</strong></p>
               <ul>
@@ -479,7 +508,7 @@
               </ul>
               <p><strong>Ce que j'ai configuré :</strong></p>
               <ul>
-                <li>Connexion RDP vers JMLDC01 et JMLDC02 avec authentification domaine</li>
+                <li>Connexion RDP vers les contrôleurs de domaine avec authentification domaine</li>
                 <li>Lancement automatique de l'interface WPF GUI JML au démarrage de la session RDP</li>
                 <li>Configuration du tunnel Cloudflare pour router le trafic HTTPS vers Guacamole</li>
               </ul>
@@ -512,7 +541,7 @@
               <p><strong>Infrastructure :</strong></p>
               <ul>
                 <li>Installation de Wazuh sur une VM Ubuntu dédiée dans Proxmox</li>
-                <li>Agents Wazuh installés sur JMLDC01 et JMLDC02 (Windows Server 2025)</li>
+                <li>Agents Wazuh installés sur les deux contrôleurs de domaine (Windows Server 2025)</li>
                 <li>Dashboard exposé via <strong>Cloudflare Tunnel</strong> sous <code>wazuh.sandrinede.com</code></li>
                 <li>Index configuré : <code>wazuh-states-vulnerabilities-*</code></li>
               </ul>
@@ -552,7 +581,6 @@
               <ul>
                 <li><code>portail-rh.sandrinede.com</code> — Portail web JML</li>
                 <li><code>wazuh.sandrinede.com</code> — Dashboard SIEM</li>
-                <li><code>rdp.sandrinede.com</code> — Apache Guacamole</li>
                 <li><code>infra.sandrinede.com</code> — Dashboard Proxmox temps réel</li>
               </ul>
               <p><strong>Ce que j'ai configuré :</strong></p>
@@ -585,24 +613,24 @@
           </button>
           <div class="accordion-content">
             <div class="accordion-inner">
-              <p><strong>Contexte :</strong> Mon homelab tourne sur un serveur Proxmox VE personnel. Il héberge l'ensemble de mon infrastructure de lab et de mes services auto-hébergés.</p>
+              <p><strong>Contexte :</strong> Mon homelab tourne sur un serveur Proxmox VE personnel. En novembre 2026, je l'ai recentré sur mes projets (TFE, Infrastructure as Code) et j'ai retiré les services que je n'utilisais plus.</p>
               <p><strong>Services hébergés :</strong></p>
               <ul>
-                <li>🪟 <strong>Windows Server 2025</strong> — JMLDC01 et JMLDC02 (domaine lab.sandrinede.com)</li>
+                <li>🪟 <strong>Windows Server 2025</strong> — deux contrôleurs de domaine Active Directory, et des machines de test (serveur, poste client)</li>
                 <li>🛡️ <strong>Wazuh</strong> — SIEM et détection d'intrusion</li>
-                <li>📊 <strong>Grafana</strong> — Dashboard de monitoring</li>
-                <li>🎬 <strong>Jellyfin</strong> — Serveur multimédia</li>
-                <li>🤖 <strong>Hermès Agent</strong> — Agent IA (Google Gemini 2.5 Flash)</li>
-                <li>🌐 <strong>Pi-hole</strong> — Filtrage DNS</li>
-                <li>☁️ <strong>Nextcloud</strong> — Stockage auto-hébergé</li>
-                <li>🖥️ <strong>Apache Guacamole</strong> — Accès RDP via navigateur</li>
-                <li>📡 <strong>Uptime Kuma</strong> — Monitoring de disponibilité</li>
+                <li>🏗️ <strong>Poste de pilotage IaC</strong> — Terraform et Ansible</li>
+                <li>🌐 <strong>Serveur web du portail JML</strong> — conteneurs Docker (portail, surveillance, base de données)</li>
+                <li>🔐 <strong>OpenBao</strong> — coffre-fort à secrets</li>
+                <li>📈 <strong>Page infra</strong> — état du Proxmox en temps réel</li>
               </ul>
+              <p><strong>Retirés en novembre 2026 :</strong> Pi-hole, Nextcloud, Home Assistant, Grafana, Jellyfin, Hermès Agent, Apache Guacamole, Uptime Kuma.</p>
               <p><strong>Technologies utilisées :</strong></p>
               <ul>
-                <li>Conteneurs <strong>LXC</strong> pour les services Linux légers</li>
+                <li>Conteneurs <strong>LXC</strong> pour les services Linux légers, sur un réseau privé dédié</li>
                 <li><strong>VMs</strong> pour Windows Server 2025</li>
-                <li><strong>Docker</strong> dans certains LXC pour Nextcloud, Guacamole</li>
+                <li><strong>Docker</strong> pour le portail JML</li>
+                <li>Conteneurs créés par <strong>Terraform</strong> et configurés par <strong>Ansible</strong></li>
+                <li>Sauvegardes Proxmox vers un <strong>NAS Synology</strong></li>
                 <li>Exposition via <strong>Cloudflare Tunnel</strong></li>
               </ul>
               <p style="margin-top:0.8rem;"><strong>Outils utilisés :</strong>&nbsp;
@@ -610,7 +638,36 @@
                 <span class="badge">LXC</span>
                 <span class="badge">Docker</span>
                 <span class="badge">Windows Server 2025</span>
-                <span class="badge">Ubuntu</span>
+                <span class="badge">Terraform</span>
+                <span class="badge">Ansible</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Infrastructure as Code -->
+        <div class="accordion-item">
+          <button class="accordion-btn" onclick="toggleAccordion(this)">
+            🏗️ Infrastructure as Code — Terraform, Ansible et OpenBao
+            <span>▾</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-inner">
+              <p><strong>Contexte :</strong> Créer et configurer les serveurs à la main, c'est long et difficile à refaire à l'identique. J'ai donc décrit mon homelab dans du code, versionné sur GitHub : si un conteneur casse, il se reconstruit avec deux commandes.</p>
+              <p><strong>Qui fait quoi :</strong></p>
+              <ul>
+                <li><strong>Terraform</strong> (l'architecte) crée les conteneurs Proxmox et leur réseau privé ; il montre toujours un <em>plan</em> avant de changer quoi que ce soit</li>
+                <li><strong>Ansible</strong> (l'installateur) entre dans les conteneurs et installe les logiciels : Docker et le portail web, le coffre-fort OpenBao</li>
+                <li><strong>OpenBao</strong> (le coffre-fort) garde les secrets ; chaque service a son propre badge et ne lit que ce qui le concerne</li>
+                <li><strong>Git et GitHub</strong> gardent l'historique de chaque changement</li>
+              </ul>
+              <p><strong>Ce que j'en retiens :</strong> aucun mot de passe dans le code, des changements relus avant d'être appliqués, et une infrastructure que je peux reconstruire. Les mêmes outils préparent le passage de mon TFE de 3e année sur AWS.</p>
+              <p style="margin-top:0.8rem;"><strong>Outils utilisés :</strong>&nbsp;
+                <span class="badge">Terraform</span>
+                <span class="badge">Ansible</span>
+                <span class="badge">OpenBao</span>
+                <span class="badge">Proxmox VE</span>
+                <span class="badge">Git &amp; GitHub</span>
               </p>
             </div>
           </div>
@@ -636,9 +693,7 @@
               </ul>
               <p><strong>Infrastructure AD :</strong></p>
               <ul>
-                <li>Domaine <code>lab.sandrinede.com</code> avec deux contrôleurs de domaine</li>
-                <li>JMLDC01 — Contrôleur principal</li>
-                <li>JMLDC02 — Contrôleur secondaire</li>
+                <li>Domaine Active Directory de lab avec deux contrôleurs de domaine (principal et secondaire)</li>
                 <li>Synchronisation hybride vers Entra ID</li>
               </ul>
               <p><strong>Résultat :</strong> Système JML complet opérationnel — de la création du compte AD jusqu'à la synchronisation cloud, avec portail web et interface graphique.</p>
@@ -662,6 +717,7 @@
           </button>
           <div class="accordion-content">
             <div class="accordion-inner">
+              <p style="font-size:0.85rem;color:#6b7280;"><em>Statut : service retiré en novembre 2026 ; note conservée pour la démarche.</em></p>
               <p><strong>Contexte :</strong> Pi-hole est un serveur DNS qui bloque les publicités et les domaines malveillants pour tous les appareils du réseau, sans installer d'extension dans chaque navigateur.</p>
               <p><strong>Ce que j'ai mis en place :</strong></p>
               <ul>
@@ -690,6 +746,7 @@
           </button>
           <div class="accordion-content">
             <div class="accordion-inner">
+              <p style="font-size:0.85rem;color:#6b7280;"><em>Statut : Grafana retiré en novembre 2026. La page infra.sandrinede.com continue de fonctionner (page web qui interroge directement l'API Proxmox).</em></p>
               <p><strong>Contexte :</strong> J'ai déployé Grafana pour avoir une vue en temps réel de l'état de mon infrastructure Proxmox — CPU, RAM, stockage et état des VMs/LXC.</p>
               <p><strong>Ce que j'ai mis en place :</strong></p>
               <ul>
@@ -896,6 +953,31 @@
                 <dt>Log</dt><dd>Fichier qui enregistre chronologiquement les événements d'un système ou application. Indispensable pour diagnostiquer des problèmes et surveiller la sécurité.</dd>
                 <dt>grep</dt><dd>Commande Linux pour rechercher du texte dans des fichiers ou la sortie d'une commande. Très utilisée pour filtrer des logs. Ex: cat syslog | grep error.</dd>
                 <dt>Pipe</dt><dd>Opérateur | qui redirige la sortie d'une commande vers l'entrée d'une autre. Permet de chaîner des commandes. Ex: cat fichier.log | grep error | wc -l.</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+
+        <!-- Automatisation & DevOps -->
+        <div class="accordion-item">
+          <button class="accordion-btn" onclick="toggleAccordion(this)">
+            ⚙️ Automatisation &amp; DevOps
+            <span>▾</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-inner">
+              <dl class="glossary-grid">
+                <dt>Infrastructure as Code (IaC)</dt><dd>Décrire ses serveurs, réseaux et services dans des fichiers de code plutôt que les configurer à la main. L'infrastructure devient reproductible et versionnée.</dd>
+                <dt>Terraform</dt><dd>Outil d'IaC qui crée et modifie l'infrastructure (conteneurs, réseaux, services cloud) à partir de fichiers de configuration. Il affiche un plan des changements avant de les appliquer.</dd>
+                <dt>Ansible</dt><dd>Outil qui configure des machines déjà créées (installer des logiciels, copier des fichiers, démarrer des services) en se connectant en SSH, sans agent à installer.</dd>
+                <dt>Playbook</dt><dd>Fichier Ansible (YAML) qui décrit, étape par étape, l'état voulu d'une ou plusieurs machines.</dd>
+                <dt>Idempotence</dt><dd>Propriété d'une action qu'on peut répéter sans changer le résultat. Ex : relancer un playbook ne réinstalle pas ce qui est déjà en place ; traiter deux fois la même demande ne crée pas deux comptes.</dd>
+                <dt>Coffre-fort à secrets</dt><dd>Service qui garde les mots de passe, clés et certificats hors du code, et ne les donne qu'aux applications autorisées. Ex : OpenBao, HashiCorp Vault, AWS Secrets Manager.</dd>
+                <dt>File d'attente (queue)</dt><dd>Boîte aux lettres entre deux programmes : l'un dépose des messages, l'autre vient les chercher quand il est disponible. Rien ne se perd si le destinataire est éteint. Ex : Amazon SQS.</dd>
+                <dt>File d'erreurs (DLQ)</dt><dd>Dead-Letter Queue — file où sont mis de côté les messages qui ont échoué trop souvent, pour être examinés au lieu de bloquer les autres.</dd>
+                <dt>Signature numérique</dt><dd>Cachet électronique : l'expéditeur signe avec sa clé privée, le destinataire vérifie avec la clé publique. Prouve l'origine du message et qu'il n'a pas été modifié.</dd>
+                <dt>Intégration continue (CI)</dt><dd>Lancement automatique des tests à chaque modification du code, pour détecter tout de suite ce qui casse. Ex : GitHub Actions.</dd>
+                <dt>Tests automatiques</dt><dd>Petits programmes qui vérifient que le code se comporte comme prévu. Ex : Pester pour PowerShell, pytest pour Python.</dd>
               </dl>
             </div>
           </div>
